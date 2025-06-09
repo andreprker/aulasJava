@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sobrescrita de Métodos (@Override) em Java</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6; /* Light gray background */
+        }
+        .container {
+            max-width: 90%; /* Fluid width for responsiveness */
+        }
+        .code-block {
+            background-color: #1f2937; /* Darker gray for code blocks */
+            color: #e5e7eb; /* Light text for code */
+            padding: 1.5rem;
+            border-radius: 0.75rem; /* rounded-xl */
+            overflow-x: auto; /* Enable horizontal scrolling for long lines */
+        }
+    </style>
+</head>
+<body class="antialiased text-gray-800">
+    <div class="container mx-auto p-4 sm:p-6 lg:p-8 my-8 bg-white shadow-lg rounded-xl">
+        <header class="text-center mb-8">
+            <h1 class="text-4xl sm:text-5xl font-extrabold text-red-700 mb-4 rounded-xl p-4 bg-red-50 shadow-md">
+                Sobrescrita de Métodos (<code class="text-red-600">@Override</code>) em Java
+            </h1>
+            <p class="text-lg sm:text-xl text-gray-600 leading-relaxed">
+                Aprenda sobre a sobrescrita de métodos em Java, um conceito fundamental do polimorfismo que permite especializar comportamentos em subclasses.
+            </p>
+        </header>
+
+        <section class="mb-10 p-6 bg-gray-50 rounded-xl shadow-sm">
+            <h2 class="text-3xl font-bold text-gray-800 mb-4">O que é Sobrescrita de Métodos (Method Overriding)?</h2>
+            <p class="text-base sm:text-lg leading-relaxed mb-4">
+                A **sobrescrita de métodos** (Method Overriding) em Java é uma funcionalidade da Programação Orientada a Objetos (POO) que permite a uma subclasse fornecer uma implementação específica para um método que já é definido na sua superclasse. Quando um método é sobrescrito, a versão na subclasse é executada em vez da versão na superclasse, no momento da execução.
+            </p>
+            <p class="text-base sm:text-lg leading-relaxed">
+                Isso é um exemplo de **polimorfismo em tempo de execução** (ou polimorfismo dinâmico), pois a decisão de qual método executar é feita pela Java Virtual Machine (JVM) durante a execução do programa, com base no tipo real do objeto.
+            </p>
+            <p class="text-base sm:text-lg leading-relaxed mt-4">
+                A anotação <code class="font-semibold">@Override</code> é opcional, mas fortemente recomendada. Ela informa ao compilador que o método abaixo se destina a sobrescrever um método de sua superclasse. Se você cometer um erro na assinatura do método (por exemplo, nome ou parâmetros diferentes), o compilador gerará um erro, ajudando a evitar bugs sutis.
+            </p>
+        </section>
+
+        <section class="mb-10 p-6 bg-gray-50 rounded-xl shadow-sm">
+            <h2 class="text-3xl font-bold text-gray-800 mb-4">Regras para a Sobrescrita de Métodos</h2>
+            <ul class="list-disc list-inside text-base sm:text-lg leading-relaxed space-y-2">
+                <li>
+                    <strong>Mesma Assinatura:</strong> O método na subclasse deve ter o mesmo nome, o mesmo número e tipo de parâmetros e a mesma ordem de parâmetros que o método na superclasse.
+                </li>
+                <li>
+                    <strong>Mesmo Tipo de Retorno (ou Covariante):</strong> O tipo de retorno do método sobrescrito deve ser o mesmo ou um subtipo (covariante) do tipo de retorno do método na superclasse.
+                </li>
+                <li>
+                    <strong>Nível de Acesso:</strong> O nível de acesso do método sobrescrito na subclasse não pode ser mais restritivo do que o da superclasse (ex: se o método na superclasse é <code class="font-semibold">protected</code>, na subclasse ele pode ser <code class="font-semibold">protected</code> ou <code class="font-semibold">public</code>, mas não <code class="font-semibold">private</code>).
+                </li>
+                <li>
+                    <strong>Métodos <code class="font-semibold">final</code> e <code class="font-semibold">static</code> não podem ser sobrescritos:</strong> Métodos declarados como <code class="font-semibold">final</code> não podem ser sobrescritos. Métodos <code class="font-semibold">static</code> não são sobrescritos, mas sim "ocultados" (method hiding).
+                </li>
+                <li>
+                    <strong>Construtores não são sobrescritos:</strong> Construtores não são herdados e, portanto, não podem ser sobrescritos.
+                </li>
+                <li>
+                    <strong>Exceções:</strong> O método sobrescrito não pode lançar exceções verificadas mais amplas do que o método na superclasse.
+                </li>
+            </ul>
+        </section>
+
+        <section class="mb-10 p-6 bg-gray-50 rounded-xl shadow-sm">
+            <h2 class="text-3xl font-bold text-gray-800 mb-4">Por que usar Sobrescrita de Métodos?</h2>
+            <ul class="list-disc list-inside text-base sm:text-lg leading-relaxed space-y-2">
+                <li>
+                    <strong>Especialização de Comportamento:</strong> Permite que subclasses forneçam implementações específicas para métodos herdados, adaptando o comportamento genérico da superclasse às suas necessidades particulares.
+                </li>
+                <li>
+                    <strong>Polimorfismo:</strong> É essencial para o polimorfismo em tempo de execução, permitindo que objetos de diferentes subclasses respondam a uma mesma chamada de método de maneiras distintas. Isso torna o código mais genível e flexível.
+                </li>
+                <li>
+                    <strong>Extensibilidade:</strong> Facilita a criação de sistemas modulares e extensíveis. Você pode adicionar novas subclasses com comportamentos especializados sem alterar o código da superclasse ou o código cliente existente que interage com a superclasse.
+                </li>
+                <li>
+                    <strong>Manutenibilidade:</strong> Centraliza a lógica específica de cada tipo em sua respectiva classe, tornando o código mais fácil de entender, depurar e manter.
+                </li>
+            </ul>
+        </section>
+
+        <section class="mb-10 p-6 bg-gray-50 rounded-xl shadow-sm">
+            <h2 class="text-3xl font-bold text-gray-800 mb-4">Exemplos de Sobrescrita de Métodos</h2>
+
+            <article class="mb-8 p-5 bg-white rounded-lg shadow-md">
+                <h3 class="text-2xl font-semibold text-red-700 mb-3">Exemplo Básico: Sobrescrita de Comportamento</h3>
+                <p class="text-base sm:text-lg leading-relaxed mb-4">
+                    Aqui, a classe <code class="font-semibold">Carro</code> e <code class="font-semibold">Moto</code> sobrescrevem o método <code class="font-semibold">ligar()</code> da superclasse <code class="font-semibold">Veiculo</code> para fornecer suas próprias implementações.
+                </p>
+                <div class="code-block">
+<pre><code>
+// Superclasse
+class Veiculo {
+    public void ligar() {
+        System.out.println("Veículo genérico está ligando.");
+    }
+}
+
+// Subclasse Carro
+class Carro extends Veiculo {
+    @Override // Boa prática para indicar que o método está sendo sobrescrito
+    public void ligar() {
+        System.out.println("Carro está ligando com a ignição.");
+    }
+}
+
+// Subclasse Moto
+class Moto extends Veiculo {
+    @Override
+    public void ligar() {
+        System.out.println("Moto está ligando com o pedal de partida.");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Veiculo veiculo1 = new Veiculo(); // Objeto da superclasse
+        Veiculo veiculo2 = new Carro();   // Polimorfismo: Referência Veiculo, Objeto Carro
+        Veiculo veiculo3 = new Moto();    // Polimorfismo: Referência Veiculo, Objeto Moto
+
+        veiculo1.ligar(); // Saída: Veículo genérico está ligando.
+        veiculo2.ligar(); // Saída: Carro está ligando com a ignição. (Método de Carro é chamado)
+        veiculo3.ligar(); // Saída: Moto está ligando com o pedal de partida. (Método de Moto é chamado)
+    }
+}
+</code></pre>
+                </div>
+            </article>
+
+            <article class="p-5 bg-white rounded-lg shadow-md">
+                <h3 class="text-2xl font-semibold text-red-700 mb-3">Chamando o Método da Superclasse com <code class="font-semibold">super</code></h3>
+                <p class="text-base sm:text-lg leading-relaxed mb-4">
+                    Você pode usar a palavra-chave <code class="font-semibold">super</code> para chamar a implementação do método da superclasse dentro do método sobrescrito na subclasse. Isso é útil para estender o comportamento em vez de substituí-lo completamente.
+                </p>
+                <div class="code-block">
+<pre><code>
+class Animal {
+    public void comer() {
+        System.out.println("Animal está comendo.");
+    }
+}
+
+class Cachorro extends Animal {
+    @Override
+    public void comer() {
+        super.comer(); // Chama o método comer() da superclasse Animal
+        System.out.println("Cachorro está comendo ração para cães.");
+    }
+
+    public void latir() {
+        System.out.println("Au au!");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Cachorro meuCachorro = new Cachorro();
+        meuCachorro.comer();
+        // Saída:
+        // Animal está comendo.
+        // Cachorro está comendo ração para cães.
+    }
+}
+```</pre>
+                </div>
+            </article>
+        </section>
+
+        <footer class="text-center p-6 bg-red-700 text-white rounded-xl">
+            <p class="text-lg">A sobrescrita de métodos é uma ferramenta essencial para criar hierarquias de classes flexíveis e robustas em Java, aproveitando todo o poder do polimorfismo!</p>
+            <p class="text-sm mt-2">Página criada com HTML e Tailwind CSS.</p>
+        </footer>
+    </div>
+</body>
+</html>

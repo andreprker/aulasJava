@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interfaces: Contratos de Métodos em Java</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6; /* Light gray background */
+        }
+        .container {
+            max-width: 90%; /* Fluid width for responsiveness */
+        }
+        .code-block {
+            background-color: #1f2937; /* Darker gray for code blocks */
+            color: #e5e7eb; /* Light text for code */
+            padding: 1.5rem;
+            border-radius: 0.75rem; /* rounded-xl */
+            overflow-x: auto; /* Enable horizontal scrolling for long lines */
+        }
+    </style>
+</head>
+<body class="antialiased text-gray-800">
+    <div class="container mx-auto p-4 sm:p-6 lg:p-8 my-8 bg-white shadow-lg rounded-xl">
+        <header class="text-center mb-8">
+            <h1 class="text-4xl sm:text-5xl font-extrabold text-teal-700 mb-4 rounded-xl p-4 bg-teal-50 shadow-md">
+                Interfaces: Contratos de Métodos em Java
+            </h1>
+            <p class="text-lg sm:text-xl text-gray-600 leading-relaxed">
+                Descubra como interfaces em Java atuam como contratos, definindo comportamentos que as classes devem implementar, essenciais para abstração e polimorfismo.
+            </p>
+        </header>
+
+        <section class="mb-10 p-6 bg-gray-50 rounded-xl shadow-sm">
+            <h2 class="text-3xl font-bold text-gray-800 mb-4">O que são Interfaces?</h2>
+            <p class="text-base sm:text-lg leading-relaxed mb-4">
+                Em Java, uma **interface** é um tipo de referência que define um conjunto de métodos (e, opcionalmente, constantes, métodos padrão, métodos estáticos e métodos privados). No entanto, e este é o ponto crucial, ela não fornece a implementação desses métodos.
+            </p>
+            <p class="text-base sm:text-lg leading-relaxed">
+                Pense em uma interface como um **contrato**. Quando uma classe <code class="font-semibold">implementa</code> uma interface, ela se compromete a fornecer uma implementação concreta para todos os métodos abstratos declarados nessa interface. É uma maneira poderosa de alcançar a abstração total e o polimorfismo em Java.
+            </p>
+            <p class="text-base sm:text-lg leading-relaxed mt-4">
+                Interfaces são declaradas usando a palavra-chave <code class="font-semibold">interface</code>.
+            </p>
+        </section>
+
+        <section class="mb-10 p-6 bg-gray-50 rounded-xl shadow-sm">
+            <h2 class="text-3xl font-bold text-gray-800 mb-4">Por que usar Interfaces? (Benefícios)</h2>
+            <ul class="list-disc list-inside text-base sm:text-lg leading-relaxed space-y-2">
+                <li>
+                    <strong>Abstração Completa:</strong> Interfaces definem o "o quê" sem especificar o "como". Elas permitem que você modele comportamentos sem se preocupar com os detalhes de implementação.
+                </li>
+                <li>
+                    <strong>Herança Múltipla de Tipo:</strong> Embora Java não suporte herança múltipla de classes, uma classe pode <code class="font-semibold">implementar</code> múltiplas interfaces. Isso permite que uma classe herde comportamentos de diferentes "contratos", adicionando flexibilidade ao design.
+                </li>
+                <li>
+                    <strong>Acoplamento Fraco (Loose Coupling):</strong> Interfaces promovem um design onde componentes interagem através de uma interface, em vez de depender diretamente de implementações concretas. Isso torna o sistema mais flexível e fácil de modificar.
+                </li>
+                <li>
+                    <strong>Polimorfismo:</strong> Interfaces são a base do polimorfismo em tempo de execução. Uma referência do tipo de interface pode apontar para qualquer objeto de uma classe que a implementa, permitindo que você processe objetos de diferentes tipos de forma uniforme.
+                </li>
+                <li>
+                    <strong>Design de APIs:</strong> São amplamente utilizadas para definir APIs (Application Programming Interfaces) em bibliotecas e frameworks, fornecendo um conjunto de regras claras para a interação.
+                </li>
+            </ul>
+        </section>
+
+        <section class="mb-10 p-6 bg-gray-50 rounded-xl shadow-sm">
+            <h2 class="text-3xl font-bold text-gray-800 mb-4">Como Implementar Interfaces em Java</h2>
+            <p class="text-base sm:text-lg leading-relaxed mb-4">
+                Para usar uma interface, uma classe deve <code class="font-semibold">implementar</code> essa interface usando a palavra-chave <code class="font-semibold">implements</code>.
+            </p>
+
+            <article class="mb-8 p-5 bg-white rounded-lg shadow-md">
+                <h3 class="text-2xl font-semibold text-teal-700 mb-3">Exemplo 1: Interface Simples e Uma Implementação</h3>
+                <p class="text-base sm:text-lg leading-relaxed mb-4">
+                    Aqui, a interface <code class="font-semibold">Desenhavel</code> define um método, e a classe <code class="font-semibold">Circulo</code> o implementa.
+                </p>
+                <div class="code-block">
+<pre><code>
+// Definição da Interface
+interface Desenhavel {
+    // Métodos em interfaces são implicitamente public e abstract (até Java 8)
+    void desenhar();
+}
+
+// Classe implementando a interface
+class Circulo implements Desenhavel {
+    @Override // Anotação opcional, mas boa prática
+    public void desenhar() {
+        System.out.println("Desenhando um círculo.");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Circulo meuCirculo = new Circulo();
+        meuCirculo.desenhar(); // Saída: Desenhando um círculo.
+
+        // Polimorfismo: Referência do tipo da interface, objeto do tipo da classe
+        Desenhavel forma = new Circulo();
+        forma.desenhar(); // Saída: Desenhando um círculo.
+    }
+}
+</code></pre>
+                </div>
+            </article>
+
+            <article class="mb-8 p-5 bg-white rounded-lg shadow-md">
+                <h3 class="text-2xl font-semibold text-teal-700 mb-3">Exemplo 2: Implementando Múltiplas Interfaces</h3>
+                <p class="text-base sm:text-lg leading-relaxed mb-4">
+                    Uma classe pode implementar várias interfaces, desde que forneça a implementação para todos os métodos de todas as interfaces.
+                </p>
+                <div class="code-block">
+<pre><code>
+interface Voavel {
+    void voar();
+}
+
+interface Nadavel {
+    void nadar();
+}
+
+class Pato implements Voavel, Nadavel { // Pato implementa ambas as interfaces
+    @Override
+    public void voar() {
+        System.out.println("Pato está voando.");
+    }
+
+    @Override
+    public void nadar() {
+        System.out.println("Pato está nadando.");
+    }
+
+    public void grasnar() {
+        System.out.println("Pato faz quack!");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Pato meuPato = new Pato();
+        meuPato.voar();    // Saída: Pato está voando.
+        meuPato.nadar();   // Saída: Pato está nadando.
+        meuPato.grasnar(); // Saída: Pato faz quack!
+
+        Voavel serVoador = new Pato(); // Polimorfismo
+        serVoador.voar(); // Saída: Pato está voando.
+
+        Nadavel serNadador = new Pato(); // Polimorfismo
+        serNadador.nadar(); // Saída: Pato está nadando.
+    }
+}
+</code></pre>
+                </div>
+            </article>
+
+            <article class="p-5 bg-white rounded-lg shadow-md">
+                <h3 class="text-2xl font-semibold text-teal-700 mb-3">Exemplo 3: Constantes e Métodos Padrão em Interfaces (Java 8+)</h3>
+                <p class="text-base sm:text-lg leading-relaxed mb-4">
+                    A partir do Java 8, interfaces podem ter:
+                    <ul>
+                        <li>**Constantes:** Variáveis são implicitamente <code class="font-semibold">public static final</code>.</li>
+                        <li>**Métodos Padrão (<code class="font-semibold">default</code>):** Métodos com implementação padrão, que as classes que implementam a interface podem optar por sobrescrever ou usar a implementação padrão.</li>
+                        <li>**Métodos Estáticos:** Métodos que pertencem à interface em si e podem ser chamados diretamente pela interface.</li>
+                    </ul>
+                </p>
+                <div class="code-block">
+<pre><code>
+interface OperacaoMatematica {
+    // Constante (implicitamente public static final)
+    double PI = 3.14159;
+
+    // Método abstrato (implicitamente public abstract)
+    double calcular(double a, double b);
+
+    // Método padrão (default method)
+    default void exibirMensagem() {
+        System.out.println("Realizando uma operação matemática.");
+    }
+
+    // Método estático
+    static double dobrar(double valor) {
+        return valor * 2;
+    }
+}
+
+class Soma implements OperacaoMatematica {
+    @Override
+    public double calcular(double a, double b) {
+        return a + b;
+    }
+
+    // Opcionalmente, pode sobrescrever o método padrão
+    @Override
+    public void exibirMensagem() {
+        System.out.println("Realizando uma operação de SOMA.");
+    }
+}
+
+class Subtracao implements OperacaoMatematica {
+    @Override
+    public double calcular(double a, double b) {
+        return a - b;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Soma soma = new Soma();
+        Subtracao subtracao = new Subtracao();
+
+        System.out.println("Soma de 10 e 5: " + soma.calcular(10, 5)); // Saída: Soma de 10 e 5: 15.0
+        soma.exibirMensagem(); // Saída: Realizando uma operação de SOMA.
+
+        System.out.println("Subtração de 10 e 5: " + subtracao.calcular(10, 5)); // Saída: Subtração de 10 e 5: 5.0
+        subtracao.exibirMensagem(); // Saída: Realizando uma operação matemática. (usa o default)
+
+        System.out.println("Valor de PI: " + OperacaoMatematica.PI); // Acessando constante
+        System.out.println("Dobro de 7: " + OperacaoMatematica.dobrar(7)); // Chamando método estático
+        // Saída:
+        // Soma de 10 e 5: 15.0
+        // Realizando uma operação de SOMA.
+        // Subtração de 10 e 5: 5.0
+        // Realizando uma operação matemática.
+        // Valor de PI: 3.14159
+        // Dobro de 7: 14.0
+    }
+}
+```</pre>
+                </div>
+            </article>
+        </section>
+
+        <section class="mb-10 p-6 bg-gray-50 rounded-xl shadow-sm">
+            <h2 class="text-3xl font-bold text-gray-800 mb-4">Regras Chave para Interfaces</h2>
+            <ul class="list-disc list-inside text-base sm:text-lg leading-relaxed space-y-2">
+                <li>Todos os métodos em uma interface são implicitamente <code class="font-semibold">public</code> e <code class="font-semibold">abstract</code> (antes do Java 8).</li>
+                <li>Atributos em interfaces são implicitamente <code class="font-semibold">public static final</code> (constantes).</li>
+                <li>Interfaces não podem ter construtores.</li>
+                <li>Uma classe pode <code class="font-semibold">implementar</code> múltiplas interfaces.</li>
+                <li>Uma interface pode <code class="font-semibold">estender</code> múltiplas interfaces.</li>
+            </ul>
+        </section>
+
+        <footer class="text-center p-6 bg-teal-700 text-white rounded-xl">
+            <p class="text-lg">Interfaces são uma ferramenta poderosa em Java para criar designs de software flexíveis, extensíveis e polimórficos!</p>
+            <p class="text-sm mt-2">Página criada com HTML e Tailwind CSS.</p>
+        </footer>
+    </div>
+</body>
+</html>

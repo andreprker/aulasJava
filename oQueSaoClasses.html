@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Classes: O 'Molde' para Objetos</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc; /* slate-50 */
+            color: #334155; /* slate-700 */
+        }
+        .section-fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .section-fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .molde-icon {
+            font-size: 3rem; /* Larger icon size */
+            line-height: 1;
+            margin-bottom: 1rem;
+            color: #3b82f6; /* blue-600 */
+        }
+    </style>
+</head>
+<body class="antialiased">
+    <a href="http://127.0.0.1:5500/java/aulasJava.html">Início</a>
+    <main class="container mx-auto px-4 py-8 md:py-16">
+
+        <section id="hero" class="text-center mb-12 md:mb-16 section-fade-in">
+            <h1 class="text-4xl md:text-5xl font-bold text-slate-800 mb-4">Classes: O "Molde" para Objetos na POO</h1>
+            <p class="max-w-3xl mx-auto text-lg text-slate-600">
+                Descubra como as classes são a espinha dorsal da Programação Orientada a Objetos, definindo a estrutura e o comportamento que cada objeto terá.
+            </p>
+        </section>
+
+        <section id="class-definition" class="bg-white p-8 md:p-12 rounded-xl shadow-lg mb-12 md:mb-16 section-fade-in">
+            <div class="max-w-4xl mx-auto text-center">
+                <div class="molde-icon">📦</div>
+                <h2 class="text-3xl font-bold text-slate-800 mb-6">Classes: O Projeto do Seu Código</h2>
+                <p class="text-lg text-slate-700 leading-relaxed">
+                    No mundo da Programação Orientada a Objetos (POO), uma <strong class="font-semibold text-blue-600">classe</strong> pode ser entendida como um <strong class="font-semibold text-blue-600">"molde"</strong>, um <strong class="font-semibold text-blue-600">"plano"</strong> ou uma <strong class="font-semibold text-blue-600">"planta"</strong> para criar objetos. Ela define a estrutura e o comportamento que os objetos criados a partir dela terão.
+                </p>
+                <p class="text-lg text-slate-700 leading-relaxed mt-4">
+                    Quando você "instancia" uma classe, você cria um <strong class="font-semibold text-blue-600">objeto</strong> (também chamado de "instância") dessa classe. Cada objeto é uma entidade independente com os seus próprios valores para os atributos, mas todos partilham a mesma definição de métodos da classe.
+                </p>
+            </div>
+        </section>
+
+        <section id="class-components" class="bg-white p-8 md:p-12 rounded-xl shadow-lg mb-12 md:mb-16 section-fade-in">
+            <div class="max-w-4xl mx-auto">
+                <h2 class="text-3xl font-bold text-slate-800 mb-6 text-center">O que uma Classe Define?</h2>
+                <p class="text-lg text-slate-600 mb-8">
+                    Uma classe é a base para a criação de objetos, especificando dois componentes fundamentais que moldam a sua natureza:
+                </p>
+                <ul class="space-y-8 text-slate-700">
+                    <li>
+                        <h3 class="text-xl font-bold text-blue-700 mb-2 flex items-center"><span class="molde-icon text-2xl mr-3">⚙️</span>Atributos (ou Propriedades):</h3>
+                        <p class="text-lg leading-relaxed">
+                            São as <strong class="font-semibold">características ou dados</strong> que os objetos dessa classe possuirão. Eles representam o estado do objeto.
+                            <br>Por exemplo, numa classe `Carro`, os atributos poderiam ser:
+                        </p>
+                        <ul class="list-disc list-inside ml-6 mt-2 text-base">
+                            <li>`cor`</li>
+                            <li>`marca`</li>
+                            <li>`modelo`</li>
+                            <li>`velocidadeAtual`</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <h3 class="text-xl font-bold text-blue-700 mb-2 flex items-center"><span class="molde-icon text-2xl mr-3">🏃</span>Métodos (ou Comportamentos):</h3>
+                        <p class="text-lg leading-relaxed">
+                            São as <strong class="font-semibold">funções ou ações</strong> que os objetos dessa classe podem realizar. Eles representam o que o objeto pode fazer.
+                            <br>Para a classe `Carro`, os métodos poderiam ser:
+                        </p>
+                        <ul class="list-disc list-inside ml-6 mt-2 text-base">
+                            <li>`acelerar()`</li>
+                            <li>`travar()`</li>
+                            <li>`ligarMotor()`</li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="house-analogy" class="bg-white p-8 md:p-12 rounded-xl shadow-lg mb-12 md:mb-16 section-fade-in">
+            <div class="max-w-4xl mx-auto">
+                <h2 class="text-3xl font-bold text-slate-800 mb-6 text-center">Analogia: O Projeto Arquitetónico de uma Casa</h2>
+                <p class="text-lg text-slate-600 mb-8">
+                    Para entender melhor, imagine a classe como o projeto arquitetónico de uma casa e os objetos como as casas construídas a partir desse projeto:
+                </p>
+                <div class="space-y-6 text-slate-700">
+                    <div>
+                        <h3 class="text-xl font-bold text-blue-700 mb-2">A Classe (o Projeto):</h3>
+                        <p class="text-lg leading-relaxed">
+                            Define que a casa terá um certo número de quartos, casas de banho, uma cozinha, uma sala, etc. Também especifica que a casa pode ser "pintada", "vendida", "alugada" (estes seriam os métodos).
+                        </p>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-blue-700 mb-2">Os Objetos (as Casas Construídas):</h3>
+                        <p class="text-lg leading-relaxed">
+                            Cada casa individual construída a partir desse projeto é um objeto. Todas elas seguirão a mesma estrutura básica (número de quartos, etc.) e terão as mesmas capacidades (podem ser pintadas, vendidas, alugadas), mas cada uma pode ter valores específicos para os seus atributos (cor da pintura, preço de venda, etc.).
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="conclusion" class="text-center py-12 md:py-16 bg-slate-100 rounded-xl shadow-inner section-fade-in">
+            <div class="max-w-3xl mx-auto px-4">
+                <p class="text-lg text-slate-700 leading-relaxed">
+                    As classes são fundamentais na POO porque promovem a <strong class="font-semibold">reutilização de código</strong>, a <strong class="font-semibold">modularidade</strong> e a <strong class="font-semibold">organização</strong>, permitindo que os desenvolvedores criem sistemas complexos de forma mais estruturada e eficiente.
+                </p>
+            </div>
+        </section>
+
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const sections = document.querySelectorAll('.section-fade-in');
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target); // Stop observing once visible
+                    }
+                });
+            }, {
+                threshold: 0.1 // Trigger when 10% of the section is visible
+            });
+
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+        });
+    </script>
+</body>
+</html>

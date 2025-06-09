@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>private: Acessível apenas dentro da própria classe em Java</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6; /* Light gray background */
+        }
+        .container {
+            max-width: 90%; /* Fluid width for responsiveness */
+        }
+        .code-block {
+            background-color: #1f2937; /* Darker gray for code blocks */
+            color: #e5e7eb; /* Light text for code */
+            padding: 1.5rem;
+            border-radius: 0.75rem; /* rounded-xl */
+            overflow-x: auto; /* Enable horizontal scrolling for long lines */
+        }
+    </style>
+</head>
+<body class="antialiased text-gray-800">
+    <div class="container mx-auto p-4 sm:p-6 lg:p-8 my-8 bg-white shadow-lg rounded-xl">
+        <header class="text-center mb-8">
+            <h1 class="text-4xl sm:text-5xl font-extrabold text-indigo-700 mb-4 rounded-xl p-4 bg-indigo-50 shadow-md">
+                <code class="text-indigo-600">private</code>: Acessível apenas dentro da própria classe em Java
+            </h1>
+            <p class="text-lg sm:text-xl text-gray-600 leading-relaxed">
+                Aprofunde-se no modificador de acesso <code class="font-semibold">private</code> em Java e entenda seu papel crucial no encapsulamento e na segurança dos dados.
+            </p>
+        </header>
+
+        <section class="mb-10 p-6 bg-gray-50 rounded-xl shadow-sm">
+            <h2 class="text-3xl font-bold text-gray-800 mb-4">O que significa <code class="text-indigo-600">private</code>?</h2>
+            <p class="text-base sm:text-lg leading-relaxed mb-4">
+                Em Java, <code class="font-semibold">private</code> é o modificador de acesso mais restritivo. Quando uma classe, atributo (variável de instância) ou método é declarado como <code class="font-semibold">private</code>, ele é **acessível apenas dentro da própria classe** onde foi declarado.
+            </p>
+            <ul class="list-disc list-inside text-base sm:text-lg leading-relaxed space-y-2">
+                <li>**Visibilidade Limitada:** Não pode ser acessado por outras classes no mesmo pacote.</li>
+                <li>**Sem Herança Direta:** Não pode ser acessado por subclasses (mesmo que estejam no mesmo pacote ou em pacotes diferentes).</li>
+                <li>**Encapsulamento Total:** É a ferramenta primária para implementar o encapsulamento, ocultando os detalhes de implementação de um objeto.</li>
+            </ul>
+            <p class="text-base sm:text-lg leading-relaxed mt-4">
+                O uso de <code class="font-semibold">private</code> garante que o estado interno de um objeto seja protegido e só possa ser manipulado por meio de métodos públicos designados (getters e setters), se fornecidos.
+            </p>
+        </section>
+
+        <section class="mb-10 p-6 bg-gray-50 rounded-xl shadow-sm">
+            <h2 class="text-3xl font-bold text-gray-800 mb-4">Por que usar <code class="text-indigo-600">private</code>?</h2>
+            <ul class="list-disc list-inside text-base sm:text-lg leading-relaxed space-y-2">
+                <li><strong>Encapsulamento Forte:</strong> Impede o acesso direto e não autorizado aos dados internos de uma classe, mantendo a integridade do objeto e a lógica de negócios.</li>
+                <li><strong>Segurança dos Dados:</strong> Reduz as chances de modificações acidentais ou maliciosas nos atributos de um objeto por código externo.</li>
+                <li><strong>Manutenção Simplificada:</strong> Se a implementação interna de um atributo ou método <code class="font-semibold">private</code> mudar, isso não afetará o código externo, pois ele não tinha acesso direto de qualquer forma. Isso facilita a refatoração e a evolução da aplicação.</li>
+                <li><strong>Abstração Clara:</strong> Ajuda a definir uma interface pública clara para a classe, enquanto oculta a complexidade interna.</li>
+                <li><strong>Consistência do Objeto:</strong> Permite que a classe controle como seus dados são definidos e modificados, por exemplo, através de validações nos métodos setters.</li>
+            </ul>
+        </section>
+
+        <section class="mb-10 p-6 bg-gray-50 rounded-xl shadow-sm">
+            <h2 class="text-3xl font-bold text-gray-800 mb-4">Exemplos de Uso da Palavra-chave <code class="text-indigo-600">private</code></h2>
+
+            <article class="mb-8 p-5 bg-white rounded-lg shadow-md">
+                <h3 class="text-2xl font-semibold text-indigo-700 mb-3">Atributos <code class="font-semibold">private</code></h3>
+                <p class="text-base sm:text-lg leading-relaxed mb-4">
+                    Atributos (variáveis de instância) são frequentemente declarados como <code class="font-semibold">private</code> para proteger o estado interno do objeto. O acesso e a modificação geralmente são feitos por meio de métodos públicos (getters e setters).
+                </p>
+                <div class="code-block">
+<pre><code>
+class ContaBancaria {
+    private double saldo; // Atributo privado
+
+    public ContaBancaria(double saldoInicial) {
+        if (saldoInicial >= 0) {
+            this.saldo = saldoInicial;
+        } else {
+            System.out.println("Erro: Saldo inicial não pode ser negativo. Definindo para 0.");
+            this.saldo = 0;
+        }
+    }
+
+    // Método público para depositar (modifica o saldo)
+    public void depositar(double valor) {
+        if (valor > 0) {
+            this.saldo += valor;
+            System.out.println("Depósito de " + valor + " realizado. Novo saldo: " + this.saldo);
+        } else {
+            System.out.println("Valor de depósito inválido.");
+        }
+    }
+
+    // Método público para sacar (modifica o saldo)
+    public void sacar(double valor) {
+        if (valor > 0 && this.saldo >= valor) {
+            this.saldo -= valor;
+            System.out.println("Saque de " + valor + " realizado. Novo saldo: " + this.saldo);
+        } else {
+            System.out.println("Saque inválido: Saldo insuficiente ou valor negativo.");
+        }
+    }
+
+    // Método público para obter o saldo (acessa o saldo)
+    public double getSaldo() {
+        return this.saldo;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        ContaBancaria minhaConta = new ContaBancaria(500.0);
+
+        // minhaConta.saldo = 1000.0; // ERRO DE COMPILAÇÃO: 'saldo' tem acesso private
+        minhaConta.depositar(200.0);
+        minhaConta.sacar(150.0);
+        System.out.println("Saldo atual da conta: " + minhaConta.getSaldo());
+
+        ContaBancaria outraConta = new ContaBancaria(-100.0); // Exemplo de validação no construtor
+        System.out.println("Saldo da outra conta: " + outraConta.getSaldo());
+        // Saída:
+        // Depósito de 200.0 realizado. Novo saldo: 700.0
+        // Saque de 150.0 realizado. Novo saldo: 550.0
+        // Saldo atual da conta: 550.0
+        // Erro: Saldo inicial não pode ser negativo. Definindo para 0.
+        // Saldo da outra conta: 0.0
+    }
+}
+</code></pre>
+                </div>
+            </article>
+
+            <article class="p-5 bg-white rounded-lg shadow-md">
+                <h3 class="text-2xl font-semibold text-indigo-700 mb-3">Métodos <code class="font-semibold">private</code></h3>
+                <p class="text-base sm:text-lg leading-relaxed mb-4">
+                    Métodos <code class="font-semibold">private</code> são funções auxiliares ou lógicas internas que devem ser acessadas e utilizadas apenas dentro da própria classe. Eles são úteis para dividir um método complexo em partes menores e mais gerenciáveis, sem expor esses detalhes de implementação externamente.
+                </p>
+                <div class="code-block">
+<pre><code>
+class ProcessadorDeDados {
+    private String dadosBrutos;
+    private String dadosProcessados;
+
+    public ProcessadorDeDados(String rawData) {
+        this.dadosBrutos = rawData;
+        this.dadosProcessados = ""; // Inicializa
+        processarInternamente(); // Chama método privado
+    }
+
+    // Método privado: Apenas para uso interno da classe
+    private void processarInternamente() {
+        System.out.println("Iniciando processamento interno dos dados...");
+        this.dadosProcessados = this.dadosBrutos.toUpperCase().trim(); // Exemplo de processamento
+        System.out.println("Processamento interno concluído.");
+    }
+
+    public String getDadosProcessados() {
+        return this.dadosProcessados;
+    }
+
+    public void exibirEstado() {
+        System.out.println("Dados Brutos: " + dadosBrutos);
+        System.out.println("Dados Processados: " + dadosProcessados);
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        ProcessadorDeDados proc = new ProcessadorDeDados("  hello world  ");
+        proc.exibirEstado();
+        // proc.processarInternamente(); // ERRO DE COMPILAÇÃO: 'processarInternamente()' tem acesso private
+        // Saída:
+        // Iniciando processamento interno dos dados...
+        // Processamento interno concluído.
+        // Dados Brutos:   hello world
+        // Dados Processados: HELLO WORLD
+    }
+}
+</code></pre>
+                </div>
+            </article>
+        </section>
+
+        <footer class="text-center p-6 bg-indigo-700 text-white rounded-xl">
+            <p class="text-lg">O modificador <code class="font-semibold">private</code> é a chave para construir sistemas Java com alto grau de encapsulamento e design robusto!</p>
+            <p class="text-sm mt-2">Página criada com HTML e Tailwind CSS.</p>
+        </footer>
+    </div>
+</body>
+</html>

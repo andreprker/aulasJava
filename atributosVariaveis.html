@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atributos (Variáveis de Instância): Estado do Objeto em Java</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        .container {
+            max-width: 900px;
+            margin: auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1, h2, h3 {
+            color: #333;
+        }
+        .section-highlight {
+            background-color: #e9f7ff;
+            padding: 15px;
+            border-left: 5px solid #007bff;
+            margin-bottom: 20px;
+        }
+        ul, ol {
+            list-style: disc;
+            padding-left: 20px;
+        }
+        ol {
+            list-style: decimal;
+        }
+        ul li, ol li {
+            margin-bottom: 8px;
+        }
+        strong {
+            color: #007bff;
+        }
+        .code-example {
+            background-color: #eee;
+            padding: 15px;
+            border-left: 5px solid #28a745;
+            margin-bottom: 20px;
+            overflow-x: auto;
+            font-family: 'Courier New', Courier, monospace;
+        }
+        .image-placeholder {
+            background-color: #ccc;
+            color: #666;
+            text-align: center;
+            padding: 50px 0;
+            margin-top: 20px;
+            border-radius: 4px;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Atributos (Variáveis de Instância): Estado do Objeto em Java</h1>
+        <p>Na programação orientada a objetos (POO), o conceito de <strong>objeto</strong> é fundamental. Um objeto é uma instância de uma <strong>classe</strong>, e ele possui características e comportamentos. As características de um objeto são definidas pelos seus <strong>atributos</strong>, também conhecidos como <strong>variáveis de instância</strong>. O conjunto de valores desses atributos em um determinado momento define o <strong>estado do objeto</strong>.</p>
+
+        ---
+
+        <h2>O que são Atributos (Variáveis de Instância)?</h2>
+        <p>Atributos são variáveis que são declaradas dentro de uma classe, mas fora de qualquer método, construtor ou bloco. Cada objeto criado a partir dessa classe terá sua própria cópia desses atributos, e os valores que esses atributos armazenam são únicos para cada objeto.</p>
+        <p>Eles representam as propriedades ou dados que um objeto possui. Por exemplo, uma classe <code>Carro</code> pode ter atributos como <code>cor</code>, <code>modelo</code>, <code>ano</code> e <code>velocidadeAtual</code>.</p>
+
+        ---
+
+        <h2>Definindo o Estado do Objeto</h2>
+        <p>O <strong>estado de um objeto</strong> é simplesmente a coleção dos valores atuais de seus atributos em um dado momento. Quando você cria um objeto, ele assume um estado inicial, e esse estado pode mudar à medida que os atributos do objeto são modificados.</p>
+        <p>Imagine que você tem uma classe <code>Pessoa</code>. Seus atributos poderiam ser <code>nome</code>, <code>idade</code> e <code>altura</code>. Quando você cria dois objetos dessa classe:</p>
+        <ul>
+            <li><code>pessoa1</code>: { nome="João", idade=30, altura=1.75 }</li>
+            <li><code>pessoa2</code>: { nome="Maria", idade=25, altura=1.68 }</li>
+        </ul>
+        <p><code>pessoa1</code> e <code>pessoa2</code> são objetos da mesma classe, mas eles estão em estados diferentes porque os valores de seus atributos são distintos.</p>
+
+        ---
+
+        <h2>Exemplo Prático em Java</h2>
+        <p>Vamos criar uma classe simples em Java para ilustrar o conceito de atributos e estado.</p>
+
+        <div class="code-example">
+            <h3>Classe 'Livro.java'</h3>
+<pre><code>public class Livro {
+    // Atributos (variáveis de instância)
+    String titulo;
+    String autor;
+    int anoPublicacao;
+    boolean disponivel;
+
+    // Construtor para inicializar o estado do objeto
+    public Livro(String titulo, String autor, int anoPublicacao) {
+        this.titulo = titulo;
+        this.autor = autor;
+        this.anoPublicacao = anoPublicacao;
+        this.disponivel = true; // Por padrão, um livro novo está disponível
+    }
+
+    // Método para exibir o estado do livro
+    public void exibirDetalhes() {
+        System.out.println("--- Detalhes do Livro ---");
+        System.out.println("Título: " + titulo);
+        System.out.println("Autor: " + autor);
+        System.out.println("Ano de Publicação: " + anoPublicacao);
+        System.out.println("Disponível: " + (disponivel ? "Sim" : "Não"));
+    }
+
+    // Método para mudar o estado de disponibilidade
+    public void emprestarLivro() {
+        if (disponivel) {
+            this.disponivel = false;
+            System.out.println("Livro '" + titulo + "' emprestado.");
+        } else {
+            System.out.println("Livro '" + titulo + "' já está emprestado.");
+        }
+    }
+
+    public void devolverLivro() {
+        if (!disponivel) {
+            this.disponivel = true;
+            System.out.println("Livro '" + titulo + "' devolvido.");
+        } else {
+            System.out.println("Livro '" + titulo + "' já está disponível.");
+        }
+    }
+}
+</code></pre>
+        </div>
+
+        <div class="code-example">
+            <h3>Classe Principal para Teste ('Main.java')</h3>
+<pre><code>public class Main {
+    public static void main(String[] args) {
+        // Criando instâncias (objetos) da classe Livro
+        Livro livro1 = new Livro("A Revolução dos Bichos", "George Orwell", 1945);
+        Livro livro2 = new Livro("O Pequeno Príncipe", "Antoine de Saint-Exupéry", 1943);
+
+        System.out.println("Estado inicial do Livro 1:");
+        livro1.exibirDetalhes(); // Exibe o estado atual dos atributos de livro1
+
+        System.out.println("\nEstado inicial do Livro 2:");
+        livro2.exibirDetalhes(); // Exibe o estado atual dos atributos de livro2
+
+        // Modificando o estado do Livro 1
+        System.out.println("\nAlterando estado do Livro 1...");
+        livro1.emprestarLivro(); // Altera o atributo 'disponivel' para false
+
+        System.out.println("\nNovo estado do Livro 1:");
+        livro1.exibirDetalhes(); // Exibe o estado atualizado dos atributos de livro1
+
+        System.out.println("\nTentando emprestar o Livro 2 (sem alterar seu estado):");
+        livro2.exibirDetalhes(); // O estado do livro2 permanece inalterado
+    }
+}
+</code></pre>
+        </div>
+
+        ---
+
+        <h2>Observações Importantes</h2>
+        <ul>
+            <li><strong>Encapsulamento:</strong> É uma boa prática de POO manter os atributos de uma classe privados (usando o modificador <code>private</code>) e fornecer métodos públicos (getters e setters) para acessar e modificar esses atributos. Isso permite controlar como o estado do objeto é acessado e alterado, protegendo a integridade dos dados.</li>
+            <li><strong>Valores Padrão:</strong> Se você não inicializar os atributos em Java, eles receberão valores padrão: <code>0</code> para tipos numéricos, <code>false</code> para <code>boolean</code> e <code>null</code> para referências a objetos.</li>
+        </ul>
+
+        ---
+
+        <h2>Conclusão</h2>
+        <p>Atributos (variáveis de instância) são os pilares que definem o <strong>estado</strong> de um objeto em Java. Eles permitem que cada instância de uma classe mantenha seus próprios dados únicos, tornando os objetos entidades distintas e dinâmicas no programa. Compreender como os atributos moldam o estado de um objeto é fundamental para dominar a programação orientada a objetos e criar aplicações robustas e flexíveis.</p>
+    </div>
+</body>
+</html>

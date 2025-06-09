@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Construtor Padrão vs. Construtor Parametrizado em Java</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6; /* Light gray background */
+        }
+        .container {
+            max-width: 90%; /* Fluid width for responsiveness */
+        }
+        .code-block {
+            background-color: #1f2937; /* Darker gray for code blocks */
+            color: #e5e7eb; /* Light text for code */
+            padding: 1.5rem;
+            border-radius: 0.75rem; /* rounded-xl */
+            overflow-x: auto; /* Enable horizontal scrolling for long lines */
+        }
+    </style>
+</head>
+<body class="antialiased text-gray-800">
+    <div class="container mx-auto p-4 sm:p-6 lg:p-8 my-8 bg-white shadow-lg rounded-xl">
+        <header class="text-center mb-8">
+            <h1 class="text-4xl sm:text-5xl font-extrabold text-green-700 mb-4 rounded-xl p-4 bg-green-50 shadow-md">
+                Construtor Padrão vs. Construtor Parametrizado em Java
+            </h1>
+            <p class="text-lg sm:text-xl text-gray-600 leading-relaxed">
+                Explore as diferenças cruciais entre construtores padrão (default) e parametrizados em Java e como eles afetam a inicialização de objetos.
+            </p>
+        </header>
+
+        <section class="mb-10 p-6 bg-gray-50 rounded-xl shadow-sm">
+            <h2 class="text-3xl font-bold text-gray-800 mb-4">Entendendo os Construtores em Java</h2>
+            <p class="text-base sm:text-lg leading-relaxed mb-4">
+                Construtores são métodos especiais usados para inicializar objetos recém-criados. Eles garantem que um objeto esteja em um estado consistente e pronto para ser usado assim que for instanciado. Em Java, existem principalmente dois tipos de construtores com os quais você trabalhará: o construtor padrão e o construtor parametrizado.
+            </p>
+        </section>
+
+        <section class="mb-10 p-6 bg-gray-50 rounded-xl shadow-sm">
+            <h2 class="text-3xl font-bold text-gray-800 mb-4">1. Construtor Padrão (Default Constructor)</h2>
+            <p class="text-base sm:text-lg leading-relaxed mb-4">
+                O **construtor padrão** é um construtor sem argumentos que é fornecido automaticamente pelo compilador Java se você não definir nenhum construtor em sua classe. Ele tem a mesma visibilidade da classe e não executa nenhuma lógica de inicialização explícita, apenas criando o objeto e inicializando as variáveis de instância com seus valores padrão (ex: `0` para inteiros, `null` para objetos, `false` para booleanos).
+            </p>
+            <h3 class="text-2xl font-semibold text-green-600 mb-3">Características:</h3>
+            <ul class="list-disc list-inside text-base sm:text-lg leading-relaxed space-y-2 mb-4">
+                <li>É gerado implicitamente pelo compilador se nenhum outro construtor for definido.</li>
+                <li>Não recebe nenhum argumento.</li>
+                <li>Inicializa os atributos da classe com seus valores padrão.</li>
+            </ul>
+            <div class="code-block">
+<pre><code>
+class Carro {
+    String marca;
+    int ano;
+
+    // Se nenhum construtor for explicitamente definido, o compilador adiciona:
+    // public Carro() {
+    //    // Nenhum código de inicialização, apenas valores padrão
+    // }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Carro meuCarro = new Carro(); // Chama o construtor padrão implícito
+        System.out.println("Marca: " + meuCarro.marca); // Saída: Marca: null
+        System.out.println("Ano: " + meuCarro.ano);     // Saída: Ano: 0
+    }
+}
+</code></pre>
+            </div>
+            <p class="text-base sm:text-lg leading-relaxed mt-4">
+                Você também pode definir um construtor sem argumentos explicitamente, o que é útil para realizar uma inicialização específica quando nenhum parâmetro é fornecido. Neste caso, ele não é mais o "construtor padrão" gerado pelo compilador, mas sim um "construtor sem argumentos" definido por você.
+            </p>
+            <div class="code-block">
+<pre><code>
+class Bicicleta {
+    String tipo;
+    boolean temMarchas;
+
+    // Construtor sem argumentos definido explicitamente
+    public Bicicleta() {
+        this.tipo = "Urbana";
+        this.temMarchas = true;
+        System.out.println("Nova bicicleta urbana criada.");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Bicicleta minhaBicicleta = new Bicicleta();
+        System.out.println("Tipo: " + minhaBicicleta.tipo);
+        System.out.println("Tem marchas: " + minhaBicicleta.temMarchas);
+        // Saída:
+        // Nova bicicleta urbana criada.
+        // Tipo: Urbana
+        // Tem marchas: true
+    }
+}
+</code></pre>
+            </div>
+        </section>
+
+        <section class="mb-10 p-6 bg-gray-50 rounded-xl shadow-sm">
+            <h2 class="text-3xl font-bold text-gray-800 mb-4">2. Construtor Parametrizado (Parameterized Constructor)</h2>
+            <p class="text-base sm:text-lg leading-relaxed mb-4">
+                Um **construtor parametrizado** é um construtor que aceita um ou mais argumentos. Ele é usado para inicializar as variáveis de instância de uma classe com os valores que você fornece no momento da criação do objeto. Isso permite que você crie objetos com diferentes estados iniciais, tornando a classe mais flexível e reutilizável.
+            </p>
+            <h3 class="text-2xl font-semibold text-green-600 mb-3">Características:</h3>
+            <ul class="list-disc list-inside text-base sm:text-lg leading-relaxed space-y-2 mb-4">
+                <li>Recebe um ou mais argumentos.</li>
+                <li>Permite inicializar os atributos do objeto com valores específicos no momento da criação.</li>
+                <li>Se você definir um construtor parametrizado, o compilador **não** fornecerá um construtor padrão. Você precisará definir um construtor sem argumentos explicitamente se ainda quiser ter essa opção.</li>
+            </ul>
+            <div class="code-block">
+<pre><code>
+class Pessoa {
+    String nome;
+    int idade;
+
+    // Construtor parametrizado
+    public Pessoa(String nome, int idade) {
+        this.nome = nome;
+        this.idade = idade;
+        System.out.println("Objeto Pessoa criado com nome e idade.");
+    }
+
+    void exibirInfo() {
+        System.out.println("Nome: " + nome + ", Idade: " + idade);
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Pessoa joao = new Pessoa("João", 30); // Chama o construtor parametrizado
+        Pessoa maria = new Pessoa("Maria", 25);
+
+        joao.exibirInfo();
+        maria.exibirInfo();
+        // Saída:
+        // Objeto Pessoa criado com nome e idade.
+        // Objeto Pessoa criado com nome e idade.
+        // Nome: João, Idade: 30
+        // Nome: Maria, Idade: 25
+    }
+}
+</code></pre>
+            </div>
+        </section>
+
+        <section class="mb-10 p-6 bg-gray-50 rounded-xl shadow-sm">
+            <h2 class="text-3xl font-bold text-gray-800 mb-4">Comparativo: Construtor Padrão vs. Parametrizado</h2>
+            <div class="overflow-x-auto rounded-xl">
+                <table class="min-w-full bg-white border border-gray-200 rounded-xl shadow-md">
+                    <thead>
+                        <tr class="bg-gray-100 text-gray-600 uppercase text-sm leading-normal">
+                            <th class="py-3 px-6 text-left">Característica</th>
+                            <th class="py-3 px-6 text-left">Construtor Padrão (Default)</th>
+                            <th class="py-3 px-6 text-left">Construtor Parametrizado</th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-gray-700 text-sm">
+                        <tr class="border-b border-gray-200 hover:bg-gray-50">
+                            <td class="py-3 px-6 text-left whitespace-nowrap font-medium">Definição</td>
+                            <td class="py-3 px-6 text-left">Gerado automaticamente pelo compilador (se nenhum outro construtor for definido).</td>
+                            <td class="py-3 px-6 text-left">Definido explicitamente pelo programador.</td>
+                        </tr>
+                        <tr class="border-b border-gray-200 hover:bg-gray-50">
+                            <td class="py-3 px-6 text-left font-medium">Argumentos</td>
+                            <td class="py-3 px-6 text-left">Não aceita argumentos.</td>
+                            <td class="py-3 px-6 text-left">Aceita um ou mais argumentos.</td>
+                        </tr>
+                        <tr class="border-b border-gray-200 hover:bg-gray-50">
+                            <td class="py-3 px-6 text-left font-medium">Inicialização</td>
+                            <td class="py-3 px-6 text-left">Inicializa campos com valores padrão (0, null, false).</td>
+                            <td class="py-3 px-6 text-left">Inicializa campos com os valores fornecidos.</td>
+                        </tr>
+                        <tr class="border-b border-gray-200 hover:bg-gray-50">
+                            <td class="py-3 px-6 text-left font-medium">Flexibilidade</td>
+                            <td class="py-3 px-6 text-left">Menos flexível; cria objetos com estado inicial fixo.</td>
+                            <td class="py-3 px-6 text-left">Mais flexível; cria objetos com diferentes estados iniciais.</td>
+                        </tr>
+                        <tr class="hover:bg-gray-50">
+                            <td class="py-3 px-6 text-left font-medium">Necessidade</td>
+                            <td class="py-3 px-6 text-left">Útil para criar objetos sem necessidade de inicialização específica ou para instanciar a classe sem erros de compilação.</td>
+                            <td class="py-3 px-6 text-left">Essencial para injetar dependências ou inicializar objetos com dados específicos.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section class="mb-10 p-6 bg-gray-50 rounded-xl shadow-sm">
+            <h2 class="text-3xl font-bold text-gray-800 mb-4">Quando Usar Cada Um?</h2>
+            <ul class="list-disc list-inside text-base sm:text-lg leading-relaxed space-y-2">
+                <li>Use o **construtor padrão** (ou um construtor sem argumentos explicitamente definido) quando seus objetos podem ser criados sem a necessidade de parâmetros iniciais específicos, ou quando você deseja fornecer valores padrão para os atributos.</li>
+                <li>Use o **construtor parametrizado** quando a inicialização dos atributos do objeto depende de valores fornecidos no momento da sua criação, ou quando você precisa de diferentes maneiras de construir objetos da mesma classe.</li>
+            </ul>
+        </section>
+
+        <footer class="text-center p-6 bg-green-700 text-white rounded-xl">
+            <p class="text-lg">Compreender a diferença entre esses construtores é fundamental para a criação de classes robustas e flexíveis em Java!</p>
+            <p class="text-sm mt-2">Página criada com HTML e Tailwind CSS.</p>
+        </footer>
+    </div>
+</body>
+</html>

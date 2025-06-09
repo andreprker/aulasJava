@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aulas Interativas de POO em Java</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        .lesson-content {
+            display: none;
+        }
+        .lesson-content.active {
+            display: block;
+        }
+        .nav-link.active {
+            background-color: #e0f2fe;
+            color: #0c4a6e;
+            font-weight: 600;
+        }
+        code {
+            background-color: #f0f4f8;
+            padding: 0.2em 0.4em;
+            border-radius: 0.25rem;
+            font-family: 'Menlo', 'Consolas', 'monospace';
+            font-size: 0.9em;
+            color: #334155;
+        }
+        a{
+            background-color: #e0f2fe;
+            color: #0c4a6e;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800">
+
+    <div class="flex min-h-screen">
+        <aside class="w-72 bg-white border-r border-slate-200 p-6 hidden md:block flex-shrink-0">
+            <h1 class="text-xl font-bold text-slate-900 mb-8">Aulas de POO em Java</h1>
+            <nav id="desktop-nav">
+                <ul class="space-y-1">
+                    <li><button data-target="lesson-1" class="nav-link w-full text-left px-4 py-2 rounded-lg text-slate-600 hover:bg-slate-100 transition-colors">Aula 1: POO, Classes e Objetos</button></li>
+                    <li><button data-target="lesson-2" class="nav-link w-full text-left px-4 py-2 rounded-lg text-slate-600 hover:bg-slate-100 transition-colors">Aula 2: Atributos e Métodos</button></li>
+                    <li><button data-target="lesson-3" class="nav-link w-full text-left px-4 py-2 rounded-lg text-slate-600 hover:bg-slate-100 transition-colors">Aula 3: Construtores e `this`</button></li>
+                    <li><button data-target="lesson-4" class="nav-link w-full text-left px-4 py-2 rounded-lg text-slate-600 hover:bg-slate-100 transition-colors">Aula 4: Modificadores de Acesso</button></li>
+                    <li><button data-target="lesson-5" class="nav-link w-full text-left px-4 py-2 rounded-lg text-slate-600 hover:bg-slate-100 transition-colors">Aula 5: Encapsulamento (Getters/Setters)</button></li>
+                    <li><button data-target="lesson-6" class="nav-link w-full text-left px-4 py-2 rounded-lg text-slate-600 hover:bg-slate-100 transition-colors">Aula 6: Herança</button></li>
+                    <li><button data-target="lesson-7" class="nav-link w-full text-left px-4 py-2 rounded-lg text-slate-600 hover:bg-slate-100 transition-colors">Aula 7: Polimorfismo</button></li>
+                    <li><button data-target="lesson-8" class="nav-link w-full text-left px-4 py-2 rounded-lg text-slate-600 hover:bg-slate-100 transition-colors">Aula 8: Interfaces</button></li>
+                    <li><button data-target="lesson-9" class="nav-link w-full text-left px-4 py-2 rounded-lg text-slate-600 hover:bg-slate-100 transition-colors">Aula 9: Acoplamento e Coesão</button></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <main class="flex-1 p-6 md:p-10 overflow-x-hidden">
+            <div class="md:hidden mb-6">
+                <label for="mobile-nav-select" class="sr-only">Selecionar Plano de Aula</label>
+                <select id="mobile-nav-select" class="w-full p-3 border border-slate-300 rounded-lg bg-white shadow-sm focus:ring-2 focus:ring-sky-500 focus:border-sky-500">
+                    <option value="lesson-1">Aula 1: POO, Classes e Objetos</option>
+                    <option value="lesson-2">Aula 2: Atributos e Métodos</option>
+                    <option value="lesson-3">Aula 3: Construtores e `this`</option>
+                    <option value="lesson-4">Aula 4: Modificadores de Acesso</option>
+                    <option value="lesson-5">Aula 5: Encapsulamento (Getters/Setters)</option>
+                    <option value="lesson-6">Aula 6: Herança</option>
+                    <option value="lesson-7">Aula 7: Polimorfismo</option>
+                    <option value="lesson-8">Aula 8: Interfaces</option>
+                    <option value="lesson-9">Aula 9: Acoplamento e Coesão</option>
+                </select>
+            </div>
+            
+            <header class="mb-10">
+                 <h2 class="text-4xl font-bold text-slate-900">Curso Prático de POO em Java</h2>
+                 <p class="text-lg text-slate-600 mt-2">Explore os fundamentos e pilares da Programação Orientada a Objetos em Java através de aulas práticas e focadas, cada uma com 50 minutos de duração.</p>
+            </header>
+            
+            <div id="lesson-1" class="lesson-content space-y-6">
+                <article class="bg-white p-6 rounded-lg shadow-sm">
+                    <h3 class="text-2xl font-bold text-slate-900 mb-4">Aula 1: Introdução à POO, Classes e Objetos</h3>
+                    <p class="mb-4 text-slate-600">Esta aula introduz os conceitos fundamentais da Programação Orientada a Objetos, estabelecendo a diferença crucial entre classes (moldes) e objetos (instâncias concretas).</p>
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <h4 class="font-semibold text-lg text-slate-800 mb-2">Conteúdo Programático (15 min)</h4>
+                            <ul class="list-disc list-inside space-y-2 text-slate-700">
+                                <li><a href="oQueEPOO.html">O que é POO e suas vantagens.</a></li>
+                                <li><a href="oQueSaoClasses.html">O "molde" para objetos.</a></li>
+                                <li><a href="oQueSaoObjetos.html">Instâncias de uma classe.</a></li>
+                                <li><a href="sintaxeBasica.html">Sintaxe básica de classe e criação de objeto.</a></li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-lg text-slate-800 mb-2">Atividade Prática (25 min)</h4>
+                            <p class="text-slate-700">Criar uma classe `Pessoa` e, na classe `Main`, instanciar dois objetos `Pessoa`. Imprimir uma mensagem de confirmação no console para cada objeto criado.</p>
+                            <pre class="bg-slate-100 p-3 rounded-md text-sm mt-2 overflow-auto"><code class="language-java">public class Pessoa { }
+
+public class Main {
+    public static void main(String[] args) {
+        Pessoa p1 = new Pessoa();
+        Pessoa p2 = new Pessoa();
+        System.out.println("Objeto p1 criado!");
+        System.out.println("Objeto p2 criado!");
+    }
+}</code></pre>
+                        </div>
+                    </div>
+                </article>
+            </div>
+
+            <div id="lesson-2" class="lesson-content space-y-6">
+                <article class="bg-white p-6 rounded-lg shadow-sm">
+                    <h3 class="text-2xl font-bold text-slate-900 mb-4">Aula 2: Atributos e Métodos</h3>
+                    <p class="mb-4 text-slate-600">Nesta aula, os alunos aprenderão a definir características (atributos) e comportamentos (métodos) para suas classes, e como interagir com eles através dos objetos.</p>
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <h4 class="font-semibold text-lg text-slate-800 mb-2">Conteúdo Programático (15 min)</h4>
+                            <ul class="list-disc list-inside space-y-2 text-slate-700">
+                                <li><a href="atributosVariaveis.html">Atributos (variáveis de instância): Estado do objeto.</a></li>
+                                <li><a href="metodos.html">Métodos: Comportamentos do objeto.</a></li>
+                                <li><a href="declaracaoChamaMetodo.html">Declaração e chamada de atributos/métodos.</a></li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-lg text-slate-800 mb-2">Atividade Prática (25 min)</h4>
+                            <p class="text-slate-700">Adicionar `String nome` e `int idade` à classe `Pessoa`. Criar um método `apresentar()` que imprima os dados. Na `Main`, atribuir valores e chamar `apresentar()` para objetos.</p>
+                            <pre class="bg-slate-100 p-3 rounded-md text-sm mt-2 overflow-auto"><code class="language-java">public class Pessoa {
+    String nome;
+    int idade;
+
+    public void apresentar() {
+        System.out.println("Olá, meu nome é " + nome + " e tenho " + idade + " anos.");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Pessoa p1 = new Pessoa();
+        p1.nome = "Alice";
+        p1.idade = 30;
+        p1.apresentar();
+    }
+}</code></pre>
+                        </div>
+                    </div>
+                </article>
+            </div>
+            
+            <div id="lesson-3" class="lesson-content space-y-6">
+                <article class="bg-white p-6 rounded-lg shadow-sm">
+                    <h3 class="text-2xl font-bold text-slate-900 mb-4">Aula 3: Construtores e a Palavra-Chave `this`</h3>
+                    <p class="mb-4 text-slate-600">Esta aula aborda como inicializar objetos de forma controlada utilizando construtores e explica o uso da palavra-chave `this` para referenciar o próprio objeto.</p>
+                     <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <h4 class="font-semibold text-lg text-slate-800 mb-2">Conteúdo Programático (15 min)</h4>
+                            <ul class="list-disc list-inside space-y-2 text-slate-700">
+                                <li><a href="contrutores.html">Construtores: Métodos especiais de inicialização.</a></li>
+                                <li><a href="construtorPadraoParametrizado.html">Construtor padrão vs. parametrizado.</a></li>
+                                <li><a href="sobrecargaConstrutores.html">Sobrecarga de construtores.</a></li>
+                                <li><a href="referenciaTHIS.html">Palavra-chave `this`: Referência ao objeto atual.</a></li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-lg text-slate-800 mb-2">Atividade Prática (25 min)</h4>
+                            <p class="text-slate-700">Adicionar um construtor padrão e um parametrizado à classe `Pessoa`. Na `Main`, criar objetos usando ambos os construtores e chamar `apresentar()`.</p>
+                            <pre class="bg-slate-100 p-3 rounded-md text-sm mt-2 overflow-auto"><code class="language-java">public class Pessoa {
+    String nome;
+    int idade;
+
+    public Pessoa() { // Construtor padrão
+        this.nome = "Desconhecido";
+        this.idade = 0;
+    }
+
+    public Pessoa(String nome, int idade) { // Construtor parametrizado
+        this.nome = nome;
+        this.idade = idade;
+    }
+
+    public void apresentar() {
+        System.out.println("Olá, meu nome é " + nome + " e tenho " + idade + " anos.");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Pessoa p3 = new Pessoa();
+        Pessoa p4 = new Pessoa("Carlos", 25);
+        p3.apresentar();
+        p4.apresentar();
+    }
+}</code></pre>
+                        </div>
+                    </div>
+                </article>
+            </div>
+
+            <div id="lesson-4" class="lesson-content space-y-6">
+                <article class="bg-white p-6 rounded-lg shadow-sm">
+                    <h3 class="text-2xl font-bold text-slate-900 mb-4">Aula 4: Modificadores de Acesso (Public, Private)</h3>
+                    <p class="mb-4 text-slate-600">Esta aula foca na compreensão e aplicação dos modificadores de acesso `public` e `private` para controlar a visibilidade e proteger os membros de uma classe.</p>
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <h4 class="font-semibold text-lg text-slate-800 mb-2">Conteúdo Programático (15 min)</h4>
+                            <ul class="list-disc list-inside space-y-2 text-slate-700">
+                                <li><a href="importaciaControleAcesso.html">Controle de Acesso: Por que é importante.</a></li>
+                                <li><a href="public.html">`public`: Acessível de qualquer lugar.</a></li>
+                                <li><a href="private.html">`private`: Acessível apenas dentro da própria classe.</a></li>
+                                <li><a href="aplicacaoMetodoDeAcesso.html">Aplicação em atributos e métodos.</a></li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-lg text-slate-800 mb-2">Atividade Prática (25 min)</h4>
+                            <p class="text-slate-700">Modificar os atributos `nome` e `idade` da classe `Pessoa` para `private`. Tentar acessá-los diretamente na `Main` (observar o erro). Criar um método `public void mudarNome(String novoNome)` para alterar o nome.</p>
+                            <pre class="bg-slate-100 p-3 rounded-md text-sm mt-2 overflow-auto"><code class="language-java">public class Pessoa {
+    private String nome;
+    private int idade;
+
+    public Pessoa(String nome, int idade) {
+        this.nome = nome;
+        this.idade = idade;
+    }
+
+    public void apresentar() {
+        System.out.println("Olá, meu nome é " + nome + " e tenho " + idade + " anos.");
+    }
+
+    public void mudarNome(String novoNome) {
+        this.nome = novoNome;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Pessoa p1 = new Pessoa("Ana", 28);
+        // p1.nome = "Erro"; // Isso causaria um erro de compilação
+        p1.mudarNome("Anabela");
+        p1.apresentar();
+    }
+}</code></pre>
+                        </div>
+                    </div>
+                </article>
+            </div>
+            
+            <div id="lesson-5" class="lesson-content space-y-6">
+                <article class="bg-white p-6 rounded-lg shadow-sm">
+                    <h3 class="text-2xl font-bold text-slate-900 mb-4">Aula 5: Encapsulamento e Propriedades (Getters/Setters)</h3>
+                    <p class="mb-4 text-slate-600">Esta aula aprofunda o conceito de encapsulamento, ensinando a implementar métodos "getter" e "setter" para acessar e modificar atributos privados de forma controlada e segura.</p>
+                     <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <h4 class="font-semibold text-lg text-slate-800 mb-2">Conteúdo Programático (15 min)</h4>
+                            <ul class="list-disc list-inside space-y-2 text-slate-700">
+                                <li><a href="encapsulamento.html">Encapsulamento: Esconder detalhes de implementação.</li></a>
+                                <li><a href="metodoGetter.html">Métodos Getters (Acessores): `getAtributo()`.</a></li>
+                                <li><a href="metodoSetter.html">Métodos Setters (Modificadores): `setAtributo(Tipo valor)`.</a></li>
+                                <li><a href="beneficiosEncapsulamento.html">Benefícios do encapsulamento.</a></li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-lg text-slate-800 mb-2">Atividade Prática (25 min)</h4>
+                            <p class="text-slate-700">Gerar (ou escrever) métodos `getNome()`, `setNome()`, `getIdade()`, `setIdade()` para a classe `Pessoa`. Na `Main`, usar esses métodos para interagir com os objetos.</p>
+                            <pre class="bg-slate-100 p-3 rounded-md text-sm mt-2 overflow-auto"><code class="language-java">public class Pessoa {
+    private String nome;
+    private int idade;
+
+    public Pessoa(String nome, int idade) {
+        this.nome = nome;
+        this.idade = idade;
+    }
+
+    public String getNome() { return nome; }
+    public void setNome(String nome) { this.nome = nome; }
+
+    public int getIdade() { return idade; }
+    public void setIdade(int idade) {
+        if (idade >= 0) { // Exemplo de validação
+            this.idade = idade;
+        } else {
+            System.out.println("Idade inválida!");
+        }
+    }
+
+    public void apresentar() {
+        System.out.println("Olá, meu nome é " + nome + " e tenho " + idade + " anos.");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Pessoa p1 = new Pessoa("Bruno", 22);
+        System.out.println("Nome: " + p1.getNome());
+        p1.setIdade(23);
+        p1.apresentar();
+    }
+}</code></pre>
+                        </div>
+                    </div>
+                </article>
+            </div>
+            
+            <div id="lesson-6" class="lesson-content space-y-6">
+                <article class="bg-white p-6 rounded-lg shadow-sm">
+                    <h3 class="text-2xl font-bold text-slate-900 mb-4">Aula 6: Herança</h3>
+                    <p class="mb-4 text-slate-600">Esta aula introduz o conceito de herança em POO, permitindo a reutilização de código e a criação de relações "é um tipo de" entre classes, modelando hierarquias do mundo real.</p>
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <h4 class="font-semibold text-lg text-slate-800 mb-2">Conteúdo Programático (15 min)</h4>
+                            <ul class="list-disc list-inside space-y-2 text-slate-700">
+                                <li><a href="heranca.html">Herança: Reutilização de características e comportamentos.</a></li>
+                                <li><a href="eUmTipoDe.html">Relação "é um tipo de" (`is-a relationship`).</a></li>
+                                <li><a href="extends.html">Palavra-chave `extends`.</a></li>
+                                <li><a href="superSub.html">Superclasse e Subclasse.</a></li>
+                                <li><a href="palavraSuper.html">Palavra-chave `super` para acessar membros da superclasse.</a></li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-lg text-slate-800 mb-2">Atividade Prática (25 min)</h4>
+                            <p class="text-slate-700">Criar uma superclasse `Animal` com `nome` e `fazerSom()`. Criar uma subclasse `Cachorro` que estende `Animal`, adiciona `raca` e sobrescreve `fazerSom()`. Instanciar `Cachorro` na `Main`.</p>
+                            <pre class="bg-slate-100 p-3 rounded-md text-sm mt-2 overflow-auto"><code class="language-java">public class Animal {
+    String nome;
+    public void fazerSom() {
+        System.out.println("Animal fazendo som...");
+    }
+}
+
+public class Cachorro extends Animal {
+    String raca;
+    
+    @Override
+    public void fazerSom() {
+        System.out.println("Latido!");
+    }
+
+    public void latir() {
+        System.out.println("Woof woof!");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Cachorro meuCachorro = new Cachorro();
+        meuCachorro.nome = "Rex";
+        meuCachorro.raca = "Labrador";
+        meuCachorro.fazerSom();
+        meuCachorro.latir();
+    }
+}</code></pre>
+                        </div>
+                    </div>
+                </article>
+            </div>
+            
+            <div id="lesson-7" class="lesson-content space-y-6">
+                <article class="bg-white p-6 rounded-lg shadow-sm">
+                    <h3 class="text-2xl font-bold text-slate-900 mb-4">Aula 7: Polimorfismo</h3>
+                    <p class="mb-4 text-slate-600">Esta aula explora o polimorfismo em Java, a capacidade de objetos de diferentes classes serem tratados de forma genérica através de uma superclasse ou interface, simplificando o código e aumentando a flexibilidade.</p>
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <h4 class="font-semibold text-lg text-slate-800 mb-2">Conteúdo Programático (15 min)</h4>
+                            <ul class="list-disc list-inside space-y-2 text-slate-700">
+                                <li><a href="polimorfismo.html">Polimorfismo: "Muitas formas".</a></li>
+                                <li><a href="override.html">Sobrescrita de métodos (`@Override`).</a></li>
+                                <li><a href="referenciasPolimorf.html">Uso de referências de superclasse para objetos de subclasse.</a></li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-lg text-slate-800 mb-2">Atividade Prática (25 min)</h4>
+                            <p class="text-slate-700">Criar uma subclasse `Gato` que estende `Animal` e sobrescreve `fazerSom()`. Na `Main`, criar um array de `Animal` e adicionar objetos `Cachorro` e `Gato`. Iterar e chamar `fazerSom()` para cada um.</p>
+                            <pre class="bg-slate-100 p-3 rounded-md text-sm mt-2 overflow-auto"><code class="language-java">public class Gato extends Animal {
+    @Override
+    public void fazerSom() {
+        System.out.println("Miado!");
+    }
+    public void miar() {
+        System.out.println("Miau!");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Animal[] animais = new Animal[2];
+        animais[0] = new Cachorro();
+        animais[1] = new Gato();
+
+        for (Animal a : animais) {
+            a.fazerSom(); // Polimorfismo em ação
+        }
+    }
+}</code></pre>
+                        </div>
+                    </div>
+                </article>
+            </div>
+            
+            <div id="lesson-8" class="lesson-content space-y-6">
+                <article class="bg-white p-6 rounded-lg shadow-sm">
+                    <h3 class="text-2xl font-bold text-slate-900 mb-4">Aula 8: Interfaces</h3>
+                    <p class="mb-4 text-slate-600">Esta aula introduz o conceito de interfaces em Java, que atuam como contratos para classes, promovendo polimorfismo e um design mais flexível e desacoplado.</p>
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <h4 class="font-semibold text-lg text-slate-800 mb-2">Conteúdo Programático (15 min)</h4>
+                            <ul class="list-disc list-inside space-y-2 text-slate-700">
+                                <li><a href="interface.html">Interfaces: Contratos de métodos.</a></li>
+                                <li><a href="palavraInterface.html">Palavra-chave `interface`.</a></li>
+                                <li><a href="palavraImplements.html">Implementação de interfaces: `implements`.</a></li>
+                                <li><a href="interfacesClasses.html">Interfaces vs. Classes Abstratas (breve).</a></li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-lg text-slate-800 mb-2">Atividade Prática (25 min)</h4>
+                            <p class="text-slate-700">Criar uma interface `Veiculo` com métodos `acelerar()` e `frear()`. Criar classes `Carro` e `Moto` que implementam `Veiculo`. Na `Main`, instanciar e chamar os métodos.</p>
+                            <pre class="bg-slate-100 p-3 rounded-md text-sm mt-2 overflow-auto"><code class="language-java">public interface Veiculo {
+    void acelerar();
+    void frear();
+}
+
+public class Carro implements Veiculo {
+    @Override
+    public void acelerar() {
+        System.out.println("Carro acelerando...");
+    }
+    @Override
+    public void frear() {
+        System.out.println("Carro freando...");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Carro meuCarro = new Carro();
+        meuCarro.acelerar();
+        meuCarro.frear();
+    }
+}</code></pre>
+                        </div>
+                    </div>
+                </article>
+            </div>
+            
+            <div id="lesson-9" class="lesson-content space-y-6">
+                <article class="bg-white p-6 rounded-lg shadow-sm">
+                    <h3 class="text-2xl font-bold text-slate-900 mb-4">Aula 9: Acoplamento entre Classes</h3>
+                    <p class="mb-4 text-slate-600">Esta aula final explora o conceito de acoplamento e coesão em POO, ensinando a projetar classes para um baixo acoplamento e alta coesão, resultando em um código mais flexível e fácil de manter.</p>
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <h4 class="font-semibold text-lg text-slate-800 mb-2">Conteúdo Programático (15 min)</h4>
+                            <ul class="list-disc list-inside space-y-2 text-slate-700">
+                                <li><a href="acoplamento.html">Acoplamento (Coupling): Grau de dependência entre classes.</a></li>
+                                <li><a href="coesao.html">Coesão (Cohesion): Foco de responsabilidade de uma classe.</a></li>
+                                <li><a href="reduzirAcoplamento.html">Como reduzir acoplamento: Uso de interfaces.</a></li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-lg text-slate-800 mb-2">Atividade Prática (25 min)</h4>
+                            <p class="text-slate-700">Refatorar um exemplo de alto acoplamento. Criar `Impressora` e `GerenciadorDocumentos` (acoplado à `Impressora`). Em seguida, introduzir uma interface `ServicoImpressao` para desacoplar o `GerenciadorDocumentos` da implementação concreta da impressora.</p>
+                            <pre class="bg-slate-100 p-3 rounded-md text-sm mt-2 overflow-auto"><code class="language-java">public interface ServicoImpressao {
+    void imprimir(String texto);
+}
+
+public class Impressora implements ServicoImpressao {
+    @Override
+    public void imprimir(String texto) {
+        System.out.println("Imprimindo: " + texto);
+    }
+}
+
+public class GerenciadorDocumentos {
+    private ServicoImpressao servicoImpressao; // Depende da interface
+
+    public GerenciadorDocumentos(ServicoImpressao servicoImpressao) {
+        this.servicoImpressao = servicoImpressao;
+    }
+
+    public void enviarParaImpressao(String documento) {
+        servicoImpressao.imprimir(documento);
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Impressora hp = new Impressora();
+        GerenciadorDocumentos gerenciador = new GerenciadorDocumentos(hp);
+        gerenciador.enviarParaImpressao("Relatório Mensal");
+    }
+}</code></pre>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const navLinks = document.querySelectorAll('.nav-link');
+            const lessonContents = document.querySelectorAll('.lesson-content');
+            const mobileNav = document.getElementById('mobile-nav-select');
+
+            function showLesson(targetId) {
+                lessonContents.forEach(content => {
+                    content.classList.remove('active');
+                });
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                });
+
+                const targetContent = document.getElementById(targetId);
+                if (targetContent) {
+                    targetContent.classList.add('active');
+                }
+
+                const targetLink = document.querySelector(`.nav-link[data-target="${targetId}"]`);
+                if (targetLink) {
+                    targetLink.classList.add('active');
+                }
+
+                if(mobileNav.value !== targetId) {
+                    mobileNav.value = targetId;
+                }
+            }
+
+            navLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    const targetId = link.getAttribute('data-target');
+                    showLesson(targetId);
+                });
+            });
+
+            mobileNav.addEventListener('change', (event) => {
+                showLesson(event.target.value);
+            });
+            
+            showLesson('lesson-1');
+        });
+    </script>
+</body>
+</html>

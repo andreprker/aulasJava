@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sintaxe Básica de Classe e Criação de Objeto em Java</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc; /* slate-50 */
+            color: #334155; /* slate-700 */
+        }
+        .section-fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .section-fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .code-block {
+            background-color: #1e293b; /* slate-800 */
+            color: #e2e8f0; /* slate-200 */
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            font-family: 'Fira Code', monospace; /* A common monospace font for code */
+            font-size: 0.9rem;
+            overflow-x: auto;
+        }
+        .code-keyword { color: #818cf8; } /* indigo-400 */
+        .code-class-name { color: #38bdf8; } /* sky-400 */
+        .code-method { color: #facc15; } /* yellow-400 */
+        .code-string { color: #4ade80; } /* green-400 */
+        .code-comment { color: #94a3b8; } /* slate-400 */
+        .code-variable { color: #f472b6; } /* pink-400 */
+        .code-new { color: #fb923c; } /* orange-400 */
+        .code-type { color: #a78bfa; } /* violet-400 */
+        .code-access { color: #facc15; } /* yellow-400 */
+    </style>
+</head>
+<body class="antialiased">
+    <a href="http://127.0.0.1:5500/java/aulasJava.html">Início</a>
+    <main class="container mx-auto px-4 py-8 md:py-16">
+
+        <section id="hero" class="text-center mb-12 md:mb-16 section-fade-in">
+            <h1 class="text-4xl md:text-5xl font-bold text-slate-800 mb-4">Sintaxe Básica de Classe e Criação de Objeto em Java</h1>
+            <p class="max-w-3xl mx-auto text-lg text-slate-600">
+                Compreenda a estrutura fundamental para definir classes e como instanciar objetos a partir delas na linguagem de programação Java.
+            </p>
+        </section>
+
+        <section id="class-definition-syntax" class="bg-white p-8 md:p-12 rounded-xl shadow-lg mb-12 md:mb-16 section-fade-in">
+            <div class="max-w-4xl mx-auto">
+                <h2 class="text-3xl font-bold text-slate-800 mb-6 text-center">Definição de Classe em Java: O Molde</h2>
+                <p class="text-lg text-slate-700 leading-relaxed mb-8">
+                    Em Java, uma classe é definida usando a palavra-chave `class`, seguida pelo nome da classe. Atributos (variáveis) são declarados com um tipo de dado e um modificador de acesso (como `private` ou `public`). Métodos (funções) também têm um tipo de retorno, nome e modificadores de acesso. O construtor é um método especial com o mesmo nome da classe, usado para inicializar objetos.
+                </p>
+                <div class="code-block">
+                    <pre><span class="code-access">public</span> <span class="code-keyword">class</span> <span class="code-class-name">Carro</span> {
+    <span class="code-comment">// Atributos (características)</span>
+    <span class="code-access">private</span> <span class="code-type">String</span> <span class="code-variable">marca</span>;
+    <span class="code-access">private</span> <span class="code-type">String</span> <span class="code-variable">modelo</span>;
+    <span class="code-access">private</span> <span class="code-type">String</span> <span class="code-variable">cor</span>;
+    <span class="code-access">private</span> <span class="code-type">int</span> <span class="code-variable">velocidadeAtual</span>;
+
+    <span class="code-comment">// Construtor</span>
+    <span class="code-access">public</span> <span class="code-method">Carro</span>(<span class="code-type">String</span> <span class="code-variable">marca</span>, <span class="code-type">String</span> <span class="code-variable">modelo</span>, <span class="code-type">String</span> <span class="code-variable">cor</span>) {
+        <span class="code-keyword">this</span>.<span class="code-variable">marca</span> = <span class="code-variable">marca</span>;
+        <span class="code-keyword">this</span>.<span class="code-variable">modelo</span> = <span class="code-variable">modelo</span>;
+        <span class="code-keyword">this</span>.<span class="code-variable">cor</span> = <span class="code-variable">cor</span>;
+        <span class="code-keyword">this</span>.<span class="code-variable">velocidadeAtual</span> = 0;
+    }
+
+    <span class="code-comment">// Métodos (comportamentos)</span>
+    <span class="code-access">public</span> <span class="code-type">void</span> <span class="code-method">acelerar</span>(<span class="code-type">int</span> <span class="code-variable">incremento</span>) {
+        <span class="code-keyword">this</span>.<span class="code-variable">velocidadeAtual</span> += <span class="code-variable">incremento</span>;
+        System.out.println(<span class="code-string">"O "</span> + <span class="code-keyword">this</span>.<span class="code-variable">marca</span> + <span class="code-string">" "</span> + <span class="code-keyword">this</span>.<span class="code-variable">modelo</span> + <span class="code-string">" acelerou para "</span> + <span class="code-keyword">this</span>.<span class="code-variable">velocidadeAtual</span> + <span class="code-string">" km/h."</span>);
+    }
+
+    <span class="code-access">public</span> <span class="code-type">void</span> <span class="code-method">travar</span>() {
+        <span class="code-keyword">this</span>.<span class="code-variable">velocidadeAtual</span> = 0;
+        System.out.println(<span class="code-string">"O "</span> + <span class="code-keyword">this</span>.<span class="code-variable">marca</span> + <span class="code-string">" "</span> + <span class="code-keyword">this</span>.<span class="code-variable">modelo</span> + <span class="code-string">" travou."</span>);
+    }
+
+    <span class="code-comment">// Método para obter a velocidade atual (exemplo de getter)</span>
+    <span class="code-access">public</span> <span class="code-type">int</span> <span class="code-method">getVelocidadeAtual</span>() {
+        <span class="code-keyword">return</span> <span class="code-keyword">this</span>.<span class="code-variable">velocidadeAtual</span>;
+    }
+}
+</pre>
+                </div>
+                <p class="text-sm text-slate-600 mt-4">
+                    <strong class="font-semibold">Explicação do Código:</strong>
+                    <ul>
+                        <li>`public class Carro { ... }` define a classe `Carro` como pública.</li>
+                        <li>`private String marca;` declara um atributo `marca` do tipo `String` com acesso privado.</li>
+                        <li>`public Carro(...)` é o construtor da classe, usado para inicializar os atributos do objeto.</li>
+                        <li>`this` refere-se à instância atual do objeto.</li>
+                        <li>`acelerar()` e `travar()` são métodos que definem o comportamento dos objetos `Carro`.</li>
+                        <li>`getVelocidadeAtual()` é um método "getter" para aceder ao valor do atributo `velocidadeAtual`.</li>
+                    </ul>
+                </p>
+            </div>
+        </section>
+
+        <section id="object-creation-syntax" class="bg-white p-8 md:p-12 rounded-xl shadow-lg mb-12 md:mb-16 section-fade-in">
+            <div class="max-w-4xl mx-auto">
+                <h2 class="text-3xl font-bold text-slate-800 mb-6 text-center">Criação de Objetos em Java: A Instância</h2>
+                <p class="text-lg text-slate-700 leading-relaxed mb-8">
+                    Para criar um objeto (ou instanciar uma classe) em Java, você usa a palavra-chave `new` seguida pelo nome da classe e os argumentos para o construtor. Isso aloca memória para o novo objeto e executa o construtor.
+                </p>
+                <div class="code-block">
+                    <pre><span class="code-comment">// Exemplo de uso da classe Carro em um método main</span>
+<span class="code-access">public</span> <span class="code-keyword">class</span> <span class="code-class-name">MinhaAplicacao</span> {
+    <span class="code-access">public</span> <span class="code-keyword">static</span> <span class="code-type">void</span> <span class="code-method">main</span>(<span class="code-type">String</span>[] <span class="code-variable">args</span>) {
+        <span class="code-comment">// Criando objetos (instâncias da classe Carro)</span>
+        <span class="code-class-name">Carro</span> <span class="code-variable">meuCarro</span> = <span class="code-new">new</span> <span class="code-class-name">Carro</span>(<span class="code-string">"Toyota"</span>, <span class="code-string">"Corolla"</span>, <span class="code-string">"Prata"</span>);
+        <span class="code-class-name">Carro</span> <span class="code-variable">carroAmigo</span> = <span class="code-new">new</span> <span class="code-class-name">Carro</span>(<span class="code-string">"Honda"</span>, <span class="code-string">"Civic"</span>, <span class="code-string">"Preto"</span>);
+
+        <span class="code-comment">// Acedendo a atributos do objeto (via métodos getters se privados)</span>
+        System.out.println(<span class="code-string">"Meu carro é um "</span> + <span class="code-variable">meuCarro</span>.<span class="code-method">marca</span> + <span class="code-string">" "</span> + <span class="code-variable">meuCarro</span>.<span class="code-method">modelo</span> + <span class="code-string">" de cor "</span> + <span class="code-variable">meuCarro</span>.<span class="code-method">cor</span> + <span class="code-string">"."</span>);
+        System.out.println(<span class="code-string">"O carro do meu amigo é um "</span> + <span class="code-variable">carroAmigo</span>.<span class="code-method">marca</span> + <span class="code-string">" "</span> + <span class="code-variable">carroAmigo</span>.<span class="code-method">modelo</span> + <span class="code-string">"."</span>);
+
+        <span class="code-comment">// Chamando métodos do objeto</span>
+        <span class="code-variable">meuCarro</span>.<span class="code-method">acelerar</span>(60);
+        <span class="code-variable">carroAmigo</span>.<span class="code-method">acelerar</span>(80);
+        <span class="code-variable">meuCarro</span>.<span class="code-method">travar</span>();
+
+        <span class="code-comment">// Acedendo a velocidade atual usando o método getter</span>
+        System.out.println(<span class="code-string">"Velocidade atual do meu carro: "</span> + <span class="code-variable">meuCarro</span>.<span class="code-method">getVelocidadeAtual</span>() + <span class="code-string">" km/h."</span>);
+    }
+}
+</pre>
+                </div>
+                <p class="text-sm text-slate-600 mt-4">
+                    <strong class="font-semibold">Explicação do Código:</strong>
+                    <ul>
+                        <li>`Carro meuCarro = new Carro(...);` cria uma nova instância da classe `Carro` e atribui-a à variável `meuCarro`.</li>
+                        <li>`new Carro(...)` invoca o construtor da classe `Carro`.</li>
+                        <li>`meuCarro.acelerar(60);` chama o método `acelerar` no objeto `meuCarro`.</li>
+                        <li>Acesso direto a atributos como `meuCarro.marca` é possível se o atributo for `public`. Se for `private`, é necessário usar métodos "getters" (como `getVelocidadeAtual()`).</li>
+                    </ul>
+                </p>
+            </div>
+        </section>
+
+        <section id="conclusion" class="text-center py-12 md:py-16 bg-slate-100 rounded-xl shadow-inner section-fade-in">
+            <div class="max-w-3xl mx-auto px-4">
+                <p class="text-lg text-slate-700 leading-relaxed">
+                    Em Java, a classe é o modelo e o objeto é a sua concretização. A sintaxe é clara e segue os princípios da POO para criar software modular e escalável.
+                </p>
+            </div>
+        </section>
+
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const sections = document.querySelectorAll('.section-fade-in');
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target); // Stop observing once visible
+                    }
+                });
+            }, {
+                threshold: 0.1 // Trigger when 10% of the section is visible
+            });
+
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+        });
+    </script>
+</body>
+</html>

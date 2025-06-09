@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Métodos: Comportamentos do Objeto em Java</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        .container {
+            max-width: 900px;
+            margin: auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1, h2, h3 {
+            color: #333;
+        }
+        .section-highlight {
+            background-color: #e9f7ff;
+            padding: 15px;
+            border-left: 5px solid #007bff;
+            margin-bottom: 20px;
+        }
+        ul, ol {
+            list-style: disc;
+            padding-left: 20px;
+        }
+        ol {
+            list-style: decimal;
+        }
+        ul li, ol li {
+            margin-bottom: 8px;
+        }
+        strong {
+            color: #007bff;
+        }
+        .code-example {
+            background-color: #eee;
+            padding: 15px;
+            border-left: 5px solid #28a745;
+            margin-bottom: 20px;
+            overflow-x: auto;
+            font-family: 'Courier New', Courier, monospace;
+        }
+        .image-placeholder {
+            background-color: #ccc;
+            color: #666;
+            text-align: center;
+            padding: 50px 0;
+            margin-top: 20px;
+            border-radius: 4px;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Métodos: Comportamentos do Objeto em Java</h1>
+        <p>Na Programação Orientada a Objetos (POO), além de possuírem características (atributos que definem seu estado), os objetos também realizam ações ou executam tarefas. Essas ações são definidas pelos <strong>métodos</strong>. Enquanto os atributos representam <em>o que</em> um objeto é, os métodos definem <em>o que</em> um objeto pode fazer.</p>
+
+        ---
+
+        <h2>O que são Métodos em Java?</h2>
+        <p>Métodos são blocos de código que contêm uma série de instruções para executar uma operação específica. Eles são declarados dentro de uma classe e podem ser invocados (chamados) para realizar suas funções. Cada método representa um comportamento ou uma funcionalidade que os objetos dessa classe podem exibir.</p>
+        <p>Por exemplo, se tivermos uma classe <code>Carro</code>, ela pode ter métodos como <code>ligar()</code>, <code>acelerar()</code>, <code>frear()</code> e <code>desligar()</code>. Cada vez que você invoca um desses métodos em um objeto <code>Carro</code>, ele executa a ação correspondente.</p>
+
+        ---
+
+        <h2>Estrutura de um Método</h2>
+        <p>A estrutura básica de um método em Java inclui:</p>
+        <ul>
+            <li><strong>Modificador de Acesso:</strong> (<code>public</code>, <code>private</code>, <code>protected</code>, padrão/<code>package-private</code>) Define a visibilidade do método.</li>
+            <li><strong>Tipo de Retorno:</strong> O tipo de dado que o método retornará (ou <code>void</code> se não retornar nada).</li>
+            <li><strong>Nome do Método:</strong> Um identificador único para o método, seguindo as convenções de nomenclatura Java (camelCase).</li>
+            <li><strong>Lista de Parâmetros:</strong> Uma lista de variáveis que o método aceita como entrada, entre parênteses (vazia se não aceitar parâmetros).</li>
+            <li><strong>Corpo do Método:</strong> O bloco de código que contém as instruções a serem executadas, delimitado por chaves <code>{}</code>.</li>
+        </ul>
+        <div class="code-example">
+<pre><code>// Exemplo de estrutura de um método
+public int somar(int numero1, int numero2) {
+    // Corpo do método
+    int resultado = numero1 + numero2;
+    return resultado; // Retorna o valor inteiro
+}
+</code></pre>
+        </div>
+
+        ---
+
+        <h2>Definindo Comportamentos do Objeto</h2>
+        <p>Os métodos são a forma como interagimos com o estado de um objeto. Eles podem:</p>
+        <ul>
+            <li><strong>Modificar o estado interno do objeto:</strong> Alterar os valores dos atributos do objeto (ex: <code>acelerar()</code> que aumenta a <code>velocidadeAtual</code> de um <code>Carro</code>).</li>
+            <li><strong>Acessar o estado interno do objeto:</strong> Ler os valores dos atributos do objeto (ex: <code>getVelocidadeAtual()</code>).</li>
+            <li><strong>Realizar cálculos ou operações:</strong> Processar dados e retornar um resultado (ex: <code>calcularArea()</code> em uma classe <code>Retangulo</code>).</li>
+            <li><strong>Interagir com outros objetos:</strong> Chamar métodos de outros objetos ou passar este objeto como parâmetro.</li>
+        </ul>
+
+        ---
+
+        <h2>Exemplo Prático em Java</h2>
+        <p>Vamos estender a classe <code>Livro</code> do exemplo anterior para incluir mais métodos e ilustrar seus comportamentos.</p>
+
+        <div class="code-example">
+            <h3>Classe 'Livro.java' (Atualizada)</h3>
+<pre><code>public class Livro {
+    // Atributos (variáveis de instância)
+    String titulo;
+    String autor;
+    int anoPublicacao;
+    boolean disponivel;
+    int numeroCopias; // Novo atributo: quantidade de cópias disponíveis
+
+    // Construtor para inicializar o estado do objeto
+    public Livro(String titulo, String autor, int anoPublicacao, int numeroCopias) {
+        this.titulo = titulo;
+        this.autor = autor;
+        this.anoPublicacao = anoPublicacao;
+        this.numeroCopias = numeroCopias;
+        this.disponivel = (numeroCopias > 0); // O livro está disponível se houver cópias
+    }
+
+    // Método para exibir o estado do livro
+    public void exibirDetalhes() {
+        System.out.println("--- Detalhes do Livro ---");
+        System.out.println("Título: " + titulo);
+        System.out.println("Autor: " + autor);
+        System.out.println("Ano de Publicação: " + anoPublicacao);
+        System.out.println("Cópias Disponíveis: " + numeroCopias);
+        System.out.println("Disponível para Empréstimo: " + (disponivel ? "Sim" : "Não"));
+    }
+
+    // Método para mudar o estado de disponibilidade e o número de cópias
+    public boolean emprestarLivro() {
+        if (disponivel && numeroCopias > 0) {
+            this.numeroCopias--;
+            this.disponivel = (this.numeroCopias > 0); // Atualiza disponibilidade
+            System.out.println("Livro '" + titulo + "' emprestado. Cópias restantes: " + numeroCopias);
+            return true;
+        } else {
+            System.out.println("Livro '" + titulo + "' não pode ser emprestado (sem cópias ou já indisponível).");
+            return false;
+        }
+    }
+
+    public void devolverLivro() {
+        this.numeroCopias++;
+        this.disponivel = true; // Ao devolver, ele fica disponível
+        System.out.println("Livro '" + titulo + "' devolvido. Cópias totais: " + numeroCopias);
+    }
+
+    // Novo método para verificar se o livro é antigo
+    public boolean ehAntigo(int anoAtual) {
+        return (anoAtual - this.anoPublicacao) > 50; // Considera antigo se publicado há mais de 50 anos
+    }
+
+    // Getter para o título (acessa o estado)
+    public String getTitulo() {
+        return this.titulo;
+    }
+}
+</code></pre>
+        </div>
+
+        <div class="code-example">
+            <h3>Classe Principal para Teste ('Main.java') (Atualizada)</h3>
+<pre><code>public class Main {
+    public static void main(String[] args) {
+        // Criando instâncias (objetos) da classe Livro
+        Livro livro1 = new Livro("A Revolução dos Bichos", "George Orwell", 1945, 2);
+        Livro livro2 = new Livro("O Pequeno Príncipe", "Antoine de Saint-Exupéry", 1943, 0); // Sem cópias inicialmente
+
+        System.out.println("--- Estado Inicial dos Livros ---");
+        livro1.exibirDetalhes();
+        System.out.println();
+        livro2.exibirDetalhes();
+
+        System.out.println("\n--- Interagindo com Livro 1 ---");
+        livro1.emprestarLivro(); // Comportamento: emprestar
+        livro1.exibirDetalhes();
+
+        livro1.emprestarLivro(); // Empresta mais uma cópia
+        livro1.exibirDetalhes();
+
+        livro1.emprestarLivro(); // Tenta emprestar quando não há mais cópias
+        livro1.exibirDetalhes();
+
+        livro1.devolverLivro(); // Comportamento: devolver
+        livro1.exibirDetalhes();
+
+        System.out.println("\n--- Interagindo com Livro 2 ---");
+        livro2.emprestarLivro(); // Tenta emprestar um livro sem cópias
+        livro2.exibirDetalhes();
+
+        // Verificando comportamentos baseados no estado
+        System.out.println("\n--- Verificando se os livros são antigos ---");
+        int anoAtual = 2025;
+        if (livro1.ehAntigo(anoAtual)) { // Comportamento: verificar antiguidade
+            System.out.println("O livro '" + livro1.getTitulo() + "' é considerado antigo.");
+        } else {
+            System.out.println("O livro '" + livro1.getTitulo() + "' não é considerado antigo.");
+        }
+
+        if (livro2.ehAntigo(anoAtual)) {
+            System.out.println("O livro '" + livro2.getTitulo() + "' é considerado antigo.");
+        } else {
+            System.out.println("O livro '" + livro2.getTitulo() + "' não é considerado antigo.");
+        }
+    }
+}
+</code></pre>
+        </div>
+
+        ---
+
+        <h2>Relação entre Atributos e Métodos</h2>
+        <p>Atributos e métodos trabalham em conjunto para definir completamente um objeto. Os atributos guardam o estado, e os métodos são as "ações" que podem ler, modificar ou usar esse estado para produzir novos comportamentos ou informações. Essa colaboração é a essência do encapsulamento na POO.</p>
+        <div class="image-placeholder">
+            [Imagem de um objeto com atributos (dados) e métodos (ações) interagindo]
+        </div>
+
+        ---
+
+        <h2>Conclusão</h2>
+        <p>Métodos são os construtores dos comportamentos em Java, permitindo que os objetos realizem tarefas e interajam com o mundo exterior. Eles são cruciais para a funcionalidade de uma aplicação orientada a objetos, traduzindo os atributos estáticos em ações dinâmicas. Dominar a criação e o uso de métodos é essencial para qualquer desenvolvedor Java.</p>
+    </div>
+</body>
+</html>

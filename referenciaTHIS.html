@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Palavra-chave `this` em Java: Referência ao Objeto Atual</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6; /* Light gray background */
+        }
+        .container {
+            max-width: 90%; /* Fluid width for responsiveness */
+        }
+        .code-block {
+            background-color: #1f2937; /* Darker gray for code blocks */
+            color: #e5e7eb; /* Light text for code */
+            padding: 1.5rem;
+            border-radius: 0.75rem; /* rounded-xl */
+            overflow-x: auto; /* Enable horizontal scrolling for long lines */
+        }
+    </style>
+</head>
+<body class="antialiased text-gray-800">
+    <div class="container mx-auto p-4 sm:p-6 lg:p-8 my-8 bg-white shadow-lg rounded-xl">
+        <header class="text-center mb-8">
+            <h1 class="text-4xl sm:text-5xl font-extrabold text-blue-800 mb-4 rounded-xl p-4 bg-blue-100 shadow-md">
+                Palavra-chave <code class="text-blue-600">this</code> em Java: Referência ao Objeto Atual
+            </h1>
+            <p class="text-lg sm:text-xl text-gray-600 leading-relaxed">
+                Descubra a versatilidade da palavra-chave <code class="font-semibold">this</code> em Java, essencial para referenciar o objeto atual dentro de uma classe.
+            </p>
+        </header>
+
+        <section class="mb-10 p-6 bg-gray-50 rounded-xl shadow-sm">
+            <h2 class="text-3xl font-bold text-gray-800 mb-4">O que é a palavra-chave <code class="text-blue-600">this</code>?</h2>
+            <p class="text-base sm:text-lg leading-relaxed mb-4">
+                Em Java, a palavra-chave <code class="font-semibold">this</code> é uma variável de referência que se refere ao **objeto atual**. Ela pode ser usada dentro de qualquer método de instância ou construtor para fazer referência ao objeto cujo método ou construtor está sendo invocado.
+            </p>
+            <p class="text-base sm:text-lg leading-relaxed">
+                O uso principal de <code class="font-semibold">this</code> é para eliminar a ambiguidade entre variáveis de instância e parâmetros de método/construtor que possuem o mesmo nome.
+            </p>
+        </section>
+
+        <section class="mb-10 p-6 bg-gray-50 rounded-xl shadow-sm">
+            <h2 class="text-3xl font-bold text-gray-800 mb-4">Principais Usos da Palavra-chave <code class="text-blue-600">this</code></h2>
+
+            <article class="mb-8 p-5 bg-white rounded-lg shadow-md">
+                <h3 class="text-2xl font-semibold text-blue-700 mb-3">1. Para referenciar variáveis de instância da classe atual</h3>
+                <p class="text-base sm:text-lg leading-relaxed mb-4">
+                    Este é o uso mais comum de <code class="font-semibold">this</code>. Quando um parâmetro (ou variável local) tem o mesmo nome que uma variável de instância, o compilador não consegue distinguir entre eles. O uso de <code class="font-semibold">this.</code> resolve essa ambiguidade, indicando que você se refere à variável de instância.
+                </p>
+                <div class="code-block">
+<pre><code>
+class Estudante {
+    String nome; // Variável de instância
+    int idade;   // Variável de instância
+
+    public Estudante(String nome, int idade) { // Parâmetros com o mesmo nome
+        this.nome = nome; // 'this.nome' refere-se à variável de instância 'nome'
+        this.idade = idade; // 'this.idade' refere-se à variável de instância 'idade'
+    }
+
+    void exibirDetalhes() {
+        System.out.println("Nome do Estudante: " + nome + ", Idade: " + idade);
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Estudante s1 = new Estudante("Alice", 20);
+        s1.exibirDetalhes(); // Saída: Nome do Estudante: Alice, Idade: 20
+    }
+}
+</code></pre>
+                </div>
+            </article>
+
+            <article class="mb-8 p-5 bg-white rounded-lg shadow-md">
+                <h3 class="text-2xl font-semibold text-blue-700 mb-3">2. Para invocar o método da classe atual</h3>
+                <p class="text-base sm:text-lg leading-relaxed mb-4">
+                    Você pode usar <code class="font-semibold">this.</code> para chamar um método da mesma classe. Embora não seja estritamente necessário (você pode simplesmente chamar o método diretamente), pode melhorar a clareza em certos contextos ou ser útil se houver sobrecarga.
+                </p>
+                <div class="code-block">
+<pre><code>
+class Calculadora {
+    int valorBase = 10;
+
+    void incrementar(int valor) {
+        this.valorBase += valor;
+        System.out.println("Valor base incrementado para: " + this.valorBase);
+    }
+
+    void executarCalculo() {
+        System.out.println("Iniciando cálculo...");
+        this.incrementar(5); // Chama o método incrementar() da mesma instância
+        System.out.println("Cálculo concluído.");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Calculadora calc = new Calculadora();
+        calc.executarCalculo();
+        // Saída:
+        // Iniciando cálculo...
+        // Valor base incrementado para: 15
+        // Cálculo concluído.
+    }
+}
+</code></pre>
+                </div>
+            </article>
+
+            <article class="mb-8 p-5 bg-white rounded-lg shadow-md">
+                <h3 class="text-2xl font-semibold text-blue-700 mb-3">3. Para invocar o construtor da classe atual (encadeamento de construtores)</h3>
+                <p class="text-base sm:text-lg leading-relaxed mb-4">
+                    A palavra-chave <code class="font-semibold">this()</code> (com parênteses) é usada para chamar outro construtor da mesma classe. Isso é conhecido como **encadeamento de construtores** e é muito útil para evitar duplicação de código ao ter vários construtores sobrecarregados. A chamada <code class="font-semibold">this()</code> deve ser a primeira instrução no construtor.
+                </p>
+                <div class="code-block">
+<pre><code>
+class Pessoa {
+    String nome;
+    int idade;
+    String endereco;
+
+    // Construtor completo
+    public Pessoa(String nome, int idade, String endereco) {
+        this.nome = nome;
+        this.idade = idade;
+        this.endereco = endereco;
+        System.out.println("Pessoa criada com nome, idade e endereço.");
+    }
+
+    // Construtor com nome e idade, usa 'this()' para chamar o construtor completo
+    public Pessoa(String nome, int idade) {
+        this(nome, idade, "Endereço Desconhecido"); // Chama o construtor acima
+        System.out.println("Pessoa criada com nome e idade.");
+    }
+
+    // Construtor padrão, usa 'this()' para chamar o construtor com nome e idade
+    public Pessoa() {
+        this("Anônimo", 0); // Chama o construtor acima
+        System.out.println("Pessoa criada com valores padrão.");
+    }
+
+    void exibirInfo() {
+        System.out.println("Nome: " + nome + ", Idade: " + idade + ", Endereço: " + endereco);
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Pessoa p1 = new Pessoa("Carlos", 30, "Rua A, 123");
+        Pessoa p2 = new Pessoa("Mariana", 25);
+        Pessoa p3 = new Pessoa();
+
+        p1.exibirInfo();
+        p2.exibirInfo();
+        p3.exibirInfo();
+        // Saída (ordem das mensagens de "criado" pode variar):
+        // Pessoa criada com nome, idade e endereço.
+        // Pessoa criada com nome, idade e endereço.
+        // Pessoa criada com nome e idade.
+        // Pessoa criada com nome, idade e endereço.
+        // Pessoa criada com nome e idade.
+        // Pessoa criada com valores padrão.
+        // Nome: Carlos, Idade: 30, Endereço: Rua A, 123
+        // Nome: Mariana, Idade: 25, Endereço: Endereço Desconhecido
+        // Nome: Anônimo, Idade: 0, Endereço: Endereço Desconhecido
+    }
+}
+```</pre>
+                </div>
+            </article>
+
+            <article class="mb-8 p-5 bg-white rounded-lg shadow-md">
+                <h3 class="text-2xl font-semibold text-blue-700 mb-3">4. Para passar <code class="font-semibold">this</code> como argumento em uma chamada de método</h3>
+                <p class="text-base sm:text-lg leading-relaxed mb-4">
+                    Em alguns casos, você pode precisar passar a referência do objeto atual para outro método. Isso é comum em padrões de design como Listeners ou Callbacks.
+                </p>
+                <div class="code-block">
+<pre><code>
+class ServicoDeImpressao {
+    void imprimir(Documento doc) {
+        System.out.println("Imprimindo documento: " + doc.conteudo);
+    }
+}
+
+class Documento {
+    String conteudo;
+
+    public Documento(String conteudo) {
+        this.conteudo = conteudo;
+    }
+
+    void enviarParaImpressao(ServicoDeImpressao servico) {
+        servico.imprimir(this); // Passa a referência do objeto Documento atual
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        ServicoDeImpressao impressora = new ServicoDeImpressao();
+        Documento meuDoc = new Documento("Este é o conteúdo do meu documento.");
+        meuDoc.enviarParaImpressao(impressora); // Saída: Imprimindo documento: Este é o conteúdo do meu documento.
+    }
+}
+</code></pre>
+                </div>
+            </article>
+
+            <article class="p-5 bg-white rounded-lg shadow-md">
+                <h3 class="text-2xl font-semibold text-blue-700 mb-3">5. Para retornar a instância atual da classe</h3>
+                <p class="text-base sm:text-lg leading-relaxed mb-4">
+                    Métodos podem retornar <code class="font-semibold">this</code>, o que permite o encadeamento de métodos (fluent interface). Isso é útil para construir objetos ou realizar várias operações em um único objeto de forma concisa.
+                </p>
+                <div class="code-block">
+<pre><code>
+class Configuracao {
+    String cor;
+    int tamanhoFonte;
+
+    public Configuracao setCor(String cor) {
+        this.cor = cor;
+        return this; // Retorna a própria instância para encadeamento
+    }
+
+    public Configuracao setTamanhoFonte(int tamanhoFonte) {
+        this.tamanhoFonte = tamanhoFonte;
+        return this; // Retorna a própria instância para encadeamento
+    }
+
+    void aplicarConfiguracao() {
+        System.out.println("Configuração aplicada: Cor = " + cor + ", Tamanho da Fonte = " + tamanhoFonte);
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Configuracao minhaConfig = new Configuracao();
+        minhaConfig.setCor("Azul")
+                   .setTamanhoFonte(16)
+                   .aplicarConfiguracao(); // Encadeamento de métodos
+        // Saída: Configuração aplicada: Cor = Azul, Tamanho da Fonte = 16
+    }
+}
+</code></pre>
+                </div>
+            </article>
+        </section>
+
+        <footer class="text-center p-6 bg-blue-800 text-white rounded-xl">
+            <p class="text-lg">Dominar o uso da palavra-chave <code class="font-semibold">this</code> é crucial para escrever código Java limpo, conciso e eficaz!</p>
+            <p class="text-sm mt-2">Página criada com HTML e Tailwind CSS.</p>
+        </footer>
+    </div>
+</body>
+</html>

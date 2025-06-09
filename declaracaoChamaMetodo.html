@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Declaração e Chamada de Atributos/Métodos em Java</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        .container {
+            max-width: 900px;
+            margin: auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1, h2, h3 {
+            color: #333;
+        }
+        .section-highlight {
+            background-color: #e9f7ff;
+            padding: 15px;
+            border-left: 5px solid #007bff;
+            margin-bottom: 20px;
+        }
+        ul, ol {
+            list-style: disc;
+            padding-left: 20px;
+        }
+        ol {
+            list-style: decimal;
+        }
+        ul li, ol li {
+            margin-bottom: 8px;
+        }
+        strong {
+            color: #007bff;
+        }
+        .code-example {
+            background-color: #eee;
+            padding: 15px;
+            border-left: 5px solid #28a745;
+            margin-bottom: 20px;
+            overflow-x: auto;
+            font-family: 'Courier New', Courier, monospace;
+        }
+        .image-placeholder {
+            background-color: #ccc;
+            color: #666;
+            text-align: center;
+            padding: 50px 0;
+            margin-top: 20px;
+            border-radius: 4px;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Declaração e Chamada de Atributos/Métodos em Java</h1>
+        <p>Em Java, a programação orientada a objetos (POO) é construída em torno do conceito de classes e objetos. Cada objeto possui um <strong>estado</strong> (definido por seus atributos) e <strong>comportamentos</strong> (definidos por seus métodos). Para interagir com esses objetos, precisamos saber como declarar seus atributos e métodos, e como chamá-los.</p>
+
+        ---
+
+        <h2>1. Declaração de Atributos (Variáveis de Instância)</h2>
+        <p>Atributos são as características ou propriedades de um objeto. Eles são declarados dentro da classe, mas fora de qualquer método.</p>
+        <p><strong>Sintaxe Geral:</strong></p>
+        <div class="code-example">
+<pre><code>[modificador_acesso] [tipo_dado] nomeAtributo;
+</code></pre>
+        </div>
+        <ul>
+            <li><strong><code>[modificador_acesso]</code>:</strong> Define a visibilidade (ex: <code>public</code>, <code>private</code>, <code>protected</code>). Para atributos, <code>private</code> é a prática recomendada (encapsulamento).</li>
+            <li><strong><code>[tipo_dado]</code>:</strong> O tipo de dado que o atributo armazenará (ex: <code>int</code>, <code>String</code>, <code>boolean</code>, <code>double</code>).</li>
+            <li><strong><code>nomeAtributo</code>:</strong> O nome do atributo (seguindo a convenção camelCase).</li>
+        </ul>
+
+        <div class="code-example">
+            <h3>Exemplo de Declaração de Atributos</h3>
+<pre><code>public class Pessoa {
+    // Atributos (variáveis de instância)
+    private String nome;        // Atributo para armazenar o nome da pessoa
+    private int idade;          // Atributo para armazenar a idade da pessoa
+    public double altura;       // Atributo público (menos comum para atributos)
+}
+</code></pre>
+        </div>
+
+        ---
+
+        <h2>2. Chamada (Acesso e Modificação) de Atributos</h2>
+        <p>Após um objeto ser instanciado (criado), seus atributos podem ser acessados ou modificados. Se os atributos são <code>public</code>, eles podem ser acessados diretamente. Se são <code>private</code> (o que é mais comum e recomendado), eles devem ser acessados e modificados através de métodos públicos (getters e setters).</p>
+
+        <h3>Acesso Direto (para atributos públicos):</h3>
+        <p><code>nomeObjeto.nomeAtributo = valor;</code> (modificação)</p>
+        <p><code>tipoVariavel = nomeObjeto.nomeAtributo;</code> (acesso)</p>
+
+        <h3>Acesso via Métodos (Getters e Setters - para atributos privados):</h3>
+        <p>Esta é a abordagem preferida, pois permite controlar como os dados são acessados e modificados.</p>
+        <div class="code-example">
+<pre><code>public class Pessoa {
+    private String nome;
+    private int idade;
+
+    // Getter para o nome
+    public String getNome() {
+        return nome;
+    }
+
+    // Setter para o nome
+    public void setNome(String novoNome) {
+        this.nome = novoNome;
+    }
+
+    // Getter para a idade
+    public int getIdade() {
+        return idade;
+    }
+
+    // Setter para a idade
+    public void setIdade(int novaIdade) {
+        if (novaIdade > 0) { // Exemplo de validação no setter
+            this.idade = novaIdade;
+        } else {
+            System.out.println("Idade inválida!");
+        }
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Pessoa pessoa1 = new Pessoa(); // Cria um objeto Pessoa
+
+        // Modificando atributos via setters
+        pessoa1.setNome("Ana");
+        pessoa1.setIdade(25);
+
+        // Acessando atributos via getters
+        System.out.println("Nome: " + pessoa1.getNome());
+        System.out.println("Idade: " + pessoa1.getIdade());
+
+        // Tentando setar uma idade inválida
+        pessoa1.setIdade(-5);
+    }
+}
+</code></pre>
+        </div>
+
+        ---
+
+        <h2>3. Declaração de Métodos</h2>
+        <p>Métodos são as ações que um objeto pode realizar. Eles são declarados dentro de uma classe e contêm o código que será executado quando o método for chamado.</p>
+        <p><strong>Sintaxe Geral:</strong></p>
+        <div class="code-example">
+<pre><code>[modificador_acesso] [tipo_retorno] nomeMetodo([parametros]) {
+    // Corpo do método
+    // Instruções a serem executadas
+    [return valor;]
+}
+</code></pre>
+        </div>
+        <ul>
+            <li><strong><code>[modificador_acesso]</code>:</strong> Define a visibilidade (ex: <code>public</code>, <code>private</code>).</li>
+            <li><strong><code>[tipo_retorno]</code>:</strong> O tipo de dado que o método retorna (ex: <code>int</code>, <code>String</code>, <code>void</code> se não retornar nada).</li>
+            <li><strong><code>nomeMetodo</code>:</strong> O nome do método (seguindo a convenção camelCase).</li>
+            <li><strong><code>[parametros]</code>:</strong> Uma lista de variáveis que o método recebe como entrada, entre parênteses (vazio se não houver parâmetros).</li>
+            <li><strong><code>[return valor;]</code>:</strong> Usado para retornar um valor do tipo especificado pelo <code>tipo_retorno</code>.</li>
+        </ul>
+
+        <div class="code-example">
+            <h3>Exemplo de Declaração de Métodos</h3>
+<pre><code>public class Calculadora {
+    // Método que não retorna valor (void) e não recebe parâmetros
+    public void saudacao() {
+        System.out.println("Olá! Bem-vindo à calculadora.");
+    }
+
+    // Método que retorna um int e recebe dois parâmetros int
+    public int somar(int a, int b) {
+        return a + b;
+    }
+
+    // Método que modifica um atributo do próprio objeto
+    private int totalOperacoes = 0; // Atributo para controlar o número de operações
+
+    public void registrarOperacao() {
+        this.totalOperacoes++; // 'this' refere-se ao objeto atual
+        System.out.println("Operação registrada. Total: " + this.totalOperacoes);
+    }
+}
+</code></pre>
+        </div>
+
+        ---
+
+        <h2>4. Chamada de Métodos</h2>
+        <p>Para executar as ações definidas por um método, você precisa chamá-lo em um objeto. Você usa o operador ponto (<code>.</code>) para acessar o método a partir de uma instância do objeto.</p>
+        <p><strong>Sintaxe Geral:</strong></p>
+        <div class="code-example">
+<pre><code>nomeObjeto.nomeMetodo([argumentos]);
+</code></pre>
+        </div>
+        <ul>
+            <li><strong><code>nomeObjeto</code>:</strong> A instância do objeto na qual você quer que o método seja executado.</li>
+            <li><strong><code>nomeMetodo</code>:</strong> O nome do método a ser invocado.</li>
+            <li><strong><code>[argumentos]</code>:</strong> Os valores que você passa para os parâmetros do método, se houver.</li>
+        </ul>
+
+        <div class="code-example">
+            <h3>Exemplo de Chamada de Métodos</h3>
+<pre><code>public class Main {
+    public static void main(String[] args) {
+        Calculadora minhaCalc = new Calculadora(); // Cria um objeto Calculadora
+
+        // Chamando um método sem parâmetros e sem retorno
+        minhaCalc.saudacao();
+
+        // Chamando um método com parâmetros e com retorno
+        int resultadoSoma = minhaCalc.somar(10, 5);
+        System.out.println("A soma é: " + resultadoSoma);
+
+        // Chamando um método que modifica o estado do objeto
+        minhaCalc.registrarOperacao();
+        minhaCalc.registrarOperacao();
+    }
+}
+</code></pre>
+        </div>
+
+        ---
+
+        <h2>Exemplo Completo: Classe 'Carro'</h2>
+        <p>Vamos juntar os conceitos de declaração e chamada de atributos e métodos em uma única classe.</p>
+
+        <div class="code-example">
+            <h3>Classe 'Carro.java'</h3>
+<pre><code>public class Carro {
+    // 1. Declaração de Atributos (privados para encapsulamento)
+    private String marca;
+    private String modelo;
+    private int ano;
+    private double velocidadeAtual; // km/h
+
+    // Construtor para inicializar o estado do objeto
+    public Carro(String marca, String modelo, int ano) {
+        this.marca = marca;
+        this.modelo = modelo;
+        this.ano = ano;
+        this.velocidadeAtual = 0.0; // Velocidade inicial é zero
+    }
+
+    // 2. Métodos (Setters e Getters) para acesso e modificação dos atributos
+    public String getMarca() {
+        return marca;
+    }
+
+    public String getModelo() {
+        return modelo;
+    }
+
+    public int getAno() {
+        return ano;
+    }
+
+    public double getVelocidadeAtual() {
+        return velocidadeAtual;
+    }
+
+    // Métodos de Comportamento
+    public void acelerar(double incremento) {
+        if (incremento > 0) {
+            this.velocidadeAtual += incremento;
+            System.out.println(modelo + " acelerou para " + velocidadeAtual + " km/h.");
+        } else {
+            System.out.println("Incremento de velocidade inválido.");
+        }
+    }
+
+    public void frear(double decremento) {
+        if (decremento > 0 && this.velocidadeAtual - decremento >= 0) {
+            this.velocidadeAtual -= decremento;
+            System.out.println(modelo + " freou para " + velocidadeAtual + " km/h.");
+        } else if (decremento > 0 && this.velocidadeAtual - decremento < 0) {
+            this.velocidadeAtual = 0;
+            System.out.println(modelo + " freou e parou.");
+        } else {
+            System.out.println("Decremento de velocidade inválido.");
+        }
+    }
+
+    public void exibirInfo() {
+        System.out.println("\n--- Informações do Carro ---");
+        System.out.println("Marca: " + marca);
+        System.out.println("Modelo: " + modelo);
+        System.out.println("Ano: " + ano);
+        System.out.println("Velocidade Atual: " + velocidadeAtual + " km/h");
+    }
+}
+</code></pre>
+        </div>
+
+        <div class="code-example">
+            <h3>Classe Principal para Teste ('Main.java')</h3>
+<pre><code>public class Main {
+    public static void main(String[] args) {
+        // Criando instâncias (objetos) da classe Carro
+        Carro meuCarro = new Carro("Toyota", "Corolla", 2020);
+        Carro seuCarro = new Carro("Honda", "Civic", 2022);
+
+        // Chamando métodos para exibir o estado inicial
+        meuCarro.exibirInfo();
+        seuCarro.exibirInfo();
+
+        // Chamando métodos de comportamento para modificar o estado
+        System.out.println("\n--- Ações com meuCarro ---");
+        meuCarro.acelerar(50.0);
+        meuCarro.acelerar(30.0);
+        meuCarro.frear(20.0);
+        meuCarro.exibirInfo();
+
+        System.out.println("\n--- Ações com seuCarro ---");
+        seuCarro.acelerar(100.0);
+        seuCarro.frear(110.0); // Freia completamente
+        seuCarro.exibirInfo();
+
+        // Acessando atributos via getters
+        System.out.println("\nModelo do meu carro: " + meuCarro.getModelo());
+        System.out.println("Velocidade atual do seu carro: " + seuCarro.getVelocidadeAtual() + " km/h");
+    }
+}
+</code></pre>
+        </div>
+
+        ---
+
+        <h2>Conclusão</h2>
+        <p>A declaração e a chamada de atributos e métodos são a espinha dorsal da programação orientada a objetos em Java. Através dos atributos, definimos o estado de um objeto, e pelos métodos, definimos suas ações e como ele interage com seu próprio estado e com outros objetos. Dominar esses conceitos é fundamental para construir aplicações Java eficientes e bem estruturadas.</p>
+    </div>
+</body>
+</html>

@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Implementação de Interfaces: 'implements' em Java</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6; /* Light gray background */
+        }
+        .container {
+            max-width: 90%; /* Fluid width for responsiveness */
+        }
+        .code-block {
+            background-color: #1f2937; /* Darker gray for code blocks */
+            color: #e5e7eb; /* Light text for code */
+            padding: 1.5rem;
+            border-radius: 0.75rem; /* rounded-xl */
+            overflow-x: auto; /* Enable horizontal scrolling for long lines */
+        }
+    </style>
+</head>
+<body class="antialiased text-gray-800">
+    <div class="container mx-auto p-4 sm:p-6 lg:p-8 my-8 bg-white shadow-lg rounded-xl">
+        <header class="text-center mb-8">
+            <h1 class="text-4xl sm:text-5xl font-extrabold text-purple-700 mb-4 rounded-xl p-4 bg-purple-50 shadow-md">
+                Implementação de Interfaces: <code class="text-purple-600">implements</code> em Java
+            </h1>
+            <p class="text-lg sm:text-xl text-gray-600 leading-relaxed">
+                Descubra a palavra-chave <code class="font-semibold">implements</code> em Java, essencial para classes que se comprometem a seguir os contratos definidos pelas interfaces.
+            </p>
+        </header>
+
+        <section class="mb-10 p-6 bg-gray-50 rounded-xl shadow-sm">
+            <h2 class="text-3xl font-bold text-gray-800 mb-4">O que é a Palavra-chave <code class="text-purple-600">implements</code>?</h2>
+            <p class="text-base sm:text-lg leading-relaxed mb-4">
+                Em Java, a palavra-chave <code class="font-semibold">implements</code> é usada na declaração de uma classe para indicar que essa classe está **fornecendo uma implementação concreta** para os métodos abstratos declarados em uma ou mais interfaces.
+            </p>
+            <p class="text-base sm:text-lg leading-relaxed">
+                Quando uma classe <code class="font-semibold">implements</code> uma interface, ela assume a responsabilidade de cumprir o "contrato" dessa interface. Isso significa que a classe deve fornecer um corpo (uma implementação) para cada método abstrato presente na interface. Se a classe não implementar todos os métodos, ela deverá ser declarada como uma classe abstrata.
+            </p>
+        </section>
+
+        <section class="mb-10 p-6 bg-gray-50 rounded-xl shadow-sm">
+            <h2 class="text-3xl font-bold text-gray-800 mb-4">Por que usar a Palavra-chave <code class="text-purple-600">implements</code>?</h2>
+            <ul class="list-disc list-inside text-base sm:text-lg leading-relaxed space-y-2">
+                <li>
+                    <strong>Cumprimento de Contrato:</strong> Garante que a classe forneça uma implementação para um conjunto específico de comportamentos definidos pela interface.
+                </li>
+                <li>
+                    <strong>Polimorfismo:</strong> Permite que objetos de diferentes classes que implementam a mesma interface sejam tratados de forma uniforme através da referência da interface, facilitando o código genérico.
+                </li>
+                <li>
+                    <strong>Herança Múltipla de Tipo:</strong> Diferente da herança de classes (com `extends`), uma classe pode implementar múltiplas interfaces, permitindo que ela possua comportamentos de "tipos" distintos.
+                </li>
+                <li>
+                    <strong>Design Flexível:</strong> Promove um design de software onde os componentes interagem por meio de interfaces (contratos), o que os torna menos acoplados e mais fáceis de substituir ou modificar.
+                </li>
+                <li>
+                    <strong>Separação de Preocupações:</strong> Interfaces podem definir diferentes "habilidades" ou "papéis" que uma classe pode ter, ajudando a separar responsabilidades.
+                </li>
+            </ul>
+        </section>
+
+        <section class="mb-10 p-6 bg-gray-50 rounded-xl shadow-sm">
+            <h2 class="text-3xl font-bold text-gray-800 mb-4">Como usar a Palavra-chave <code class="text-purple-600">implements</code></h2>
+            <p class="text-base sm:text-lg leading-relaxed mb-4">
+                A sintaxe para implementar uma ou mais interfaces é a seguinte:
+            </p>
+            <div class="code-block">
+<pre><code>
+// Para uma única interface
+class MinhaClasse implements MinhaInterface {
+    // Implementação dos métodos da interface
+}
+
+// Para múltiplas interfaces
+class OutraClasse implements InterfaceUm, InterfaceDois, InterfaceTres {
+    // Implementação dos métodos de todas as interfaces
+}
+</code></pre>
+            </div>
+
+            <article class="mb-8 p-5 bg-white rounded-lg shadow-md">
+                <h3 class="text-2xl font-semibold text-purple-700 mb-3">Exemplo 1: Implementando uma Única Interface</h3>
+                <p class="text-base sm:text-lg leading-relaxed mb-4">
+                    Uma classe <code class="font-semibold">Automovel</code> que implementa a interface <code class="font-semibold">Veiculo</code>.
+                </p>
+                <div class="code-block">
+<pre><code>
+// Interface (o contrato)
+interface Veiculo {
+    void acelerar();
+    void frear();
+}
+
+// Classe que implementa a interface Veiculo
+class Automovel implements Veiculo {
+    private String marca;
+
+    public Automovel(String marca) {
+        this.marca = marca;
+    }
+
+    @Override
+    public void acelerar() {
+        System.out.println(marca + " está acelerando.");
+    }
+
+    @Override
+    public void frear() {
+        System.out.println(marca + " está freando.");
+    }
+
+    public void ligarRadio() {
+        System.out.println(marca + " ligou o rádio.");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Automovel carro = new Automovel("Ford");
+        carro.acelerar();    // Saída: Ford está acelerando.
+        carro.frear();       // Saída: Ford está freando.
+        carro.ligarRadio();  // Saída: Ford ligou o rádio.
+
+        // Polimorfismo: Referência do tipo da interface
+        Veiculo meuVeiculo = new Automovel("Honda");
+        meuVeiculo.acelerar(); // Saída: Honda está acelerando.
+        meuVeiculo.frear();    // Saída: Honda está freando.
+        // meuVeiculo.ligarRadio(); // ERRO DE COMPILAÇÃO: Veiculo não tem ligarRadio()
+    }
+}
+</code></pre>
+                </div>
+            </article>
+
+            <article class="mb-8 p-5 bg-white rounded-lg shadow-md">
+                <h3 class="text-2xl font-semibold text-purple-700 mb-3">Exemplo 2: Implementando Múltiplas Interfaces</h3>
+                <p class="text-base sm:text-lg leading-relaxed mb-4">
+                    Uma classe <code class="font-semibold">Smartphone</code> que implementa as interfaces <code class="font-semibold">Chamavel</code> e <code class="font-semibold">Navegavel</code>.
+                </p>
+                <div class="code-block">
+<pre><code>
+interface Chamavel {
+    void fazerChamada(String numero);
+}
+
+interface Navegavel {
+    void navegar(String url);
+}
+
+// Classe que implementa múltiplas interfaces
+class Smartphone implements Chamavel, Navegavel {
+    private String modelo;
+
+    public Smartphone(String modelo) {
+        this.modelo = modelo;
+    }
+
+    @Override
+    public void fazerChamada(String numero) {
+        System.out.println(modelo + " está ligando para: " + numero);
+    }
+
+    @Override
+    public void navegar(String url) {
+        System.out.println(modelo + " está navegando para: " + url);
+    }
+
+    public void tirarFoto() {
+        System.out.println(modelo + " tirou uma foto.");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Smartphone meuSmartphone = new Smartphone("Galaxy S23");
+        meuSmartphone.fazerChamada("9876-5432"); // Saída: Galaxy S23 está ligando para: 9876-5432
+        meuSmartphone.navegar("https://www.google.com"); // Saída: Galaxy S23 está navegando para: https://www.google.com
+        meuSmartphone.tirarFoto(); // Saída: Galaxy S23 tirou uma foto.
+
+        // Polimorfismo com múltiplas interfaces
+        Chamavel dispositivoChamavel = meuSmartphone;
+        dispositivoChamavel.fazerChamada("1234-5678");
+
+        Navegavel dispositivoNavegavel = meuSmartphone;
+        dispositivoNavegavel.navegar("https://www.openai.com");
+        // Saída:
+        // Galaxy S23 está ligando para: 1234-5678
+        // Galaxy S23 está navegando para: https://www.openai.com
+    }
+}
+</code></pre>
+                </div>
+            </article>
+
+            <article class="p-5 bg-white rounded-lg shadow-md">
+                <h3 class="text-2xl font-semibold text-purple-700 mb-3">Exemplo 3: Lidando com Métodos Padrão (`default`) em Interfaces (Java 8+)</h3>
+                <p class="text-base sm:text-lg leading-relaxed mb-4">
+                    Classes que implementam interfaces com métodos `default` não são obrigadas a sobrescrevê-los. Elas podem usar a implementação padrão ou fornecer a sua própria.
+                </p>
+                <div class="code-block">
+<pre><code>
+interface ReprodutorDeAudio {
+    void tocar(String faixa);
+    void pausar();
+
+    // Método padrão (default)
+    default void ajustarVolume(int nivel) {
+        System.out.println("Volume ajustado para: " + nivel);
+    }
+}
+
+class MP3Player implements ReprodutorDeAudio {
+    @Override
+    public void tocar(String faixa) {
+        System.out.println("Tocando: " + faixa + " no MP3 Player.");
+    }
+
+    @Override
+    public void pausar() {
+        System.out.println("Música pausada no MP3 Player.");
+    }
+    // Não sobrescreve ajustarVolume(), usará a implementação padrão
+}
+
+class StreamingPlayer implements ReprodutorDeAudio {
+    @Override
+    public void tocar(String faixa) {
+        System.out.println("Streaming: " + faixa + " online.");
+    }
+
+    @Override
+    public void pausar() {
+        System.out.println("Streaming pausado.");
+    }
+
+    // Sobrescrevendo o método padrão para comportamento específico
+    @Override
+    public void ajustarVolume(int nivel) {
+        System.out.println("Ajustando volume do streaming para: " + nivel + "%");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        MP3Player meuMP3 = new MP3Player();
+        meuMP3.tocar("Minha Canção Favorita");
+        meuMP3.ajustarVolume(7); // Usa a implementação padrão
+        meuMP3.pausar();
+
+        System.out.println("\n---");
+
+        StreamingPlayer meuStreaming = new StreamingPlayer();
+        meuStreaming.tocar("Live Concert");
+        meuStreaming.ajustarVolume(10); // Usa a implementação sobrescrita
+        meuStreaming.pausar();
+        // Saída:
+        // Tocando: Minha Canção Favorita no MP3 Player.
+        // Volume ajustado para: 7
+        // Música pausada no MP3 Player.
+
+        // ---
+        // Streaming: Live Concert online.
+        // Ajustando volume do streaming para: 10%
+        // Streaming pausado.
+    }
+}
+```</pre>
+                </div>
+            </article>
+        </section>
+
+        <section class="mb-10 p-6 bg-gray-50 rounded-xl shadow-sm">
+            <h2 class="text-3xl font-bold text-gray-800 mb-4">Regras Chave para <code class="text-purple-600">implements</code></h2>
+            <ul class="list-disc list-inside text-base sm:text-lg leading-relaxed space-y-2">
+                <li>Uma classe usa a palavra-chave <code class="font-semibold">implements</code> para indicar que implementará uma interface.</li>
+                <li>Uma classe **deve** implementar todos os métodos abstratos da interface, a menos que a própria classe seja abstrata.</li>
+                <li>Uma classe pode implementar múltiplas interfaces, separadas por vírgulas.</li>
+                <li>Se uma classe herda de outra e implementa interfaces, a palavra-chave <code class="font-semibold">extends</code> vem antes de <code class="font-semibold">implements</code> (ex: <code class="font-semibold">class MinhaClasse extends SuperClass implements Interface1, Interface2</code>).</li>
+            </ul>
+        </section>
+
+        <footer class="text-center p-6 bg-purple-700 text-white rounded-xl">
+            <p class="text-lg">A palavra-chave <code class="font-semibold">implements</code> é a ponte entre as definições de comportamento das interfaces e as implementações concretas das classes em Java!</p>
+            <p class="text-sm mt-2">Página criada com HTML e Tailwind CSS.</p>
+        </footer>
+    </div>
+</body>
+</html>

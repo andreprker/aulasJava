@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Encapsulamento em Java: Escondendo Detalhes de Implementação</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6; /* Light gray background */
+        }
+        .container {
+            max-width: 90%; /* Fluid width for responsiveness */
+        }
+        .code-block {
+            background-color: #1f2937; /* Darker gray for code blocks */
+            color: #e5e7eb; /* Light text for code */
+            padding: 1.5rem;
+            border-radius: 0.75rem; /* rounded-xl */
+            overflow-x: auto; /* Enable horizontal scrolling for long lines */
+        }
+    </style>
+</head>
+<body class="antialiased text-gray-800">
+    <div class="container mx-auto p-4 sm:p-6 lg:p-8 my-8 bg-white shadow-lg rounded-xl">
+        <header class="text-center mb-8">
+            <h1 class="text-4xl sm:text-5xl font-extrabold text-teal-700 mb-4 rounded-xl p-4 bg-teal-50 shadow-md">
+                Encapsulamento em Java: Escondendo Detalhes de Implementação
+            </h1>
+            <p class="text-lg sm:text-xl text-gray-600 leading-relaxed">
+                Aprenda sobre o encapsulamento em Java, um pilar da Programação Orientada a Objetos para proteger dados e simplificar o design do software.
+            </p>
+        </header>
+
+        <section class="mb-10 p-6 bg-gray-50 rounded-xl shadow-sm">
+            <h2 class="text-3xl font-bold text-gray-800 mb-4">O que é Encapsulamento?</h2>
+            <p class="text-base sm:text-lg leading-relaxed mb-4">
+                O **encapsulamento** é um dos quatro princípios fundamentais da Programação Orientada a Objetos (POO), juntamente com herança, polimorfismo e abstração. Em Java, o encapsulamento é o mecanismo que **une dados (atributos) e o código que opera nesses dados (métodos) em uma única unidade**, a classe.
+            </p>
+            <p class="text-base sm:text-lg leading-relaxed">
+                Mais importante, o encapsulamento tem como objetivo **esconder os detalhes internos de implementação** de uma classe, expondo apenas uma interface controlada para interação externa. Pense nisso como uma caixa preta: você sabe o que ela faz e como interagir com ela (seus métodos públicos), mas não precisa saber como ela funciona por dentro (seus atributos e métodos privados).
+            </p>
+        </section>
+
+        <section class="mb-10 p-6 bg-gray-50 rounded-xl shadow-sm">
+            <h2 class="text-3xl font-bold text-gray-800 mb-4">Como o Encapsulamento é Implementado em Java?</h2>
+            <p class="text-base sm:text-lg leading-relaxed mb-4">
+                Em Java, o encapsulamento é principalmente alcançado através de dois mecanismos:
+            </p>
+            <ul class="list-disc list-inside text-base sm:text-lg leading-relaxed space-y-2">
+                <li>
+                    Declaração de **atributos como <code class="font-semibold">private</code>**: Isso restringe o acesso direto aos atributos de fora da classe.
+                </li>
+                <li>
+                    Fornecimento de **métodos públicos (getters e setters)**: Estes métodos atuam como a interface controlada para ler (get) e modificar (set) os valores dos atributos privados.
+                </li>
+            </ul>
+        </section>
+
+        <section class="mb-10 p-6 bg-gray-50 rounded-xl shadow-sm">
+            <h2 class="text-3xl font-bold text-gray-800 mb-4">Por que Esconder Detalhes de Implementação?</h2>
+            <ul class="list-disc list-inside text-base sm:text-lg leading-relaxed space-y-2">
+                <li>
+                    <strong>Proteção de Dados (Segurança):</strong> Impede que dados internos importantes sejam alterados de forma não intencional ou maliciosa por código externo. Isso mantém a integridade do estado do objeto.
+                </li>
+                <li>
+                    <strong>Manutenção Simplificada:</strong> Se a forma como os dados são armazenados internamente (o tipo de um atributo, por exemplo) precisar mudar, você só precisará ajustar o getter e/ou setter correspondente. O código que usa esses métodos não será afetado, pois ele interage apenas com a interface pública.
+                </li>
+                <li>
+                    <strong>Validação de Dados:</strong> Os métodos setters fornecem um ponto de controle para validar os dados antes que eles sejam atribuídos aos atributos. Isso garante que o objeto sempre esteja em um estado válido.
+                </li>
+                <li>
+                    <strong>Flexibilidade:</strong> Permite que a implementação interna de uma classe seja modificada sem impactar o código cliente que a utiliza. Isso promove um design de software mais flexível e evolutivo.
+                </li>
+                <li>
+                    <strong>Clareza e Abstração:</strong> Ao esconder os detalhes complexos, o encapsulamento apresenta uma visão mais simples e abstrata do objeto para o usuário da classe. O usuário só precisa saber o que o objeto faz, não como ele faz.
+                </li>
+            </ul>
+        </section>
+
+        <section class="mb-10 p-6 bg-gray-50 rounded-xl shadow-sm">
+            <h2 class="text-3xl font-bold text-gray-800 mb-4">Exemplo Prático de Encapsulamento</h2>
+            <p class="text-base sm:text-lg leading-relaxed mb-4">
+                Considere uma classe <code class="font-semibold">ContaBancaria</code>. O saldo da conta é um detalhe de implementação crucial que não deve ser acessado ou modificado diretamente.
+            </p>
+            <div class="code-block">
+<pre><code>
+class ContaBancaria {
+    private double saldo; // Atributo privado: detalhe de implementação escondido
+
+    public ContaBancaria(double saldoInicial) {
+        if (saldoInicial >= 0) {
+            this.saldo = saldoInicial;
+        } else {
+            System.out.println("Saldo inicial inválido. Definido para 0.");
+            this.saldo = 0;
+        }
+    }
+
+    // Método público para obter o saldo (Getter)
+    public double getSaldo() {
+        return this.saldo;
+    }
+
+    // Método público para depositar (modifica o saldo de forma controlada)
+    public void depositar(double valor) {
+        if (valor > 0) {
+            this.saldo += valor;
+            System.out.println("Depósito de " + valor + " realizado. Novo saldo: " + this.saldo);
+        } else {
+            System.out.println("Valor de depósito inválido.");
+        }
+    }
+
+    // Método público para sacar (modifica o saldo de forma controlada com validação)
+    public void sacar(double valor) {
+        if (valor > 0 && this.saldo >= valor) {
+            this.saldo -= valor;
+            System.out.println("Saque de " + valor + " realizado. Novo saldo: " + this.saldo);
+        } else {
+            System.out.println("Saque inválido: Saldo insuficiente ou valor negativo.");
+        }
+    }
+
+    // Exemplo de um método privado, um detalhe de implementação interno
+    private void registrarTransacao(String tipo, double valor) {
+        // Lógica interna para registrar a transação em um log ou banco de dados
+        System.out.println("Log: Transação de " + tipo + " de " + valor + " registrada.");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        ContaBancaria minhaConta = new ContaBancaria(1000.0);
+
+        // Acessando o saldo via método público (getter)
+        System.out.println("Saldo inicial: " + minhaConta.getSaldo()); // Saída: Saldo inicial: 1000.0
+
+        // Modificando o saldo via métodos públicos (setters implícitos)
+        minhaConta.depositar(200.0);
+        minhaConta.sacar(150.0);
+
+        // Tentativa de acesso direto (não permitido devido ao encapsulamento)
+        // minhaConta.saldo = 5000.0; // ERRO DE COMPILAÇÃO: 'saldo' tem acesso private
+
+        System.out.println("Saldo final: " + minhaConta.getSaldo()); // Saída: Saldo final: 1050.0
+
+        // Tentativa de chamar método privado (não permitido)
+        // minhaConta.registrarTransacao("Teste", 0.0); // ERRO DE COMPILAÇÃO
+    }
+}
+```</pre>
+            </div>
+        </section>
+
+        <footer class="text-center p-6 bg-teal-700 text-white rounded-xl">
+            <p class="text-lg">O encapsulamento é fundamental para construir sistemas Java robustos, seguros e fáceis de manter!</p>
+            <p class="text-sm mt-2">Página criada com HTML e Tailwind CSS.</p>
+        </footer>
+    </div>
+</body>
+</html>

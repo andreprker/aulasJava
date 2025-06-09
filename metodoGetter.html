@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Métodos Getters (Acessores): getAtributo() em Java</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6; /* Light gray background */
+        }
+        .container {
+            max-width: 90%; /* Fluid width for responsiveness */
+        }
+        .code-block {
+            background-color: #1f2937; /* Darker gray for code blocks */
+            color: #e5e7eb; /* Light text for code */
+            padding: 1.5rem;
+            border-radius: 0.75rem; /* rounded-xl */
+            overflow-x: auto; /* Enable horizontal scrolling for long lines */
+        }
+    </style>
+</head>
+<body class="antialiased text-gray-800">
+    <div class="container mx-auto p-4 sm:p-6 lg:p-8 my-8 bg-white shadow-lg rounded-xl">
+        <header class="text-center mb-8">
+            <h1 class="text-4xl sm:text-5xl font-extrabold text-blue-700 mb-4 rounded-xl p-4 bg-blue-50 shadow-md">
+                Métodos Getters (Acessores): <code class="text-blue-600">getAtributo()</code> em Java
+            </h1>
+            <p class="text-lg sm:text-xl text-gray-600 leading-relaxed">
+                Entenda como os métodos Getters em Java são essenciais para acessar dados de forma controlada e garantir o encapsulamento de seus objetos.
+            </p>
+        </header>
+
+        <section class="mb-10 p-6 bg-gray-50 rounded-xl shadow-sm">
+            <h2 class="text-3xl font-bold text-gray-800 mb-4">O que são Métodos Getters?</h2>
+            <p class="text-base sm:text-lg leading-relaxed mb-4">
+                Em Java, um **método getter** (ou acessor) é um método público que tem como principal responsabilidade **retornar o valor de um atributo privado** de uma classe. Por convenção, os getters são nomeados utilizando o prefixo <code class="font-semibold">get</code> seguido pelo nome do atributo que está sendo acessado, com a primeira letra do atributo em maiúscula (CamelCase).
+            </p>
+            <ul class="list-disc list-inside text-base sm:text-lg leading-relaxed space-y-2">
+                <li>**Propósito:** Fornecer acesso controlado para leitura dos dados internos de um objeto.</li>
+                <li>**Nomeclatura:** <code class="font-semibold">get</code> + NomeDoAtributo (ex: <code class="font-semibold">getNome()</code>, <code class="font-semibold">getIdade()</code>).</li>
+                <li>**Para Booleans:** Para atributos do tipo <code class="font-semibold">boolean</code>, é comum usar <code class="font-semibold">is</code> em vez de <code class="font-semibold">get</code> (ex: <code class="font-semibold">isAtivo()</code>).</li>
+            </ul>
+        </section>
+
+        <section class="mb-10 p-6 bg-gray-50 rounded-xl shadow-sm">
+            <h2 class="text-3xl font-bold text-gray-800 mb-4">Por que os Getters são Importantes?</h2>
+            <ul class="list-disc list-inside text-base sm:text-lg leading-relaxed space-y-2">
+                <li>
+                    <strong>Encapsulamento:</strong> São a principal ferramenta para implementar o encapsulamento. Ao tornar os atributos <code class="font-semibold">private</code> e fornecer getters, você impede o acesso direto e descontrolado aos dados, protegendo o estado interno do objeto.
+                </li>
+                <li>
+                    <strong>Controle de Leitura:</strong> Permitem que você forneça apenas acesso de leitura a determinados atributos, se necessário, sem permitir que sejam modificados externamente (atributos "read-only").
+                </li>
+                <li>
+                    <strong>Flexibilidade e Manutenção:</strong> Se a representação interna de um atributo mudar (por exemplo, de <code class="font-semibold">int</code> para <code class="font-semibold">long</code>, ou se um valor precisar ser calculado dinamicamente), você só precisará modificar a lógica dentro do getter. O código que chama o getter não será afetado, pois a interface pública (<code class="font-semibold">getAtributo()</code>) permanece a mesma.
+                </li>
+                <li>
+                    <strong>Lógica de Negócios no Acesso:</strong> Embora getters geralmente apenas retornem valores, eles podem incorporar lógica de negócios simples, como formatação de dados ou cálculos derivados, antes de retornar o valor.
+                </li>
+            </ul>
+        </section>
+
+        <section class="mb-10 p-6 bg-gray-50 rounded-xl shadow-sm">
+            <h2 class="text-3xl font-bold text-gray-800 mb-4">Como Implementar Getters (Exemplos)</h2>
+
+            <article class="mb-8 p-5 bg-white rounded-lg shadow-md">
+                <h3 class="text-2xl font-semibold text-blue-700 mb-3">Exemplo Básico: Getters para Atributos Simples</h3>
+                <p class="text-base sm:text-lg leading-relaxed mb-4">
+                    Neste exemplo, os atributos <code class="font-semibold">nome</code> e <code class="font-semibold">idade</code> são privados e acessados através de seus respectivos getters.
+                </p>
+                <div class="code-block">
+<pre><code>
+class Produto {
+    private String nome;  // Atributo privado
+    private double preco; // Atributo privado
+
+    public Produto(String nome, double preco) {
+        this.nome = nome;
+        this.preco = preco;
+    }
+
+    // Getter para 'nome'
+    public String getNome() {
+        return this.nome;
+    }
+
+    // Getter para 'preco'
+    public double getPreco() {
+        return this.preco;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Produto tv = new Produto("Smart TV 50", 2500.00);
+
+        // Acessando os atributos via getters
+        System.out.println("Nome do Produto: " + tv.getNome());   // Saída: Nome do Produto: Smart TV 50
+        System.out.println("Preço do Produto: " + tv.getPreco()); // Saída: Preço do Produto: 2500.0
+    }
+}
+</code></pre>
+                </div>
+            </article>
+
+            <article class="mb-8 p-5 bg-white rounded-lg shadow-md">
+                <h3 class="text-2xl font-semibold text-blue-700 mb-3">Getter para Booleano (Método <code class="font-semibold">is</code>)</h3>
+                <p class="text-base sm:text-lg leading-relaxed mb-4">
+                    Para atributos do tipo <code class="font-semibold">boolean</code>, a convenção em Java é usar <code class="font-semibold">is</code> em vez de <code class="font-semibold">get</code>.
+                </p>
+                <div class="code-block">
+<pre><code>
+class Usuario {
+    private String username;
+    private boolean estaAtivo; // Atributo booleano privado
+
+    public Usuario(String username, boolean estaAtivo) {
+        this.username = username;
+        this.estaAtivo = estaAtivo;
+    }
+
+    public String getUsername() {
+        return this.username;
+    }
+
+    // Getter para atributo booleano (usa 'is')
+    public boolean isEstaAtivo() {
+        return this.estaAtivo;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Usuario admin = new Usuario("admin", true);
+        Usuario convidado = new Usuario("convidado", false);
+
+        System.out.println("Admin está ativo? " + admin.isEstaAtivo());     // Saída: Admin está ativo? true
+        System.out.println("Convidado está ativo? " + convidado.isEstaAtivo()); // Saída: Convidado está ativo? false
+    }
+}
+</code></pre>
+                </div>
+            </article>
+
+            <article class="p-5 bg-white rounded-lg shadow-md">
+                <h3 class="text-2xl font-semibold text-blue-700 mb-3">Getter com Lógica Interna ou Valor Derivado</h3>
+                <p class="text-base sm:text-lg leading-relaxed mb-4">
+                    Getters não precisam apenas retornar o valor bruto de um atributo. Eles podem conter lógica para formatar o dado ou calcular um valor derivado de outros atributos.
+                </p>
+                <div class="code-block">
+<pre><code>
+import java.time.LocalDate;
+import java.time.Period;
+
+class Pessoa {
+    private String nome;
+    private LocalDate dataNascimento; // Atributo privado
+
+    public Pessoa(String nome, LocalDate dataNascimento) {
+        this.nome = nome;
+        this.dataNascimento = dataNascimento;
+    }
+
+    public String getNome() {
+        return this.nome;
+    }
+
+    // Getter que calcula a idade atual com base na data de nascimento
+    public int getIdade() {
+        return Period.between(this.dataNascimento, LocalDate.now()).getYears();
+    }
+
+    // Getter para a data de nascimento (retornando o objeto imutável)
+    public LocalDate getDataNascimento() {
+        return this.dataNascimento;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        // Criando uma pessoa que nasceu em 15 de maio de 1990
+        Pessoa maria = new Pessoa("Maria", LocalDate.of(1990, 5, 15));
+
+        System.out.println("Nome: " + maria.getNome());      // Saída: Nome: Maria
+        System.out.println("Idade: " + maria.getIdade() + " anos"); // Saída: Idade: X anos (calculado dinamicamente)
+        System.out.println("Data de Nascimento: " + maria.getDataNascimento()); // Saída: Data de Nascimento: 1990-05-15
+    }
+}
+```</pre>
+                </div>
+            </article>
+        </section>
+
+        <footer class="text-center p-6 bg-blue-700 text-white rounded-xl">
+            <p class="text-lg">Os métodos Getters são componentes fundamentais para o encapsulamento, garantindo que o acesso aos dados seja sempre controlado e consistente em Java!</p>
+            <p class="text-sm mt-2">Página criada com HTML e Tailwind CSS.</p>
+        </footer>
+    </div>
+</body>
+</html>

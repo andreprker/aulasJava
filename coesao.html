@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coesão (Cohesion): Foco de Responsabilidade de uma Classe em Java</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6; /* Light gray background */
+        }
+        .container {
+            max-width: 90%; /* Fluid width for responsiveness */
+        }
+        .code-block {
+            background-color: #1f2937; /* Darker gray for code blocks */
+            color: #e5e7eb; /* Light text for code */
+            padding: 1.5rem;
+            border-radius: 0.75rem; /* rounded-xl */
+            overflow-x: auto; /* Enable horizontal scrolling for long lines */
+        }
+    </style>
+</head>
+<body class="antialiased text-gray-800">
+    <div class="container mx-auto p-4 sm:p-6 lg:p-8 my-8 bg-white shadow-lg rounded-xl">
+        <header class="text-center mb-8">
+            <h1 class="text-4xl sm:text-5xl font-extrabold text-purple-700 mb-4 rounded-xl p-4 bg-purple-50 shadow-md">
+                Coesão (Cohesion): Foco de Responsabilidade de uma Classe em Java
+            </h1>
+            <p class="text-lg sm:text-xl text-gray-600 leading-relaxed">
+                Entenda o que é coesão em Java, seus diferentes tipos e por que é essencial buscar uma alta coesão para um design de software robusto e manutenível.
+            </p>
+        </header>
+
+        <section class="mb-10 p-6 bg-gray-50 rounded-xl shadow-sm">
+            <h2 class="text-3xl font-bold text-gray-800 mb-4">O que é Coesão?</h2>
+            <p class="text-base sm:text-lg leading-relaxed mb-4">
+                Em engenharia de software, **coesão** (ou *cohesion*) refere-se ao grau em que os elementos de um módulo (como uma classe) pertencem uns aos outros. É uma medida de quão bem os atributos e métodos de uma classe trabalham juntos para fornecer uma única e bem definida funcionalidade.
+            </p>
+            <p class="text-base sm:text-lg leading-relaxed">
+                Uma **alta coesão** significa que a classe tem um propósito bem focado e todas as suas partes estão diretamente relacionadas a esse propósito. Por outro lado, uma **baixa coesão** indica que a classe tem responsabilidades múltiplas, não relacionadas, ou que seus elementos internos não estão logicamente conectados, o que é indesejável.
+            </p>
+        </section>
+
+        <section class="mb-10 p-6 bg-gray-50 rounded-xl shadow-sm">
+            <h2 class="text-3xl font-bold text-gray-800 mb-4">Por que a Coesão é Importante? (Benefícios da Alta Coesão)</h2>
+            <ul class="list-disc list-inside text-base sm:text-lg leading-relaxed space-y-2">
+                <li>
+                    <strong>Compreensibilidade:</strong> Classes com alta coesão são mais fáceis de entender, pois sua funcionalidade é clara e bem definida. É mais fácil saber o que a classe faz e como ela deve ser usada.
+                </li>
+                <li>
+                    <strong>Manutenibilidade:</strong> Alterações em uma classe com alta coesão são menos propensas a afetar outras partes do sistema, pois suas responsabilidades são isoladas. Isso reduz a complexidade da manutenção e a chance de introduzir novos bugs.
+                </li>
+                <li>
+                    <strong>Reusabilidade:</strong> Classes bem coesas são mais fáceis de serem reutilizadas em diferentes contextos, pois representam uma unidade lógica e funcional independente.
+                </li>
+                <li>
+                    <strong>Testabilidade:</strong> Componentes com alta coesão são mais fáceis de testar isoladamente, pois possuem um foco claro e menos dependências externas desnecessárias.
+                </li>
+                <li>
+                    <strong>Flexibilidade:</strong> Um sistema com componentes de alta coesão é mais flexível e adaptável a mudanças, pois as modificações em uma funcionalidade específica são contidas dentro da classe responsável.
+                </li>
+            </ul>
+        </section>
+
+        <section class="mb-10 p-6 bg-gray-50 rounded-xl shadow-sm">
+            <h2 class="text-3xl font-bold text-gray-800 mb-4">Tipos de Coesão (do pior para o melhor)</h2>
+            <p class="text-base sm:text-lg leading-relaxed mb-4">
+                Existem vários tipos de coesão, variando do mais fraco (indesejável) ao mais forte (desejável):
+            </p>
+
+            <article class="mb-8 p-5 bg-white rounded-lg shadow-md">
+                <h3 class="text-2xl font-semibold text-purple-700 mb-3">1. Coesão Coincidental (Coincidental Cohesion)</h3>
+                <p class="text-base sm:text-lg leading-relaxed mb-4">
+                    Considerado o pior tipo de coesão. Os elementos de um módulo são agrupados aleatoriamente, sem nenhuma relação lógica significativa. É como agrupar funcionalidades diversas em uma única classe porque "pareceu conveniente".
+                </p>
+            </article>
+
+            <article class="mb-8 p-5 bg-white rounded-lg shadow-md">
+                <h3 class="text-2xl font-semibold text-purple-700 mb-3">2. Coesão Lógica (Logical Cohesion)</h3>
+                <p class="text-base sm:text-lg leading-relaxed mb-4">
+                    Os elementos de um módulo são agrupados porque executam funções logicamente semelhantes, mas as funcionalidades não estão diretamente relacionadas (ex: uma classe que tem métodos para "printar todos os relatórios", "printar um relatório de vendas", "printar um relatório de estoque", onde a lógica de cada impressão é distinta). A classe decide qual lógica executar com base em um flag ou tipo.
+                </p>
+            </article>
+
+            <article class="mb-8 p-5 bg-white rounded-lg shadow-md">
+                <h3 class="text-2xl font-semibold text-purple-700 mb-3">3. Coesão Temporal (Temporal Cohesion)</h3>
+                <p class="text-base sm:text-lg leading-relaxed mb-4">
+                    Os elementos de um módulo são agrupados porque são executados juntos em um determinado momento (ex: um método "inicializarSistema" que faz várias coisas não relacionadas, como abrir arquivos de log, conectar ao banco de dados e carregar configurações).
+                </p>
+            </article>
+
+            <article class="mb-8 p-5 bg-white rounded-lg shadow-md">
+                <h3 class="text-2xl font-semibold text-purple-700 mb-3">4. Coesão Procedural (Procedural Cohesion)</h3>
+                <p class="text-base sm:text-lg leading-relaxed mb-4">
+                    Os elementos de um módulo são agrupados porque participam de uma sequência de operações. A saída de um elemento se torna a entrada de outro (ex: uma função que lê dados, processa e depois os salva). Melhor que os anteriores, mas ainda pode agrupar responsabilidades diferentes.
+                </p>
+            </article>
+
+            <article class="mb-8 p-5 bg-white rounded-lg shadow-md">
+                <h3 class="text-2xl font-semibold text-purple-700 mb-3">5. Coesão Comunicacional (Communicational Cohesion)</h3>
+                <p class="text-base sm:text-lg leading-relaxed mb-4">
+                    Os elementos de um módulo são agrupados porque operam sobre os mesmos dados de entrada ou produzem os mesmos dados de saída (ex: uma classe que tem métodos para calcular o preço de um produto e aplicar um desconto, ambos usando o mesmo objeto `Produto`).
+                </p>
+            </article>
+
+            <article class="p-5 bg-white rounded-lg shadow-md">
+                <h3 class="text-2xl font-semibold text-purple-700 mb-3">6. Coesão Funcional (Functional Cohesion)</h3>
+                <p class="text-base sm:text-lg leading-relaxed mb-4">
+                    Considerado o tipo de coesão mais forte e desejável. O módulo executa uma única função bem definida. Todos os elementos são essenciais para a execução dessa única função. A classe tem uma única responsabilidade.
+                </p>
+            </article>
+        </section>
+
+        <section class="mb-10 p-6 bg-gray-50 rounded-xl shadow-sm">
+            <h2 class="text-3xl font-bold text-gray-800 mb-4">Exemplo Prático (Alta Coesão vs. Baixa Coesão)</h2>
+
+            <article class="mb-8 p-5 bg-white rounded-lg shadow-md">
+                <h3 class="text-2xl font-semibold text-purple-700 mb-3">Exemplo de Baixa Coesão (EVITAR!)</h3>
+                <p class="text-base sm:text-lg leading-relaxed mb-4">
+                    A classe <code class="font-semibold">GerenciadorGeral</code> tem múltiplas responsabilidades não relacionadas, como gerenciar usuários, processar pagamentos e gerar relatórios. Uma mudança em uma dessas áreas afetará a classe inteira.
+                </p>
+                <div class="code-block">
+<pre><code>
+// Exemplo de Baixa Coesão
+class GerenciadorGeral {
+    public void criarUsuario(String nome) {
+        System.out.println("Usuário " + nome + " criado.");
+        // Lógica de banco de dados, validação, etc.
+    }
+
+    public void processarPagamento(double valor) {
+        System.out.println("Pagamento de " + valor + " processado.");
+        // Lógica de gateway de pagamento, notificação, etc.
+    }
+
+    public void gerarRelatorioVendas() {
+        System.out.println("Gerando relatório de vendas...");
+        // Lógica de consulta ao banco de dados, formatação, etc.
+    }
+
+    public void enviarEmailConfirmacao(String email) {
+        System.out.println("Email de confirmação enviado para " + email);
+        // Lógica de envio de email
+    }
+}
+
+public class MainBaixaCoesao {
+    public static void main(String[] args) {
+        GerenciadorGeral gerenciador = new GerenciadorGeral();
+        gerenciador.criarUsuario("Alice");
+        gerenciador.processarPagamento(100.0);
+        gerenciador.gerarRelatorioVendas();
+        gerenciador.enviarEmailConfirmacao("alice@example.com");
+    }
+}
+</code></pre>
+                </div>
+            </article>
+
+            <article class="p-5 bg-white rounded-lg shadow-md">
+                <h3 class="text-2xl font-semibold text-purple-700 mb-3">Exemplo de Alta Coesão (DESEJÁVEL!)</h3>
+                <p class="text-base sm:text-lg leading-relaxed mb-4">
+                    Aqui, as responsabilidades foram divididas em classes separadas, cada uma com um foco único. Isso promove a **alta coesão** e o **Princípio da Responsabilidade Única (SRP)**.
+                </p>
+                <div class="code-block">
+<pre><code>
+// Exemplo de Alta Coesão
+
+class GerenciadorDeUsuario {
+    public void criarUsuario(String nome) {
+        System.out.println("Usuário " + nome + " criado.");
+        // Lógica de banco de dados, validação, etc.
+    }
+}
+
+class ProcessadorDePagamento {
+    public void processar(double valor) {
+        System.out.println("Pagamento de " + valor + " processado.");
+        // Lógica de gateway de pagamento, notificação, etc.
+    }
+}
+
+class GeradorDeRelatorio {
+    public void gerarRelatorioVendas() {
+        System.out.println("Gerando relatório de vendas...");
+        // Lógica de consulta ao banco de dados, formatação, etc.
+    }
+}
+
+class EnviadorDeEmail {
+    public void enviarConfirmacao(String email) {
+        System.out.println("Email de confirmação enviado para " + email);
+        // Lógica de envio de email
+    }
+}
+
+public class MainAltaCoesao {
+    public static void main(String[] args) {
+        GerenciadorDeUsuario gerenciadorUsuario = new GerenciadorDeUsuario();
+        ProcessadorDePagamento processadorPagamento = new ProcessadorDePagamento();
+        GeradorDeRelatorio geradorRelatorio = new GeradorDeRelatorio();
+        EnviadorDeEmail enviadorEmail = new EnviadorDeEmail();
+
+        gerenciadorUsuario.criarUsuario("Bob");
+        processadorPagamento.processar(250.0);
+        geradorRelatorio.gerarRelatorioVendas();
+        enviadorEmail.enviarConfirmacao("bob@example.com");
+    }
+}
+</code></pre>
+                </div>
+            </article>
+        </section>
+
+        <footer class="text-center p-6 bg-purple-700 text-white rounded-xl">
+            <p class="text-lg">Buscar a alta coesão é uma prática fundamental para criar software Java mais robusto, flexível, compreensível e fácil de manter!</p>
+            <p class="text-sm mt-2">Página criada com HTML e Tailwind CSS.</p>
+        </footer>
+    </div>
+</body>
+</html>

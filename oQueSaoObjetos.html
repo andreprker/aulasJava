@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Objetos: Instâncias de uma Classe</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc; /* slate-50 */
+            color: #334155; /* slate-700 */
+        }
+        .section-fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .section-fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .object-icon {
+            font-size: 3rem; /* Larger icon size */
+            line-height: 1;
+            margin-bottom: 1rem;
+            color: #3b82f6; /* blue-600 */
+        }
+    </style>
+</head>
+<body class="antialiased">
+    <a href="http://127.0.0.1:5500/java/aulasJava.html">Início</a>
+    <main class="container mx-auto px-4 py-8 md:py-16">
+
+        <section id="hero" class="text-center mb-12 md:mb-16 section-fade-in">
+            <h1 class="text-4xl md:text-5xl font-bold text-slate-800 mb-4">Objetos: As Instâncias Concretas de uma Classe</h1>
+            <p class="max-w-3xl mx-auto text-lg text-slate-600">
+                Aprenda como os objetos dão vida aos "moldes" definidos pelas classes, transformando conceitos abstratos em entidades funcionais no seu código.
+            </p>
+        </section>
+
+        <section id="object-definition" class="bg-white p-8 md:p-12 rounded-xl shadow-lg mb-12 md:mb-16 section-fade-in">
+            <div class="max-w-4xl mx-auto text-center">
+                <div class="object-icon">🏠</div>
+                <h2 class="text-3xl font-bold text-slate-800 mb-6">Objetos: Dando Vida aos Moldes</h2>
+                <p class="text-lg text-slate-700 leading-relaxed">
+                    No contexto da Programação Orientada a Objetos (POO), um <strong class="font-semibold text-blue-600">objeto</strong> é uma <strong class="font-semibold text-blue-600">instância</strong> concreta de uma <strong class="font-semibold text-blue-600">classe</strong>. Se a classe é o "molde" ou "plano", o objeto é o item individual construído a partir desse molde.
+                </p>
+                <p class="text-lg text-slate-700 leading-relaxed mt-4">
+                    Cada objeto possui os seus próprios valores para os <strong class="font-semibold">atributos</strong> definidos na classe (por exemplo, uma casa pode ser "azul", outra "verde"), mas todos os objetos da mesma classe partilham os mesmos <strong class="font-semibold">métodos</strong> (ambas as casas podem ser "pintadas" ou "vendidas").
+                </p>
+            </div>
+        </section>
+
+        <section id="analogy-reinforcement" class="bg-white p-8 md:p-12 rounded-xl shadow-lg mb-12 md:mb-16 section-fade-in">
+            <div class="max-w-4xl mx-auto">
+                <h2 class="text-3xl font-bold text-slate-800 mb-6 text-center">Revisitando a Analogia do Projeto da Casa</h2>
+                <p class="text-lg text-slate-600 mb-8">
+                    Para solidificar o entendimento, vamos reforçar a analogia que usamos para as classes, agora focando no papel dos objetos:
+                </p>
+                <div class="space-y-6 text-slate-700">
+                    <div>
+                        <h3 class="text-xl font-bold text-blue-700 mb-2">A Classe: O Projeto Arquitetónico (O Molde)</h3>
+                        <p class="text-lg leading-relaxed">
+                            O projeto define que a casa terá 3 quartos, 2 casas de banho, uma cozinha, etc. Ele também estabelece as ações que uma casa pode realizar, como "pintar", "vender" ou "alugar". Este projeto é uma **ideia abstrata**.
+                        </p>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-blue-700 mb-2">O Objeto: A Casa Construída (A Instância Concreta)</h3>
+                        <p class="text-lg leading-relaxed">
+                            Quando uma casa é **construída** a partir desse projeto, ela torna-se um **objeto**. Podemos ter a "Casa da Rua A" (objeto 1) e a "Casa da Rua B" (objeto 2). Ambas seguem o mesmo projeto (mesma estrutura e métodos), mas a "Casa da Rua A" pode ser pintada de "azul" e custar "300.000€", enquanto a "Casa da Rua B" pode ser pintada de "verde" e custar "320.000€". Cada uma é uma **entidade real e independente**.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="key-characteristics" class="bg-white p-8 md:p-12 rounded-xl shadow-lg mb-12 md:mb-16 section-fade-in">
+            <div class="max-w-4xl mx-auto">
+                <h2 class="text-3xl font-bold text-slate-800 mb-6 text-center">Características Chave de um Objeto</h2>
+                <ul class="space-y-4 text-slate-700 list-disc list-inside">
+                    <li><strong class="font-semibold text-blue-700">Estado:</strong> Um objeto possui um estado, definido pelos valores dos seus atributos em um dado momento.</li>
+                    <li><strong class="font-semibold text-blue-700">Comportamento:</strong> Um objeto tem comportamentos, que são os métodos que ele pode executar.</li>
+                    <li><strong class="font-semibold text-blue-700">Identidade:</strong> Cada objeto é uma entidade única, mesmo que dois objetos da mesma classe tenham os mesmos valores para todos os seus atributos.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="conclusion" class="text-center py-12 md:py-16 bg-slate-100 rounded-xl shadow-inner section-fade-in">
+            <div class="max-w-3xl mx-auto px-4">
+                <p class="text-lg text-slate-700 leading-relaxed">
+                    Em resumo, enquanto a classe define a estrutura e o comportamento, o objeto é a materialização dessa estrutura e comportamento, uma entidade real no programa que pode interagir e ter o seu próprio estado.
+                </p>
+            </div>
+        </section>
+
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const sections = document.querySelectorAll('.section-fade-in');
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target); // Stop observing once visible
+                    }
+                });
+            }, {
+                threshold: 0.1 // Trigger when 10% of the section is visible
+            });
+
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+        });
+    </script>
+</body>
+</html>

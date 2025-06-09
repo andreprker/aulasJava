@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Palavra-chave 'extends' em Java: Herança de Classes</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6; /* Light gray background */
+        }
+        .container {
+            max-width: 90%; /* Fluid width for responsiveness */
+        }
+        .code-block {
+            background-color: #1f2937; /* Darker gray for code blocks */
+            color: #e5e7eb; /* Light text for code */
+            padding: 1.5rem;
+            border-radius: 0.75rem; /* rounded-xl */
+            overflow-x: auto; /* Enable horizontal scrolling for long lines */
+        }
+    </style>
+</head>
+<body class="antialiased text-gray-800">
+    <div class="container mx-auto p-4 sm:p-6 lg:p-8 my-8 bg-white shadow-lg rounded-xl">
+        <header class="text-center mb-8">
+            <h1 class="text-4xl sm:text-5xl font-extrabold text-indigo-700 mb-4 rounded-xl p-4 bg-indigo-50 shadow-md">
+                Palavra-chave <code class="text-indigo-600">extends</code> em Java: Herança de Classes
+            </h1>
+            <p class="text-lg sm:text-xl text-gray-600 leading-relaxed">
+                Descubra a palavra-chave <code class="font-semibold">extends</code> em Java, fundamental para implementar a herança e promover a reutilização de código entre classes.
+            </p>
+        </header>
+
+        <section class="mb-10 p-6 bg-gray-50 rounded-xl shadow-sm">
+            <h2 class="text-3xl font-bold text-gray-800 mb-4">O que é a Palavra-chave <code class="text-indigo-600">extends</code>?</h2>
+            <p class="text-base sm:text-lg leading-relaxed mb-4">
+                Em Java, a palavra-chave <code class="font-semibold">extends</code> é usada para indicar que uma classe está **hereditando** de outra classe. Ela estabelece uma relação de herança entre uma **subclasse** (ou classe filha) e uma **superclasse** (ou classe pai).
+            </p>
+            <p class="text-base sm:text-lg leading-relaxed">
+                Quando uma classe `B` `extends` uma classe `A`, significa que `B` adquire todos os atributos e métodos acessíveis de `A`, podendo também adicionar seus próprios atributos e métodos, ou sobrescrever (modificar) os métodos herdados. Isso é conhecido como a relação "é um tipo de" (is-a relationship).
+            </p>
+        </section>
+
+        <section class="mb-10 p-6 bg-gray-50 rounded-xl shadow-sm">
+            <h2 class="text-3xl font-bold text-gray-800 mb-4">Como <code class="text-indigo-600">extends</code> Implementa a Herança?</h2>
+            <p class="text-base sm:text-lg leading-relaxed mb-4">
+                A herança em Java é um dos pilares da Programação Orientada a Objetos (POO) e é implementada diretamente pelo uso da palavra-chave <code class="font-semibold">extends</code>.
+            </p>
+            <ul class="list-disc list-inside text-base sm:text-lg leading-relaxed space-y-2">
+                <li>
+                    <strong>Reutilização de Código:</strong> O código escrito na superclasse pode ser reutilizado na subclasse, evitando duplicação.
+                </li>
+                <li>
+                    <strong>Extensibilidade:</strong> Permite que novas funcionalidades sejam adicionadas em subclasses sem modificar a superclasse existente.
+                </li>
+                <li>
+                    <strong>Polimorfismo:</strong> Facilita o polimorfismo, onde um objeto da subclasse pode ser tratado como um objeto da superclasse.
+                </li>
+                <li>
+                    <strong>Hierarquia de Classes:</strong> Ajuda a organizar classes em uma estrutura hierárquica lógica, que reflete relações do mundo real.
+                </li>
+            </ul>
+        </section>
+
+        <section class="mb-10 p-6 bg-gray-50 rounded-xl shadow-sm">
+            <h2 class="text-3xl font-bold text-gray-800 mb-4">Exemplos de Uso da Palavra-chave <code class="text-indigo-600">extends</code></h2>
+
+            <article class="mb-8 p-5 bg-white rounded-lg shadow-md">
+                <h3 class="text-2xl font-semibold text-indigo-700 mb-3">Exemplo Básico: Herança de Atributos e Métodos</h3>
+                <p class="text-base sm:text-lg leading-relaxed mb-4">
+                    Neste exemplo, a classe <code class="font-semibold">Cachorro</code> herda atributos e métodos da classe <code class="font-semibold">Animal</code>.
+                </p>
+                <div class="code-block">
+<pre><code>
+// Superclasse (Classe Pai)
+class Animal {
+    String nome;
+    int idade;
+
+    public Animal(String nome, int idade) {
+        this.nome = nome;
+        this.idade = idade;
+    }
+
+    public void comer() {
+        System.out.println(nome + " está comendo.");
+    }
+
+    public void dormir() {
+        System.out.println(nome + " está dormindo.");
+    }
+}
+
+// Subclasse (Classe Filha) que estende Animal
+class Cachorro extends Animal { // Cachorro herda de Animal
+    String raca;
+
+    public Cachorro(String nome, int idade, String raca) {
+        super(nome, idade); // Chama o construtor da superclasse
+        this.raca = raca;
+    }
+
+    public void latir() {
+        System.out.println(nome + " está latindo: Au Au!");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Cachorro meuCachorro = new Cachorro("Buddy", 2, "Golden Retriever");
+
+        // Atributos herdados
+        System.out.println("Nome: " + meuCachorro.nome);
+        System.out.println("Idade: " + meuCachorro.idade);
+        System.out.println("Raça: " + meuCachorro.raca);
+
+        // Métodos herdados
+        meuCachorro.comer();
+        meuCachorro.dormir();
+
+        // Método próprio da subclasse
+        meuCachorro.latir();
+        // Saída:
+        // Nome: Buddy
+        // Idade: 2
+        // Raça: Golden Retriever
+        // Buddy está comendo.
+        // Buddy está dormindo.
+        // Buddy está latindo: Au Au!
+    }
+}
+</code></pre>
+                </div>
+            </article>
+
+            <article class="p-5 bg-white rounded-lg shadow-md">
+                <h3 class="text-2xl font-semibold text-indigo-700 mb-3">Exemplo: Sobrescrita de Métodos com <code class="font-semibold">@Override</code></h3>
+                <p class="text-base sm:text-lg leading-relaxed mb-4">
+                    As subclasses podem fornecer uma implementação específica para um método que já existe na superclasse, um processo conhecido como **sobrescrita de método**. A anotação <code class="font-semibold">@Override</code> é opcional, mas recomendada para indicar que um método está sobrescrevendo outro.
+                </p>
+                <div class="code-block">
+<pre><code>
+class Forma {
+    public void desenhar() {
+        System.out.println("Desenhando uma forma genérica.");
+    }
+}
+
+class Circulo extends Forma {
+    @Override // Indica que este método sobrescreve um método da superclasse
+    public void desenhar() {
+        System.out.println("Desenhando um círculo.");
+    }
+}
+
+class Retangulo extends Forma {
+    @Override
+    public void desenhar() {
+        System.out.println("Desenhando um retângulo.");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Forma forma1 = new Forma();
+        Forma forma2 = new Circulo();   // Polimorfismo
+        Forma forma3 = new Retangulo(); // Polimorfismo
+
+        forma1.desenhar(); // Saída: Desenhando uma forma genérica.
+        forma2.desenhar(); // Saída: Desenhando um círculo.
+        forma3.desenhar(); // Saída: Desenhando um retângulo.
+    }
+}
+</code></pre>
+                </div>
+            </article>
+        </section>
+
+        <section class="mb-10 p-6 bg-gray-50 rounded-xl shadow-sm">
+            <h2 class="text-3xl font-bold text-gray-800 mb-4">Limitações da Palavra-chave <code class="text-indigo-600">extends</code></h2>
+            <ul class="list-disc list-inside text-base sm:text-lg leading-relaxed space-y-2">
+                <li>
+                    <strong>Herança Única:</strong> Em Java, uma classe pode `extends` apenas uma superclasse. Não é permitida a herança múltipla de classes.
+                </li>
+                <li>
+                    <strong>Membros <code class="font-semibold">private</code>:</strong> Atributos e métodos declarados como <code class="font-semibold">private</code> na superclasse não são herdados e, portanto, não são diretamente acessíveis nas subclasses. O acesso deve ser feito através de métodos públicos ou protegidos da superclasse.
+                </li>
+                <li>
+                    <strong>Construtores não são Herdados:</strong> Os construtores da superclasse não são herdados pelas subclasses, mas podem ser chamados usando a palavra-chave <code class="font-semibold">super()</code>.
+                </li>
+            </ul>
+        </section>
+
+        <footer class="text-center p-6 bg-indigo-700 text-white rounded-xl">
+            <p class="text-lg">A palavra-chave <code class="font-semibold">extends</code> é a base para construir hierarquias de classes robustas e reutilizáveis em Java!</p>
+            <p class="text-sm mt-2">Página criada com HTML e Tailwind CSS.</p>
+        </footer>
+    </div>
+</body>
+</html>

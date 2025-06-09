@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acoplamento (Coupling): Grau de Dependência entre Classes em Java</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6; /* Light gray background */
+        }
+        .container {
+            max-width: 90%; /* Fluid width for responsiveness */
+        }
+        .code-block {
+            background-color: #1f2937; /* Darker gray for code blocks */
+            color: #e5e7eb; /* Light text for code */
+            padding: 1.5rem;
+            border-radius: 0.75rem; /* rounded-xl */
+            overflow-x: auto; /* Enable horizontal scrolling for long lines */
+        }
+    </style>
+</head>
+<body class="antialiased text-gray-800">
+    <div class="container mx-auto p-4 sm:p-6 lg:p-8 my-8 bg-white shadow-lg rounded-xl">
+        <header class="text-center mb-8">
+            <h1 class="text-4xl sm:text-5xl font-extrabold text-blue-700 mb-4 rounded-xl p-4 bg-blue-50 shadow-md">
+                Acoplamento (Coupling): Grau de Dependência entre Classes em Java
+            </h1>
+            <p class="text-lg sm:text-xl text-gray-600 leading-relaxed">
+                Entenda o que é acoplamento em Java, seus diferentes tipos e por que é fundamental buscar um baixo acoplamento para um código de qualidade.
+            </p>
+        </header>
+
+        <section class="mb-10 p-6 bg-gray-50 rounded-xl shadow-sm">
+            <h2 class="text-3xl font-bold text-gray-800 mb-4">O que é Acoplamento?</h2>
+            <p class="text-base sm:text-lg leading-relaxed mb-4">
+                Em engenharia de software, **acoplamento** (ou *coupling*) refere-se ao grau de dependência entre módulos de software, como classes, pacotes ou subsistemas. É uma medida de quão intimamente duas classes (ou outros componentes) estão ligadas uma à outra.
+            </p>
+            <p class="text-base sm:text-lg leading-relaxed">
+                Um **alto acoplamento** significa que as classes estão fortemente conectadas e uma mudança em uma delas provavelmente exigirá mudanças na outra. Por outro lado, um **baixo acoplamento** indica que as classes são mais independentes, o que é um objetivo desejável no design de software.
+            </p>
+        </section>
+
+        <section class="mb-10 p-6 bg-gray-50 rounded-xl shadow-sm">
+            <h2 class="text-3xl font-bold text-gray-800 mb-4">Por que o Acoplamento é Importante? (Benefícios do Baixo Acoplamento)</h2>
+            <ul class="list-disc list-inside text-base sm:text-lg leading-relaxed space-y-2">
+                <li>
+                    <strong>Manutenibilidade:</strong> Sistemas com baixo acoplamento são mais fáceis de manter. Uma alteração em uma classe tem menos chances de afetar outras classes, reduzindo a complexidade das modificações.
+                </li>
+                <li>
+                    <strong>Reusabilidade:</strong> Classes pouco acopladas são mais independentes e, portanto, mais fáceis de serem reutilizadas em diferentes partes do mesmo projeto ou em outros projetos, sem arrastar uma grande quantidade de dependências.
+                </li>
+                <li>
+                    <strong>Testabilidade:</strong> Componentes com baixo acoplamento são mais fáceis de testar isoladamente, pois suas dependências são mínimas ou bem definidas.
+                </li>
+                <li>
+                    <strong>Flexibilidade:</strong> Um sistema com baixo acoplamento é mais flexível e adaptável a mudanças de requisitos. É mais fácil substituir um componente por outro, desde que a interface de interação seja mantida.
+                </li>
+                <li>
+                    <strong>Compreensibilidade:</strong> Classes com baixo acoplamento são mais fáceis de entender, pois sua funcionalidade pode ser compreendida sem a necessidade de analisar muitos outros componentes do sistema.
+                </li>
+            </ul>
+        </section>
+
+        <section class="mb-10 p-6 bg-gray-50 rounded-xl shadow-sm">
+            <h2 class="text-3xl font-bold text-gray-800 mb-4">Tipos de Acoplamento (do pior para o melhor)</h2>
+            <p class="text-base sm:text-lg leading-relaxed mb-4">
+                Existem vários tipos de acoplamento, variando do mais forte (indesejável) ao mais fraco (desejável):
+            </p>
+
+            <article class="mb-8 p-5 bg-white rounded-lg shadow-md">
+                <h3 class="text-2xl font-semibold text-blue-700 mb-3">1. Acoplamento de Conteúdo (Content Coupling)</h3>
+                <p class="text-base sm:text-lg leading-relaxed mb-4">
+                    Considerado o pior tipo de acoplamento. Ocorre quando um módulo acessa ou modifica o conteúdo interno de outro módulo (por exemplo, acessando variáveis locais de outra classe diretamente, ou modificando seu código). Extremamente difícil de manter e reutilizar.
+                </p>
+            </article>
+
+            <article class="mb-8 p-5 bg-white rounded-lg shadow-md">
+                <h3 class="text-2xl font-semibold text-blue-700 mb-3">2. Acoplamento Comum (Common Coupling)</h3>
+                <p class="text-base sm:text-lg leading-relaxed mb-4">
+                    Ocorre quando vários módulos compartilham dados globais. Uma mudança na estrutura dos dados globais afeta todos os módulos que os utilizam, tornando o sistema imprevisível e difícil de depurar.
+                </p>
+            </article>
+
+            <article class="mb-8 p-5 bg-white rounded-lg shadow-md">
+                <h3 class="text-2xl font-semibold text-blue-700 mb-3">3. Acoplamento de Controle (Control Coupling)</h3>
+                <p class="text-base sm:text-lg leading-relaxed mb-4">
+                    Um módulo passa informações de controle (como um flag booleano) para outro, que decide sua lógica de execução com base nesse flag. Isso indica que o chamador está controlando o comportamento do módulo chamado. Embora melhor que os anteriores, ainda pode ser problemático.
+                </p>
+            </article>
+
+            <article class="mb-8 p-5 bg-white rounded-lg shadow-md">
+                <h3 class="text-2xl font-semibold text-blue-700 mb-3">4. Acoplamento de Estampo (Stamp Coupling)</h3>
+                <p class="text-base sm:text-lg leading-relaxed mb-4">
+                    Um módulo passa uma estrutura de dados (um objeto completo) para outro, mas o módulo receptor usa apenas uma parte dessa estrutura. Isso pode levar a dependências desnecessárias, pois o módulo receptor precisa conhecer toda a estrutura, mesmo que não a use completamente.
+                </p>
+            </article>
+
+            <article class="mb-8 p-5 bg-white rounded-lg shadow-md">
+                <h3 class="text-2xl font-semibold text-blue-700 mb-3">5. Acoplamento de Dados (Data Coupling)</h3>
+                <p class="text-base sm:text-lg leading-relaxed mb-4">
+                    Considerado o acoplamento mais fraco e desejável entre os tipos "não ideal". Os módulos interagem passando dados elementares (tipos primitivos como `int`, `String`, etc.) como argumentos. Cada módulo opera em seus próprios dados e a comunicação é explícita e mínima.
+                </p>
+            </article>
+
+            <article class="p-5 bg-white rounded-lg shadow-md">
+                <h3 class="text-2xl font-semibold text-blue-700 mb-3">6. Acoplamento de Interface (Interface Coupling ou Message Coupling)</h3>
+                <p class="text-base sm:text-lg leading-relaxed mb-4">
+                    Este é o tipo de acoplamento mais desejável. Módulos se comunicam exclusivamente através de interfaces bem definidas (em Java, usando interfaces ou classes abstratas). O chamador não precisa saber os detalhes internos da implementação do chamado, apenas seu "contrato" público. Isso promove o encapsulamento e o polimorfismo.
+                </p>
+            </article>
+        </section>
+
+        <section class="mb-10 p-6 bg-gray-50 rounded-xl shadow-sm">
+            <h2 class="text-3xl font-bold text-gray-800 mb-4">Exemplo Prático (Acoplamento de Interface vs. Acoplamento de Conteúdo)</h2>
+
+            <article class="mb-8 p-5 bg-white rounded-lg shadow-md">
+                <h3 class="text-2xl font-semibold text-blue-700 mb-3">Exemplo de Alto Acoplamento (Acoplamento de Conteúdo - EVITAR!)</h3>
+                <p class="text-base sm:text-lg leading-relaxed mb-4">
+                    Aqui, a classe <code class="font-semibold">ProcessadorPedidos</code> acessa diretamente a variável interna <code class="font-semibold">totalPedidos</code> de <code class="font-semibold">Loja</code>. Se <code class="font-semibold">Loja</code> mudar o nome ou o tipo de <code class="font-semibold">totalPedidos</code>, <code class="font-semibold">ProcessadorPedidos</code> quebrará.
+                </p>
+                <div class="code-block">
+<pre><code>
+// Exemplo de Alto Acoplamento (Acoplamento de Conteúdo)
+class LojaAltoAcoplamento {
+    public int totalPedidos = 0; // Variável pública acessada diretamente
+}
+
+class ProcessadorPedidosAltoAcoplamento {
+    public void processar(LojaAltoAcoplamento loja) {
+        // Acesso direto à variável de instância de outra classe
+        loja.totalPedidos++;
+        System.out.println("Pedido processado. Total de pedidos na loja: " + loja.totalPedidos);
+    }
+}
+
+public class MainAltoAcoplamento {
+    public static void main(String[] args) {
+        LojaAltoAcoplamento minhaLoja = new LojaAltoAcoplamento();
+        ProcessadorPedidosAltoAcoplamento processador = new ProcessadorPedidosAltoAcoplamento();
+
+        processador.processar(minhaLoja); // Saída: Pedido processado. Total de pedidos na loja: 1
+        processador.processar(minhaLoja); // Saída: Pedido processado. Total de pedidos na loja: 2
+    }
+}
+</code></pre>
+                </div>
+            </article>
+
+            <article class="p-5 bg-white rounded-lg shadow-md">
+                <h3 class="text-2xl font-semibold text-blue-700 mb-3">Exemplo de Baixo Acoplamento (Acoplamento de Interface - DESEJÁVEL!)</h3>
+                <p class="text-base sm:text-lg leading-relaxed mb-4">
+                    Neste caso, <code class="font-semibold">ProcessadorPedidos</code> interage com <code class="font-semibold">Loja</code> através de uma interface bem definida (<code class="font-semibold">ContratoLoja</code>) e métodos públicos (<code class="font-semibold">adicionarPedido()</code>). A implementação interna de <code class="font-semibold">Loja</code> pode mudar sem afetar <code class="font-semibold">ProcessadorPedidos</code>.
+                </p>
+                <div class="code-block">
+<pre><code>
+// Exemplo de Baixo Acoplamento (Acoplamento de Interface)
+
+// Interface que define o contrato
+interface ContratoLoja {
+    void adicionarPedido();
+    int getTotalPedidos();
+}
+
+class LojaBaixoAcoplamento implements ContratoLoja {
+    private int totalPedidos = 0; // Variável privada, encapsulada
+
+    @Override
+    public void adicionarPedido() {
+        this.totalPedidos++;
+        System.out.println("Novo pedido registrado internamente.");
+    }
+
+    @Override
+    public int getTotalPedidos() {
+        return this.totalPedidos;
+    }
+}
+
+class ProcessadorPedidosBaixoAcoplamento {
+    // Interage através da interface, não da implementação concreta
+    public void processar(ContratoLoja loja) {
+        loja.adicionarPedido();
+        System.out.println("Pedido processado. Total de pedidos na loja: " + loja.getTotalPedidos());
+    }
+}
+
+public class MainBaixoAcoplamento {
+    public static void main(String[] args) {
+        LojaBaixoAcoplamento minhaLoja = new LojaBaixoAcoplamento();
+        ProcessadorPedidosBaixoAcoplamento processador = new ProcessadorPedidosBaixoAcoplamento();
+
+        processador.processar(minhaLoja); // Saída: Novo pedido registrado internamente. / Pedido processado. Total de pedidos na loja: 1
+        processador.processar(minhaLoja); // Saída: Novo pedido registrado internamente. / Pedido processado. Total de pedidos na loja: 2
+    }
+}
+</code></pre>
+                </div>
+            </article>
+        </section>
+
+        <footer class="text-center p-6 bg-blue-700 text-white rounded-xl">
+            <p class="text-lg">Buscar o baixo acoplamento é uma prática fundamental para criar software robusto, escalável e fácil de evoluir em Java!</p>
+            <p class="text-sm mt-2">Página criada com HTML e Tailwind CSS.</p>
+        </footer>
+    </div>
+</body>
+</html>

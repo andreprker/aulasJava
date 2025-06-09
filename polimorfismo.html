@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Polimorfismo em Java: "Muitas Formas"</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6; /* Light gray background */
+        }
+        .container {
+            max-width: 90%; /* Fluid width for responsiveness */
+        }
+        .code-block {
+            background-color: #1f2937; /* Darker gray for code blocks */
+            color: #e5e7eb; /* Light text for code */
+            padding: 1.5rem;
+            border-radius: 0.75rem; /* rounded-xl */
+            overflow-x: auto; /* Enable horizontal scrolling for long lines */
+        }
+    </style>
+</head>
+<body class="antialiased text-gray-800">
+    <div class="container mx-auto p-4 sm:p-6 lg:p-8 my-8 bg-white shadow-lg rounded-xl">
+        <header class="text-center mb-8">
+            <h1 class="text-4xl sm:text-5xl font-extrabold text-indigo-700 mb-4 rounded-xl p-4 bg-indigo-50 shadow-md">
+                Polimorfismo em Java: "Muitas Formas"
+            </h1>
+            <p class="text-lg sm:text-xl text-gray-600 leading-relaxed">
+                Aprofunde-se no polimorfismo em Java, um conceito essencial da POO que permite que objetos se comportem de diferentes maneiras com base em seu tipo real.
+            </p>
+        </header>
+
+        <section class="mb-10 p-6 bg-gray-50 rounded-xl shadow-sm">
+            <h2 class="text-3xl font-bold text-gray-800 mb-4">O que é Polimorfismo?</h2>
+            <p class="text-base sm:text-lg leading-relaxed mb-4">
+                O termo **polimorfismo** vem do grego e significa "muitas formas". Na Programação Orientada a Objetos (POO), o polimorfismo permite que um objeto se comporte de diferentes maneiras, dependendo do contexto em que é usado ou do tipo real do objeto. Essencialmente, ele permite que você defina uma interface comum para diferentes tipos de dados.
+            </p>
+            <p class="text-base sm:text-lg leading-relaxed">
+                Em Java, o polimorfismo é alcançado principalmente através da **herança de classes** e da **implementação de interfaces**.
+            </p>
+        </section>
+
+        <section class="mb-10 p-6 bg-gray-50 rounded-xl shadow-sm">
+            <h2 class="text-3xl font-bold text-gray-800 mb-4">Tipos de Polimorfismo em Java</h2>
+            <p class="text-base sm:text-lg leading-relaxed mb-4">
+                Java suporta dois tipos principais de polimorfismo:
+            </p>
+
+            <article class="mb-8 p-5 bg-white rounded-lg shadow-md">
+                <h3 class="text-2xl font-semibold text-indigo-700 mb-3">1. Polimorfismo em Tempo de Compilação (Static Polymorphism)</h3>
+                <p class="text-base sm:text-lg leading-relaxed mb-4">
+                    Também conhecido como **sobrecarga (overloading)**, ocorre quando há múltiplos métodos ou construtores com o mesmo nome na mesma classe, mas com diferentes assinaturas (diferente número, tipo ou ordem de parâmetros). O compilador decide qual método chamar em tempo de compilação com base nos argumentos passados.
+                </p>
+                <div class="code-block">
+<pre><code>
+class Calculadora {
+    // Sobrecarga de método: somar com dois inteiros
+    public int somar(int a, int b) {
+        return a + b;
+    }
+
+    // Sobrecarga de método: somar com três inteiros
+    public int somar(int a, int b, int c) {
+        return a + b + c;
+    }
+
+    // Sobrecarga de método: somar com dois doubles
+    public double somar(double a, double b) {
+        return a + b;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Calculadora calc = new Calculadora();
+        System.out.println("Soma (int, int): " + calc.somar(5, 3));        // Chama somar(int, int)
+        System.out.println("Soma (int, int, int): " + calc.somar(5, 3, 2)); // Chama somar(int, int, int)
+        System.out.println("Soma (double, double): " + calc.somar(5.5, 3.2)); // Chama somar(double, double)
+        // Saída:
+        // Soma (int, int): 8
+        // Soma (int, int, int): 10
+        // Soma (double, double): 8.7
+    }
+}
+</code></pre>
+                </div>
+            </article>
+
+            <article class="p-5 bg-white rounded-lg shadow-md">
+                <h3 class="text-2xl font-semibold text-indigo-700 mb-3">2. Polimorfismo em Tempo de Execução (Dynamic Polymorphism)</h3>
+                <p class="text-base sm:text-lg leading-relaxed mb-4">
+                    Também conhecido como **sobrescrita (overriding)** ou "Dynamic Method Dispatch", ocorre quando um método na subclasse tem a mesma assinatura que um método na superclasse. Em tempo de execução, a JVM determina qual implementação do método será invocada, com base no tipo real do objeto, e não no tipo de referência. Isso é possível graças à relação "é um tipo de" (herança ou interface).
+                </p>
+                <h4 class="text-xl font-semibold text-gray-700 mb-2">Com Herança de Classes:</h4>
+                <div class="code-block">
+<pre><code>
+// Superclasse
+class Animal {
+    public void fazerSom() {
+        System.out.println("O animal faz um som genérico.");
+    }
+}
+
+// Subclasse 1
+class Cachorro extends Animal {
+    @Override // Anotação que indica sobrescrita
+    public void fazerSom() {
+        System.out.println("O cachorro late: Au Au!");
+    }
+}
+
+// Subclasse 2
+class Gato extends Animal {
+    @Override
+    public void fazerSom() {
+        System.out.println("O gato mia: Miau!");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Animal meuAnimal1 = new Cachorro(); // Referência do tipo Animal, objeto do tipo Cachorro
+        Animal meuAnimal2 = new Gato();     // Referência do tipo Animal, objeto do tipo Gato
+        Animal meuAnimal3 = new Animal();   // Referência e objeto do tipo Animal
+
+        meuAnimal1.fazerSom(); // Chama o método de Cachorro
+        meuAnimal2.fazerSom(); // Chama o método de Gato
+        meuAnimal3.fazerSom(); // Chama o método de Animal
+        // Saída:
+        // O cachorro late: Au Au!
+        // O gato mia: Miau!
+        // O animal faz um som genérico.
+    }
+}
+</code></pre>
+                </div>
+                <h4 class="text-xl font-semibold text-gray-700 mb-2 mt-8">Com Implementação de Interfaces:</h4>
+                <div class="code-block">
+<pre><code>
+interface Forma {
+    void desenhar();
+}
+
+class Circulo implements Forma {
+    @Override
+    public void desenhar() {
+        System.out.println("Desenhando um círculo.");
+    }
+}
+
+class Retangulo implements Forma {
+    @Override
+    public void desenhar() {
+        System.out.println("Desenhando um retângulo.");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Forma minhaForma1 = new Circulo();   // Referência do tipo Forma, objeto do tipo Circulo
+        Forma minhaForma2 = new Retangulo(); // Referência do tipo Forma, objeto do tipo Retangulo
+
+        minhaForma1.desenhar(); // Chama o método de Circulo
+        minhaForma2.desenhar(); // Chama o método de Retangulo
+        // Saída:
+        // Desenhando um círculo.
+        // Desenhando um retângulo.
+    }
+}
+```</pre>
+                </div>
+            </article>
+        </section>
+
+        <section class="mb-10 p-6 bg-gray-50 rounded-xl shadow-sm">
+            <h2 class="text-3xl font-bold text-gray-800 mb-4">Benefícios do Polimorfismo</h2>
+            <ul class="list-disc list-inside text-base sm:text-lg leading-relaxed space-y-2">
+                <li>
+                    <strong>Flexibilidade:</strong> Permite escrever código mais genérico e flexível, que pode operar em objetos de diferentes tipos, desde que compartilhem uma superclasse ou interface comum.
+                </li>
+                <li>
+                    <strong>Extensibilidade:</strong> Facilita a adição de novas classes ao sistema sem a necessidade de modificar o código existente, desde que as novas classes sigam a mesma interface ou hierarquia de herança.
+                </li>
+                <li>
+                    <strong>Manutenibilidade:</strong> Torna o código mais fácil de manter, pois as alterações na implementação de um método sobrescrito afetam apenas aquela subclasse específica, sem impactar outras partes do código.
+                </li>
+                <li>
+                    <strong>Legibilidade e Organização:</strong> Ajuda a organizar o código de forma mais lógica e intuitiva, refletindo as relações do mundo real e tornando o sistema mais compreensível.
+                </li>
+            </ul>
+        </section>
+
+        <footer class="text-center p-6 bg-indigo-700 text-white rounded-xl">
+            <p class="text-lg">O polimorfismo é um dos conceitos mais poderosos da POO, capacitando o desenvolvimento de software mais flexível e robusto em Java!</p>
+            <p class="text-sm mt-2">Página criada com HTML e Tailwind CSS.</p>
+        </footer>
+    </div>
+</body>
+</html>

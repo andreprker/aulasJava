@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Benefícios do Encapsulamento em Java</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6; /* Light gray background */
+        }
+        .container {
+            max-width: 90%; /* Fluid width for responsiveness */
+        }
+        .code-block {
+            background-color: #1f2937; /* Darker gray for code blocks */
+            color: #e5e7eb; /* Light text for code */
+            padding: 1.5rem;
+            border-radius: 0.75rem; /* rounded-xl */
+            overflow-x: auto; /* Enable horizontal scrolling for long lines */
+        }
+    </style>
+</head>
+<body class="antialiased text-gray-800">
+    <div class="container mx-auto p-4 sm:p-6 lg:p-8 my-8 bg-white shadow-lg rounded-xl">
+        <header class="text-center mb-8">
+            <h1 class="text-4xl sm:text-5xl font-extrabold text-purple-700 mb-4 rounded-xl p-4 bg-purple-50 shadow-md">
+                Benefícios do Encapsulamento em Java
+            </h1>
+            <p class="text-lg sm:text-xl text-gray-600 leading-relaxed">
+                Descubra as vantagens cruciais de aplicar o encapsulamento em suas aplicações Java para garantir segurança, modularidade e manutenibilidade do código.
+            </p>
+        </header>
+
+        <section class="mb-10 p-6 bg-gray-50 rounded-xl shadow-sm">
+            <h2 class="text-3xl font-bold text-gray-800 mb-4">O que é Encapsulamento? (Revisão Breve)</h2>
+            <p class="text-base sm:text-lg leading-relaxed mb-4">
+                O **encapsulamento** é um dos princípios fundamentais da Programação Orientada a Objetos (POO). Ele envolve o empacotamento de dados (atributos) e os métodos que operam nesses dados em uma única unidade (a classe), ao mesmo tempo em que restringe o acesso direto a alguns dos componentes da classe.
+            </p>
+            <p class="text-base sm:text-lg leading-relaxed">
+                Em Java, isso é feito principalmente declarando atributos como <code class="font-semibold">private</code> e fornecendo métodos públicos (getters e setters) para acessar e modificar esses atributos de forma controlada.
+            </p>
+        </section>
+
+        <section class="mb-10 p-6 bg-gray-50 rounded-xl shadow-sm">
+            <h2 class="text-3xl font-bold text-gray-800 mb-4">Principais Benefícios do Encapsulamento</h2>
+            <p class="text-base sm:text-lg leading-relaxed mb-4">
+                A aplicação do encapsulamento traz uma série de vantagens significativas para o desenvolvimento de software:
+            </p>
+            <ul class="list-disc list-inside text-base sm:text-lg leading-relaxed space-y-3">
+                <li>
+                    <strong>1. Proteção e Integridade dos Dados:</strong>
+                    <p class="ml-4">Ao tornar os atributos <code class="font-semibold">private</code>, você impede que o estado interno de um objeto seja acessado ou modificado diretamente por código externo. Isso evita manipulações indevidas e garante que os dados do objeto permaneçam sempre em um estado válido e consistente.</p>
+                </li>
+                <li>
+                    <strong>2. Validação e Lógica de Negócios Centralizada:</strong>
+                    <p class="ml-4">Os métodos setters são o local ideal para implementar a lógica de validação. Isso significa que, antes de um dado ser atribuído a um atributo, você pode verificar se ele atende a certos critérios (por exemplo, um valor positivo para idade ou preço). Essa lógica é encapsulada dentro da classe, não espalhada pelo código cliente.</p>
+                </li>
+                <li>
+                    <strong>3. Manutenibilidade Aprimorada:</strong>
+                    <p class="ml-4">Se a estrutura interna da classe mudar (por exemplo, o tipo de um atributo ou a forma como um dado é calculado), você só precisa modificar a implementação dos getters e setters. O código cliente que usa esses métodos não precisa ser alterado, pois a interface pública (o "contrato" de como interagir com a classe) permanece a mesma. Isso reduz drasticamente o impacto de mudanças.</p>
+                </li>
+                <li>
+                    <strong>4. Flexibilidade e Extensibilidade:</strong>
+                    <p class="ml-4">O encapsulamento promove um design modular. Você pode modificar a implementação interna de uma classe sem afetar outras partes do sistema. Isso facilita a evolução do software, permitindo que novas funcionalidades ou otimizações sejam adicionadas sem quebrar o código existente.</p>
+                </li>
+                <li>
+                    <strong>5. Ocultação de Detalhes de Implementação (Abstração):</strong>
+                    <p class="ml-4">Ao expor apenas os métodos que o usuário da classe precisa para interagir, você esconde a complexidade interna. Isso permite que os desenvolvedores usem a classe sem se preocupar com como ela funciona por trás das cenas, focando apenas no "o quê" e não no "como".</p>
+                </li>
+                <li>
+                    <strong>6. Reusabilidade de Código:</strong>
+                    <p class="ml-4">Classes bem encapsuladas são mais fáceis de serem reutilizadas em diferentes partes de uma aplicação ou até mesmo em outros projetos, pois elas apresentam uma interface clara e um comportamento previsível.</p>
+                </li>
+            </ul>
+        </section>
+
+        <section class="mb-10 p-6 bg-gray-50 rounded-xl shadow-sm">
+            <h2 class="text-3xl font-bold text-gray-800 mb-4">Exemplo Demonstrando os Benefícios</h2>
+            <p class="text-base sm:text-lg leading-relaxed mb-4">
+                Considere uma classe <code class="font-semibold">Temperatura</code> que armazena o valor em Celsius, mas pode ser acessado em Fahrenheit.
+            </p>
+            <div class="code-block">
+<pre><code>
+class Temperatura {
+    private double celsius; // Atributo privado
+
+    public Temperatura(double celsiusInicial) {
+        setCelsius(celsiusInicial); // Usa o setter para inicialização com validação
+    }
+
+    // Getter para Celsius
+    public double getCelsius() {
+        return celsius;
+    }
+
+    // Setter para Celsius com validação
+    public void setCelsius(double celsius) {
+        if (celsius >= -273.15) { // Validação: maior ou igual ao zero absoluto
+            this.celsius = celsius;
+            System.out.println("Temperatura em Celsius definida para: " + celsius);
+        } else {
+            System.out.println("Erro: Temperatura abaixo do zero absoluto. Mantendo valor anterior.");
+        }
+    }
+
+    // Getter que calcula e retorna Fahrenheit (esconde o cálculo interno)
+    public double getFahrenheit() {
+        return (celsius * 9/5) + 32;
+    }
+
+    // Setter que aceita Fahrenheit e converte para Celsius internamente
+    public void setFahrenheit(double fahrenheit) {
+        double newCelsius = (fahrenheit - 32) * 5/9;
+        setCelsius(newCelsius); // Usa o setter de Celsius para aplicar validação
+        System.out.println("Temperatura em Fahrenheit definida para: " + fahrenheit);
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Temperatura temp = new Temperatura(25.0); // Inicializa em Celsius
+
+        System.out.println("Temperatura em Celsius: " + temp.getCelsius());     // Saída: Temperatura em Celsius: 25.0
+        System.out.println("Temperatura em Fahrenheit: " + temp.getFahrenheit()); // Saída: Temperatura em Fahrenheit: 77.0
+
+        System.out.println("\n--- Modificando via Setter de Celsius ---");
+        temp.setCelsius(30.0);
+        System.out.println("Nova Temperatura em Fahrenheit: " + temp.getFahrenheit()); // Saída: Nova Temperatura em Fahrenheit: 86.0
+
+        System.out.println("\n--- Tentando valor inválido em Celsius ---");
+        temp.setCelsius(-300.0); // Tenta um valor abaixo do zero absoluto
+        System.out.println("Temperatura após erro (Celsius): " + temp.getCelsius()); // Saída: Temperatura após erro (Celsius): 30.0 (não mudou)
+
+        System.out.println("\n--- Modificando via Setter de Fahrenheit ---");
+        temp.setFahrenheit(98.6); // Define em Fahrenheit
+        System.out.println("Temperatura em Celsius após mod.: " + temp.getCelsius()); // Saída: Temperatura em Celsius após mod.: 37.0
+
+        // temp.celsius = 1000.0; // ERRO DE COMPILAÇÃO: 'celsius' tem acesso private (Proteção de Dados)
+    }
+}
+```</pre>
+            </div>
+            <p class="text-base sm:text-lg leading-relaxed mt-4">
+                Neste exemplo, observamos vários benefícios do encapsulamento:
+            </p>
+            <ul class="list-disc list-inside text-base sm:text-lg leading-relaxed space-y-2 mt-2">
+                <li>A variável <code class="font-semibold">celsius</code> é <code class="font-semibold">private</code>, protegendo seu valor.</li>
+                <li>O método <code class="font-semibold">setCelsius()</code> valida o valor, prevenindo temperaturas abaixo do zero absoluto.</li>
+                <li>Os métodos <code class="font-semibold">getFahrenheit()</code> e <code class="font-semibold">setFahrenheit()</code> permitem interagir com a temperatura em Fahrenheit sem expor a lógica de conversão ou o fato de que a temperatura é armazenada internamente em Celsius (Ocultação de Detalhes de Implementação).</li>
+                <li>Se a classe <code class="font-semibold">Temperatura</code> decidisse armazenar o valor em Fahrenheit internamente no futuro, apenas os getters e setters precisariam ser ajustados; o código cliente permaneceria inalterado (Manutenibilidade e Flexibilidade).</li>
+            </ul>
+        </section>
+
+        <footer class="text-center p-6 bg-purple-700 text-white rounded-xl">
+            <p class="text-lg">O encapsulamento é um conceito essencial em Java para criar código modular, seguro e fácil de manter ao longo do tempo!</p>
+            <p class="text-sm mt-2">Página criada com HTML e Tailwind CSS.</p>
+        </footer>
+    </div>
+</body>
+</html>

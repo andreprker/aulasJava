@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sobrecarga de Construtores em Java</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6; /* Light gray background */
+        }
+        .container {
+            max-width: 90%; /* Fluid width for responsiveness */
+        }
+        .code-block {
+            background-color: #1f2937; /* Darker gray for code blocks */
+            color: #e5e7eb; /* Light text for code */
+            padding: 1.5rem;
+            border-radius: 0.75rem; /* rounded-xl */
+            overflow-x: auto; /* Enable horizontal scrolling for long lines */
+        }
+    </style>
+</head>
+<body class="antialiased text-gray-800">
+    <div class="container mx-auto p-4 sm:p-6 lg:p-8 my-8 bg-white shadow-lg rounded-xl">
+        <header class="text-center mb-8">
+            <h1 class="text-4xl sm:text-5xl font-extrabold text-purple-700 mb-4 rounded-xl p-4 bg-purple-50 shadow-md">
+                Sobrecarga de Construtores em Java
+            </h1>
+            <p class="text-lg sm:text-xl text-gray-600 leading-relaxed">
+                Aprenda sobre a sobrecarga de construtores em Java, uma técnica que permite inicializar objetos de diferentes maneiras.
+            </p>
+        </header>
+
+        <section class="mb-10 p-6 bg-gray-50 rounded-xl shadow-sm">
+            <h2 class="text-3xl font-bold text-gray-800 mb-4">O que é Sobrecarga de Construtores?</h2>
+            <p class="text-base sm:text-lg leading-relaxed mb-4">
+                Em Java, a **sobrecarga de construtores** (Constructor Overloading) ocorre quando uma classe tem múltiplos construtores, cada um com uma lista de parâmetros diferente. Isso significa que os construtores podem ter o mesmo nome (o nome da classe), mas devem diferir no número de argumentos, no tipo de argumentos ou na ordem dos tipos de argumentos.
+            </p>
+            <p class="text-base sm:text-lg leading-relaxed">
+                A sobrecarga de construtores é um exemplo de **polimorfismo estático** (ou polimorfismo em tempo de compilação), pois o compilador determina qual construtor chamar com base nos argumentos fornecidos no momento da criação do objeto.
+            </p>
+        </section>
+
+        <section class="mb-10 p-6 bg-gray-50 rounded-xl shadow-sm">
+            <h2 class="text-3xl font-bold text-gray-800 mb-4">Por que usar Sobrecarga de Construtores?</h2>
+            <ul class="list-disc list-inside text-base sm:text-lg leading-relaxed space-y-2">
+                <li><strong>Flexibilidade:</strong> Permite que os usuários da sua classe criem objetos de várias maneiras, fornecendo apenas as informações que possuem.</li>
+                <li><strong>Inicialização Conveniente:</strong> Oferece diferentes opções de inicialização para um objeto, adaptando-se a diversos cenários.</li>
+                <li><strong>Legibilidade do Código:</strong> Torna o código mais claro e fácil de entender, pois os nomes dos construtores são sempre intuitivos (o nome da classe).</li>
+                <li><strong>Valores Padrão:</strong> Facilita a definição de valores padrão para atributos, enquanto ainda permite inicialização personalizada.</li>
+            </ul>
+        </section>
+
+        <section class="mb-10 p-6 bg-gray-50 rounded-xl shadow-sm">
+            <h2 class="text-3xl font-bold text-gray-800 mb-4">Exemplos de Sobrecarga de Construtores</h2>
+
+            <article class="mb-8 p-5 bg-white rounded-lg shadow-md">
+                <h3 class="text-2xl font-semibold text-purple-600 mb-3">Exemplo Básico: Diferença no número de argumentos</h3>
+                <p class="text-base sm:text-lg leading-relaxed mb-4">
+                    Aqui, a classe <code>Retangulo</code> tem três construtores para permitir a criação de retângulos com diferentes níveis de especificação.
+                </p>
+                <div class="code-block">
+<pre><code>
+class Retangulo {
+    double largura;
+    double altura;
+
+    // Construtor 1: Sem argumentos (valores padrão)
+    public Retangulo() {
+        this.largura = 0.0;
+        this.altura = 0.0;
+        System.out.println("Retângulo criado com largura e altura padrão (0,0).");
+    }
+
+    // Construtor 2: Com um argumento (quadrado)
+    public Retangulo(double lado) {
+        this.largura = lado;
+        this.altura = lado;
+        System.out.println("Retângulo (quadrado) criado com lado: " + lado);
+    }
+
+    // Construtor 3: Com dois argumentos (largura e altura)
+    public Retangulo(double largura, double altura) {
+        this.largura = largura;
+        this.altura = altura;
+        System.out.println("Retângulo criado com largura: " + largura + " e altura: " + altura);
+    }
+
+    void exibirDimensoes() {
+        System.out.println("Dimensoes: Largura=" + largura + ", Altura=" + altura);
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Retangulo r1 = new Retangulo();      // Chama o Construtor 1
+        Retangulo r2 = new Retangulo(10.0);  // Chama o Construtor 2
+        Retangulo r3 = new Retangulo(5.0, 8.0); // Chama o Construtor 3
+
+        r1.exibirDimensoes();
+        r2.exibirDimensoes();
+        r3.exibirDimensoes();
+        // Saída:
+        // Retângulo criado com largura e altura padrão (0,0).
+        // Retangulo (quadrado) criado com lado: 10.0
+        // Retangulo criado com largura: 5.0 e altura: 8.0
+        // Dimensoes: Largura=0.0, Altura=0.0
+        // Dimensoes: Largura=10.0, Altura=10.0
+        // Dimensoes: Largura=5.0, Altura=8.0
+    }
+}
+</code></pre>
+                </div>
+            </article>
+
+            <article class="mb-8 p-5 bg-white rounded-lg shadow-md">
+                <h3 class="text-2xl font-semibold text-purple-600 mb-3">Encadeamento de Construtores (usando <code>this()</code>)</h3>
+                <p class="text-base sm:text-lg leading-relaxed mb-4">
+                    É uma prática comum e recomendada usar a palavra-chave <code>this()</code> para chamar um construtor de outro construtor na mesma classe. Isso ajuda a evitar duplicação de código e a manter a lógica de inicialização centralizada.
+                </p>
+                <div class="code-block">
+<pre><code>
+class Livro {
+    String titulo;
+    String autor;
+    int anoPublicacao;
+    String editora;
+
+    // Construtor 1: Construtor completo
+    public Livro(String titulo, String autor, int anoPublicacao, String editora) {
+        this.titulo = titulo;
+        this.autor = autor;
+        this.anoPublicacao = anoPublicacao;
+        this.editora = editora;
+        System.out.println("Livro completo criado.");
+    }
+
+    // Construtor 2: Sem editora, chama o construtor completo com um valor padrão para editora
+    public Livro(String titulo, String autor, int anoPublicacao) {
+        this(titulo, autor, anoPublicacao, "Desconhecida"); // Chama o Construtor 1
+        System.out.println("Livro (sem editora) criado.");
+    }
+
+    // Construtor 3: Somente título e autor, chama o construtor anterior com valores padrão
+    public Livro(String titulo, String autor) {
+        this(titulo, autor, 0); // Chama o Construtor 2
+        System.out.println("Livro (somente título e autor) criado.");
+    }
+
+    // Construtor 4: Construtor padrão, chama o construtor anterior
+    public Livro() {
+        this("Sem Título", "Autor Anônimo"); // Chama o Construtor 3
+        System.out.println("Livro (padrão) criado.");
+    }
+
+    void exibirDetalhes() {
+        System.out.println("Título: " + titulo + ", Autor: " + autor + ", Ano: " + anoPublicacao + ", Editora: " + editora);
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Livro l1 = new Livro("Aventuras em Java", "Ada Lovelace", 2023, "TechBooks");
+        Livro l2 = new Livro("Programação Essencial", "Grace Hopper", 2020);
+        Livro l3 = new Livro("Design Patterns", "Erich Gamma");
+        Livro l4 = new Livro();
+
+        l1.exibirDetalhes();
+        l2.exibirDetalhes();
+        l3.exibirDetalhes();
+        l4.exibirDetalhes();
+        // Saída (ordem pode variar para as mensagens de "criado"):
+        // Livro completo criado.
+        // Livro completo criado.
+        // Livro (sem editora) criado.
+        // Livro completo criado.
+        // Livro (somente título e autor) criado.
+        // Livro completo criado.
+        // Livro (sem editora) criado.
+        // Livro (padrão) criado.
+        // Título: Aventuras em Java, Autor: Ada Lovelace, Ano: 2023, Editora: TechBooks
+        // Título: Programação Essencial, Autor: Grace Hopper, Ano: 2020, Editora: Desconhecida
+        // Título: Design Patterns, Autor: Erich Gamma, Ano: 0, Editora: Desconhecida
+        // Título: Sem Título, Autor: Autor Anônimo, Ano: 0, Editora: Desconhecida
+    }
+}
+</code></pre>
+                </div>
+            </article>
+        </section>
+
+        <section class="mb-10 p-6 bg-gray-50 rounded-xl shadow-sm">
+            <h2 class="text-3xl font-bold text-gray-800 mb-4">Regras Chave para Sobrecarga de Construtores</h2>
+            <ul class="list-disc list-inside text-base sm:text-lg leading-relaxed space-y-2">
+                <li>Todos os construtores devem ter o **mesmo nome** da classe.</li>
+                <li>Cada construtor sobrecarregado deve ter uma **assinatura diferente** (número de argumentos, tipo de argumentos ou ordem dos tipos de argumentos).</li>
+                <li>Um construtor **não pode ter um tipo de retorno**.</li>
+                <li>Você pode usar <code>this()</code> para chamar outro construtor da mesma classe (encadeamento de construtores), mas a chamada <code>this()</code> deve ser a **primeira instrução** no construtor.</li>
+            </ul>
+        </section>
+
+        <footer class="text-center p-6 bg-purple-700 text-white rounded-xl">
+            <p class="text-lg">A sobrecarga de construtores é uma ferramenta poderosa para criar classes versáteis em Java!</p>
+            <p class="text-sm mt-2">Página criada com HTML e Tailwind CSS.</p>
+        </footer>
+    </div>
+</body>
+</html>

@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Herança em Java: Reutilização de Características e Comportamentos</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6; /* Light gray background */
+        }
+        .container {
+            max-width: 90%; /* Fluid width for responsiveness */
+        }
+        .code-block {
+            background-color: #1f2937; /* Darker gray for code blocks */
+            color: #e5e7eb; /* Light text for code */
+            padding: 1.5rem;
+            border-radius: 0.75rem; /* rounded-xl */
+            overflow-x: auto; /* Enable horizontal scrolling for long lines */
+        }
+    </style>
+</head>
+<body class="antialiased text-gray-800">
+    <div class="container mx-auto p-4 sm:p-6 lg:p-8 my-8 bg-white shadow-lg rounded-xl">
+        <header class="text-center mb-8">
+            <h1 class="text-4xl sm:text-5xl font-extrabold text-indigo-700 mb-4 rounded-xl p-4 bg-indigo-50 shadow-md">
+                Herança em Java: Reutilização de Características e Comportamentos
+            </h1>
+            <p class="text-lg sm:text-xl text-gray-600 leading-relaxed">
+                Descubra a herança em Java, um poderoso mecanismo de POO para criar hierarquias de classes e promover a reutilização de código.
+            </p>
+        </header>
+
+        <section class="mb-10 p-6 bg-gray-50 rounded-xl shadow-sm">
+            <h2 class="text-3xl font-bold text-gray-800 mb-4">O que é Herança?</h2>
+            <p class="text-base sm:text-lg leading-relaxed mb-4">
+                A **herança** é um dos pilares da Programação Orientada a Objetos (POO) em Java. Ela permite que uma classe (subclasse ou classe filha) herde atributos (variáveis de instância) e métodos de outra classe (superclasse ou classe pai). Isso estabelece uma relação "é-um" (is-a), onde a subclasse é um tipo especializado da superclasse.
+            </p>
+            <p class="text-base sm:text-lg leading-relaxed">
+                O principal objetivo da herança é promover a **reutilização de código**, permitindo que você defina funcionalidades comuns em uma superclasse e as utilize em múltiplas subclasses, evitando a duplicação.
+            </p>
+        </section>
+
+        <section class="mb-10 p-6 bg-gray-50 rounded-xl shadow-sm">
+            <h2 class="text-3xl font-bold text-gray-800 mb-4">Como a Herança Funciona em Java (<code class="font-semibold">extends</code>)</h2>
+            <p class="text-base sm:text-lg leading-relaxed mb-4">
+                Em Java, a herança é implementada usando a palavra-chave <code class="font-semibold">extends</code>. Uma classe pode estender apenas uma outra classe (Java não suporta herança múltipla de classes, mas sim de interfaces).
+            </p>
+            <div class="code-block">
+<pre><code>
+// Superclasse (Classe Pai)
+class Animal {
+    String nome;
+    int idade;
+
+    public Animal(String nome, int idade) {
+        this.nome = nome;
+        this.idade = idade;
+    }
+
+    public void comer() {
+        System.out.println(nome + " está comendo.");
+    }
+
+    public void dormir() {
+        System.out.println(nome + " está dormindo.");
+    }
+}
+
+// Subclasse (Classe Filha) que herda de Animal
+class Cachorro extends Animal {
+    String raca;
+
+    public Cachorro(String nome, int idade, String raca) {
+        // Chama o construtor da superclasse
+        super(nome, idade);
+        this.raca = raca;
+    }
+
+    public void latir() {
+        System.out.println(nome + " está latindo: Au Au!");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Cachorro meuCachorro = new Cachorro("Rex", 3, "Labrador");
+
+        // Acessando atributos herdados da superclasse Animal
+        System.out.println("Nome do cachorro: " + meuCachorro.nome);   // Herdado
+        System.out.println("Idade do cachorro: " + meuCachorro.idade); // Herdado
+        System.out.println("Raça do cachorro: " + meuCachorro.raca);   // Próprio da subclasse
+
+        // Chamando métodos herdados da superclasse Animal
+        meuCachorro.comer();  // Herdado
+        meuCachorro.dormir(); // Herdado
+
+        // Chamando método próprio da subclasse Cachorro
+        meuCachorro.latir();
+        // Saída:
+        // Nome do cachorro: Rex
+        // Idade do cachorro: 3
+        // Raça do cachorro: Labrador
+        // Rex está comendo.
+        // Rex está dormindo.
+        // Rex está latindo: Au Au!
+    }
+}
+</code></pre>
+            </div>
+        </section>
+
+        <section class="mb-10 p-6 bg-gray-50 rounded-xl shadow-sm">
+            <h2 class="text-3xl font-bold text-gray-800 mb-4">Vantagens da Herança</h2>
+            <ul class="list-disc list-inside text-base sm:text-lg leading-relaxed space-y-2">
+                <li>
+                    <strong>Reutilização de Código:</strong> O maior benefício. Você escreve o código comum uma vez na superclasse e as subclasses podem utilizá-lo.
+                </li>
+                <li>
+                    <strong>Economia de Tempo e Esforço:</strong> Evita a necessidade de reescrever a mesma lógica em múltiplas classes.
+                </li>
+                <li>
+                    <strong>Manutenibilidade Aprimorada:</strong> Alterações na lógica comum (na superclasse) são propagadas automaticamente para todas as subclasses, facilitando a manutenção e a aplicação de correções.
+                </li>
+                <li>
+                    <strong>Polimorfismo:</strong> Permite que objetos de diferentes subclasses sejam tratados como objetos de sua superclasse comum, o que é fundamental para a flexibilidade do design.
+                </li>
+                <li>
+                    <strong>Organização do Código:</strong> Ajuda a criar uma hierarquia lógica e bem organizada de classes, refletindo relações do mundo real (ex: "um carro é um tipo de veículo").
+                </li>
+            </ul>
+        </section>
+
+        <section class="mb-10 p-6 bg-gray-50 rounded-xl shadow-sm">
+            <h2 class="text-3xl font-bold text-gray-800 mb-4">Palavra-chave <code class="font-semibold">super</code></h2>
+            <p class="text-base sm:text-lg leading-relaxed mb-4">
+                A palavra-chave <code class="font-semibold">super</code> é usada dentro de uma subclasse para se referir a membros (atributos e métodos) da superclasse imediata.
+            </p>
+            <ul class="list-disc list-inside text-base sm:text-lg leading-relaxed space-y-2 mb-4">
+                <li>
+                    <strong><code class="font-semibold">super()</code>:</strong> Usado para chamar o construtor da superclasse. Deve ser a primeira instrução em um construtor de subclasse.
+                </li>
+                <li>
+                    <strong><code class="font-semibold">super.membro</code>:</strong> Usado para acessar atributos ou métodos da superclasse que foram sobrescritos na subclasse, ou para referenciar explicitamente um membro da superclasse quando houver ambiguidade de nome.
+                </li>
+            </ul>
+            <div class="code-block">
+<pre><code>
+class Veiculo {
+    String tipo;
+
+    public Veiculo(String tipo) {
+        this.tipo = tipo;
+        System.out.println("Construtor Veiculo chamado.");
+    }
+
+    public void mover() {
+        System.out.println("Veículo do tipo " + tipo + " está se movendo.");
+    }
+}
+
+class Carro extends Veiculo {
+    String modelo;
+
+    public Carro(String tipo, String modelo) {
+        super(tipo); // Chama o construtor da superclasse Veiculo
+        this.modelo = modelo;
+        System.out.println("Construtor Carro chamado.");
+    }
+
+    // Sobrescrita do método mover()
+    @Override // Anotação opcional, mas boa prática para indicar sobrescrita
+    public void mover() {
+        super.mover(); // Chama o método mover() da superclasse
+        System.out.println("O carro " + modelo + " está acelerando.");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Carro meuCarro = new Carro("terrestre", "Sedan");
+
+        meuCarro.mover(); // Chama o método mover() sobrescrito na classe Carro
+        // Saída:
+        // Construtor Veiculo chamado.
+        // Construtor Carro chamado.
+        // Veículo do tipo terrestre está se movendo.
+        // O carro Sedan está acelerando.
+    }
+}
+</code></pre>
+            </div>
+        </section>
+
+        <section class="mb-10 p-6 bg-gray-50 rounded-xl shadow-sm">
+            <h2 class="text-3xl font-bold text-gray-800 mb-4">Limitações e Considerações</h2>
+            <ul class="list-disc list-inside text-base sm:text-lg leading-relaxed space-y-2">
+                <li><strong>Herança Única:</strong> Java não suporta herança múltipla de classes (uma classe pode herdar de apenas uma superclasse).</li>
+                <li><strong>Acesso a Membros <code class="font-semibold">private</code>:</strong> Membros <code class="font-semibold">private</code> de uma superclasse não são herdados e, portanto, não são diretamente acessíveis nas subclasses. O acesso deve ser feito através de métodos públicos ou protegidos da superclasse.</li>
+                <li><strong>Hierarquias Complexas:</strong> O uso excessivo e inadequado da herança pode levar a hierarquias de classes complexas e difíceis de manter. Em alguns casos, a composição (ter uma instância de outra classe como atributo) pode ser uma alternativa melhor.</li>
+            </ul>
+        </section>
+
+        <footer class="text-center p-6 bg-indigo-700 text-white rounded-xl">
+            <p class="text-lg">A herança é um conceito poderoso em Java que permite a criação de código mais organizado, reutilizável e flexível!</p>
+            <p class="text-sm mt-2">Página criada com HTML e Tailwind CSS.</p>
+        </footer>
+    </div>
+</body>
+</html>

@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Superclasse e Subclasse em Java</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6; /* Light gray background */
+        }
+        .container {
+            max-width: 90%; /* Fluid width for responsiveness */
+        }
+        .code-block {
+            background-color: #1f2937; /* Darker gray for code blocks */
+            color: #e5e7eb; /* Light text for code */
+            padding: 1.5rem;
+            border-radius: 0.75rem; /* rounded-xl */
+            overflow-x: auto; /* Enable horizontal scrolling for long lines */
+        }
+    </style>
+</head>
+<body class="antialiased text-gray-800">
+    <div class="container mx-auto p-4 sm:p-6 lg:p-8 my-8 bg-white shadow-lg rounded-xl">
+        <header class="text-center mb-8">
+            <h1 class="text-4xl sm:text-5xl font-extrabold text-green-700 mb-4 rounded-xl p-4 bg-green-50 shadow-md">
+                Superclasse e Subclasse em Java
+            </h1>
+            <p class="text-lg sm:text-xl text-gray-600 leading-relaxed">
+                Compreenda a relação hierárquica entre Superclasses e Subclasses em Java, um conceito central da herança na Programação Orientada a Objetos.
+            </p>
+        </header>
+
+        <section class="mb-10 p-6 bg-gray-50 rounded-xl shadow-sm">
+            <h2 class="text-3xl font-bold text-gray-800 mb-4">Entendendo a Hierarquia de Classes</h2>
+            <p class="text-base sm:text-lg leading-relaxed mb-4">
+                No universo da Programação Orientada a Objetos (POO), a **herança** é um mecanismo poderoso que nos permite criar novas classes baseadas em classes existentes. Essa capacidade de reutilização de código e de modelar relações hierárquicas é fundamental para construir sistemas mais organizados, flexíveis e fáceis de manter.
+            </p>
+            <p class="text-base sm:text-lg leading-relaxed">
+                Dentro desse conceito, surgem os termos **Superclasse** e **Subclasse**, que definem os papéis das classes nessa hierarquia.
+            </p>
+        </section>
+
+        <section class="mb-10 p-6 bg-gray-50 rounded-xl shadow-sm">
+            <h2 class="text-3xl font-bold text-gray-800 mb-4">O que é uma Superclasse?</h2>
+            <p class="text-base sm:text-lg leading-relaxed mb-4">
+                Uma **Superclasse** (também conhecida como classe pai, classe base ou classe ancestral) é a classe da qual outras classes herdam características e comportamentos. Ela serve como um modelo genérico que define os atributos e métodos comuns a um grupo de classes mais específicas.
+            </p>
+            <ul class="list-disc list-inside text-base sm:text-lg leading-relaxed space-y-2">
+                <li>Define atributos e métodos que são comuns a todas as suas subclasses.</li>
+                <li>Pode ser acessada por suas subclasses.</li>
+                <li>Pode existir sem que nenhuma subclasse seja criada, mas é frequentemente projetada para ser estendida.</li>
+            </ul>
+        </section>
+
+        <section class="mb-10 p-6 bg-gray-50 rounded-xl shadow-sm">
+            <h2 class="text-3xl font-bold text-gray-800 mb-4">O que é uma Subclasse?</h2>
+            <p class="text-base sm:text-lg leading-relaxed mb-4">
+                Uma **Subclasse** (também conhecida como classe filha, classe derivada ou classe herdeira) é uma classe que herda atributos e métodos de uma Superclasse. Ela estende as funcionalidades da superclasse, adicionando seus próprios atributos e métodos específicos, ou sobrescrevendo os comportamentos herdados para adaptá-los às suas necessidades.
+            </p>
+            <ul class="list-disc list-inside text-base sm:text-lg leading-relaxed space-y-2">
+                <li>Herda atributos e métodos acessíveis da superclasse.</li>
+                <li>Pode adicionar novos atributos e métodos.</li>
+                <li>Pode sobrescrever (modificar a implementação de) métodos herdados.</li>
+                <li>Estabelece uma relação "é um tipo de" (is-a relationship) com sua superclasse (ex: "Um Cachorro é um tipo de Animal").</li>
+            </ul>
+        </section>
+
+        <section class="mb-10 p-6 bg-gray-50 rounded-xl shadow-sm">
+            <h2 class="text-3xl font-bold text-gray-800 mb-4">Exemplo de Superclasse e Subclasse</h2>
+
+            <article class="p-5 bg-white rounded-lg shadow-md">
+                <h3 class="text-2xl font-semibold text-green-700 mb-3">Classe <code class="font-semibold">Veiculo</code> (Superclasse) e <code class="font-semibold">Carro</code> (Subclasse)</h3>
+                <p class="text-base sm:text-lg leading-relaxed mb-4">
+                    Neste exemplo, <code class="font-semibold">Veiculo</code> é a superclasse que define características e comportamentos gerais de qualquer veículo. <code class="font-semibold">Carro</code> é a subclasse que herda de <code class="font-semibold">Veiculo</code> e adiciona funcionalidades específicas de carros.
+                </p>
+                <div class="code-block">
+<pre><code>
+// Superclasse
+class Veiculo {
+    private String marca;
+    private int ano;
+
+    public Veiculo(String marca, int ano) {
+        this.marca = marca;
+        this.ano = ano;
+        System.out.println("Construtor da Superclasse Veiculo chamado.");
+    }
+
+    public void ligar() {
+        System.out.println("O " + marca + " do ano " + ano + " está ligando.");
+    }
+
+    public void desligar() {
+        System.out.println("O " + marca + " do ano " + ano + " está desligando.");
+    }
+
+    // Getters para os atributos privados (encapsulamento)
+    public String getMarca() {
+        return marca;
+    }
+
+    public int getAno() {
+        return ano;
+    }
+}
+
+// Subclasse
+class Carro extends Veiculo { // Carro herda de Veiculo
+    private String modelo;
+    private int numeroPortas;
+
+    public Carro(String marca, int ano, String modelo, int numeroPortas) {
+        super(marca, ano); // Chama o construtor da Superclasse Veiculo
+        this.modelo = modelo;
+        this.numeroPortas = numeroPortas;
+        System.out.println("Construtor da Subclasse Carro chamado.");
+    }
+
+    // Método específico da Subclasse Carro
+    public void acelerar() {
+        System.out.println("O " + getMarca() + " " + modelo + " está acelerando!");
+    }
+
+    // Sobrescrita do método ligar() da Superclasse
+    @Override
+    public void ligar() {
+        System.out.println("O carro " + getMarca() + " " + modelo + " está ligando e pronto para rodar.");
+    }
+
+    // Getters para os atributos privados do Carro
+    public String getModelo() {
+        return modelo;
+    }
+
+    public int getNumeroPortas() {
+        return numeroPortas;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        System.out.println("--- Criando um Veiculo ---");
+        Veiculo moto = new Veiculo("Honda", 2022);
+        moto.ligar();
+        moto.desligar();
+        System.out.println("Marca do Veículo: " + moto.getMarca() + ", Ano: " + moto.getAno());
+
+        System.out.println("\n--- Criando um Carro (Subclasse) ---");
+        Carro meuCarro = new Carro("Toyota", 2023, "Corolla", 4);
+
+        // Atributos herdados (acessados via getters da superclasse ou diretamente se fossem protected/public)
+        System.out.println("Marca do Carro: " + meuCarro.getMarca());
+        System.out.println("Ano do Carro: " + meuCarro.getAno());
+        // Atributos próprios da subclasse
+        System.out.println("Modelo do Carro: " + meuCarro.modelo);
+        System.out.println("Número de Portas: " + meuCarro.numeroPortas);
+
+        // Métodos herdados (sobrescrito e original)
+        meuCarro.ligar(); // Chama o método sobrescrito em Carro
+        meuCarro.desligar(); // Chama o método original da superclasse Veiculo
+
+        // Método próprio da subclasse
+        meuCarro.acelerar();
+        // Saída:
+        // --- Criando um Veiculo ---
+        // Construtor da Superclasse Veiculo chamado.
+        // O Honda do ano 2022 está ligando.
+        // O Honda do ano 2022 está desligando.
+        // Marca do Veículo: Honda, Ano: 2022
+
+        // --- Criando um Carro (Subclasse) ---
+        // Construtor da Superclasse Veiculo chamado.
+        // Construtor da Subclasse Carro chamado.
+        // Marca do Carro: Toyota
+        // Ano do Carro: 2023
+        // Modelo do Carro: Corolla
+        // Número de Portas: 4
+        // O carro Toyota Corolla está ligando e pronto para rodar.
+        // O Toyota do ano 2023 está desligando.
+        // O Toyota Corolla está acelerando!
+    }
+}
+```</pre>
+                </div>
+            </article>
+        </section>
+
+        <section class="mb-10 p-6 bg-gray-50 rounded-xl shadow-sm">
+            <h2 class="text-3xl font-bold text-gray-800 mb-4">Relação "é um tipo de" (is-a)</h2>
+            <p class="text-base sm:text-lg leading-relaxed mb-4">
+                A principal característica da relação entre Superclasse e Subclasse é a **relação "é um tipo de"**. Isso significa que, conceitualmente, um objeto da subclasse sempre "é um tipo de" objeto da superclasse. Por exemplo, um <code class="font-semibold">Carro</code> "é um tipo de" <code class="font-semibold">Veiculo</code>.
+            </p>
+            <p class="text-base sm:text-lg leading-relaxed">
+                Essa relação é fundamental para o **polimorfismo**, permitindo que você trate objetos de subclasses como se fossem objetos da superclasse, o que aumenta a flexibilidade e a generalização do seu código.
+            </p>
+        </section>
+
+        <footer class="text-center p-6 bg-green-700 text-white rounded-xl">
+            <p class="text-lg">Entender Superclasses e Subclasses é a chave para dominar a herança e construir sistemas orientados a objetos eficazes em Java!</p>
+            <p class="text-sm mt-2">Página criada com HTML e Tailwind CSS.</p>
+        </footer>
+    </div>
+</body>
+</html>

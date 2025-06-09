@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Relação 'é um tipo de' (is-a relationship) em Java</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6; /* Light gray background */
+        }
+        .container {
+            max-width: 90%; /* Fluid width for responsiveness */
+        }
+        .code-block {
+            background-color: #1f2937; /* Darker gray for code blocks */
+            color: #e5e7eb; /* Light text for code */
+            padding: 1.5rem;
+            border-radius: 0.75rem; /* rounded-xl */
+            overflow-x: auto; /* Enable horizontal scrolling for long lines */
+        }
+    </style>
+</head>
+<body class="antialiased text-gray-800">
+    <div class="container mx-auto p-4 sm:p-6 lg:p-8 my-8 bg-white shadow-lg rounded-xl">
+        <header class="text-center mb-8">
+            <h1 class="text-4xl sm:text-5xl font-extrabold text-teal-700 mb-4 rounded-xl p-4 bg-teal-50 shadow-md">
+                Relação "é um tipo de" (<code class="text-teal-600">is-a relationship</code>) em Java
+            </h1>
+            <p class="text-lg sm:text-xl text-gray-600 leading-relaxed">
+                Explore a fundamental relação "é um tipo de" em Java, a base da herança e do polimorfismo na Programação Orientada a Objetos.
+            </p>
+        </header>
+
+        <section class="mb-10 p-6 bg-gray-50 rounded-xl shadow-sm">
+            <h2 class="text-3xl font-bold text-gray-800 mb-4">O que é a Relação "é um tipo de" (is-a)?</h2>
+            <p class="text-base sm:text-lg leading-relaxed mb-4">
+                Em Programação Orientada a Objetos (POO), a relação **"é um tipo de"** (em inglês, *is-a relationship*) descreve uma conexão entre duas classes onde uma classe é uma versão mais específica da outra. É a base conceitual da **herança**, indicando que a subclasse (classe filha) é um tipo especializado da superclasse (classe pai).
+            </p>
+            <p class="text-base sm:text-lg leading-relaxed">
+                Por exemplo, um "Cachorro é um tipo de Animal", um "Carro é um tipo de Veículo". Essa relação implica que a subclasse possui todas as características e comportamentos da superclasse, além de suas próprias características e comportamentos específicos.
+            </p>
+        </section>
+
+        <section class="mb-10 p-6 bg-gray-50 rounded-xl shadow-sm">
+            <h2 class="text-3xl font-bold text-gray-800 mb-4">Como a Relação "is-a" é Implementada em Java?</h2>
+            <p class="text-base sm:text-lg leading-relaxed mb-4">
+                Em Java, a relação "é um tipo de" é estabelecida usando a palavra-chave <code class="font-semibold">extends</code> para herança de classes e <code class="font-semibold">implements</code> para implementação de interfaces.
+            </p>
+            <h3 class="text-2xl font-semibold text-teal-600 mb-3">Usando <code class="font-semibold">extends</code> (Herança de Classes)</h3>
+            <p class="text-base sm:text-lg leading-relaxed mb-4">
+                Quando a Classe B <code class="font-semibold">extends</code> a Classe A, dizemos que "B é um tipo de A". A Classe B herda os atributos e métodos da Classe A.
+            </p>
+            <div class="code-block">
+<pre><code>
+// Superclasse
+class Animal {
+    String especie;
+
+    public Animal(String especie) {
+        this.especie = especie;
+    }
+
+    public void emitirSom() {
+        System.out.println("Animal faz um som.");
+    }
+}
+
+// Subclasse
+class Cachorro extends Animal { // Cachorro "é um tipo de" Animal
+    public Cachorro(String nomeCachorro) {
+        super("Canino"); // Chama o construtor da superclasse
+        System.out.println(nomeCachorro + " é um cachorro.");
+    }
+
+    @Override
+    public void emitirSom() {
+        System.out.println("Cachorro late: Au Au!");
+    }
+
+    public void abanarRabo() {
+        System.out.println("Cachorro abana o rabo.");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Cachorro meuCachorro = new Cachorro("Rex");
+        meuCachorro.emitirSom();    // Chama o método sobrescrito
+        meuCachorro.abanarRabo();   // Chama o método próprio do Cachorro
+
+        Animal animalGenerico = meuCachorro; // Um Cachorro PODE ser tratado como um Animal (relação is-a)
+        animalGenerico.emitirSom(); // Polimorfismo: Ainda late como Cachorro!
+        // animalGenerico.abanarRabo(); // ERRO DE COMPILAÇÃO: Animal não tem o método abanarRabo()
+        // Saída:
+        // Rex é um cachorro.
+        // Cachorro late: Au Au!
+        // Cachorro abana o rabo.
+        // Cachorro late: Au Au!
+    }
+}
+</code></pre>
+            </div>
+            <h3 class="text-2xl font-semibold text-teal-600 mb-3 mt-8">Usando <code class="font-semibold">implements</code> (Implementação de Interfaces)</h3>
+            <p class="text-base sm:text-lg leading-relaxed mb-4">
+                Quando uma classe <code class="font-semibold">implements</code> uma Interface, ela também estabelece uma relação "é um tipo de". A classe promete implementar todos os métodos abstratos da interface.
+            </p>
+            <div class="code-block">
+<pre><code>
+interface Forma {
+    double calcularArea();
+    void desenhar();
+}
+
+class Circulo implements Forma { // Circulo "é um tipo de" Forma
+    double raio;
+
+    public Circulo(double raio) {
+        this.raio = raio;
+    }
+
+    @Override
+    public double calcularArea() {
+        return Math.PI * raio * raio;
+    }
+
+    @Override
+    public void desenhar() {
+        System.out.println("Desenhando um círculo.");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Circulo meuCirculo = new Circulo(5.0);
+        System.out.println("Área do Círculo: " + meuCirculo.calcularArea());
+        meuCirculo.desenhar();
+
+        Forma formaGenerica = meuCirculo; // Um Círculo PODE ser tratado como uma Forma (relação is-a)
+        System.out.println("Área da Forma: " + formaGenerica.calcularArea());
+        formaGenerica.desenhar();
+        // Saída:
+        // Área do Círculo: 78.53981633974483
+        // Desenhando um círculo.
+        // Área da Forma: 78.53981633974483
+        // Desenhando um círculo.
+    }
+}
+</code></pre>
+            </div>
+        </section>
+
+        <section class="mb-10 p-6 bg-gray-50 rounded-xl shadow-sm">
+            <h2 class="text-3xl font-bold text-gray-800 mb-4">Por que a Relação "is-a" é Crucial?</h2>
+            <ul class="list-disc list-inside text-base sm:text-lg leading-relaxed space-y-2">
+                <li>
+                    <strong>Polimorfismo:</strong> É a base do polimorfismo, que permite que objetos de diferentes classes relacionadas pela herança (ou interfaces) sejam tratados como objetos de um tipo comum. Isso torna o código mais flexível e genérico.
+                </li>
+                <li>
+                    <strong>Reutilização de Código:</strong> Facilita a reutilização de código da superclasse ou da interface, evitando duplicação e tornando o sistema mais modular e fácil de manter.
+                </li>
+                <li>
+                    <strong>Extensibilidade:</strong> Permite adicionar novas subclasses que herdam comportamentos existentes e adicionam funcionalidades específicas, estendendo o sistema sem modificar o código base.
+                </li>
+                <li>
+                    <strong>Organização e Clareza:</strong> Ajuda a organizar classes em uma hierarquia lógica, refletindo as relações do mundo real e tornando o design do sistema mais compreensível.
+                </li>
+                <li>
+                    <strong>Tipo Compatibilidade:</strong> Um objeto da subclasse é sempre compatível com o tipo da superclasse. Isso significa que onde um objeto da superclasse é esperado, um objeto da subclasse pode ser substituído (Princípio da Substituição de Liskov).
+                </li>
+            </ul>
+        </section>
+
+        <footer class="text-center p-6 bg-teal-700 text-white rounded-xl">
+            <p class="text-lg">Compreender a relação "é um tipo de" é fundamental para dominar a Programação Orientada a Objetos em Java!</p>
+            <p class="text-sm mt-2">Página criada com HTML e Tailwind CSS.</p>
+        </footer>
+    </div>
+</body>
+</html>

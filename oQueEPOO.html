@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Programação Orientada a Objetos (POO) e Suas Vantagens</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc; /* slate-50 */
+            color: #334155; /* slate-700 */
+        }
+        .section-fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .section-fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body class="antialiased">
+    <a href="http://127.0.0.1:5500/java/aulasJava.html">Início</a>
+    <main class="container mx-auto px-4 py-8 md:py-16">
+
+        <section id="hero" class="text-center mb-12 md:mb-16 section-fade-in">
+            <h1 class="text-4xl md:text-5xl font-bold text-slate-800 mb-4">O que é Programação Orientada a Objetos (POO) e Suas Vantagens</h1>
+            <p class="max-w-3xl mx-auto text-lg text-slate-600">
+                Explore os fundamentos da POO, um paradigma de programação essencial para construir software modular, reutilizável e de fácil manutenção.
+            </p>
+        </section>
+
+        <section id="what-is-poo" class="bg-white p-8 md:p-12 rounded-xl shadow-lg mb-12 md:mb-16 section-fade-in">
+            <div class="max-w-4xl mx-auto">
+                <h2 class="text-3xl font-bold text-slate-800 mb-6 text-center">O que é POO?</h2>
+                <p class="text-lg text-slate-700 leading-relaxed">
+                    POO significa <strong class="font-semibold text-blue-600">Programação Orientada a Objetos</strong> e é um paradigma de programação que se baseia no conceito de "objetos", que podem conter dados (atributos) e código (métodos). O objetivo principal da POO é organizar o software de forma que ele seja mais modular, reutilizável e fácil de manter.
+                </p>
+            </div>
+        </section>
+
+        <section id="poo-advantages" class="bg-white p-8 md:p-12 rounded-xl shadow-lg mb-12 md:mb-16 section-fade-in">
+            <div class="max-w-4xl mx-auto">
+                <h2 class="text-3xl font-bold text-slate-800 mb-6 text-center">Vantagens da Programação Orientada a Objetos</h2>
+                <p class="text-lg text-slate-600 mb-8">
+                    A adoção da POO traz uma série de benefícios que impactam diretamente a qualidade e a eficiência do desenvolvimento de software.
+                </p>
+                <ul class="space-y-6 text-slate-700">
+                    <li>
+                        <h3 class="text-xl font-bold text-blue-700 mb-2">1. Reutilização de Código:</h3>
+                        <p class="text-lg leading-relaxed">
+                            Através de conceitos como herança, é possível criar novas classes que reutilizam o código de classes existentes, economizando tempo e esforço no desenvolvimento.
+                        </p>
+                    </li>
+                    <li>
+                        <h3 class="text-xl font-bold text-blue-700 mb-2">2. Modularidade:</h3>
+                        <p class="text-lg leading-relaxed">
+                            O código é dividido em módulos independentes (objetos), o que facilita a compreensão, o desenvolvimento e a manutenção de grandes sistemas. Cada objeto é responsável por uma parte específica da funcionalidade.
+                        </p>
+                    </li>
+                    <li>
+                        <h3 class="text-xl font-bold text-blue-700 mb-2">3. Flexibilidade e Escalabilidade:</h3>
+                        <p class="text-lg leading-relaxed">
+                            A POO permite que o software seja facilmente estendido e modificado. Novas funcionalidades podem ser adicionadas sem afetar o código existente, tornando o sistema mais adaptável a mudanças futuras.
+                        </p>
+                    </li>
+                    <li>
+                        <h3 class="text-xl font-bold text-blue-700 mb-2">4. Manutenção Simplificada:</h3>
+                        <p class="text-lg leading-relaxed">
+                            Como o código é modular e bem encapsulado, a depuração e a correção de erros tornam-se mais fáceis. Alterações em uma parte do sistema tendem a ter um impacto limitado em outras partes.
+                        </p>
+                    </li>
+                    <li>
+                        <h3 class="text-xl font-bold text-blue-700 mb-2">5. Melhor Organização do Código:</h3>
+                        <p class="text-lg leading-relaxed">
+                            A estrutura orientada a objetos reflete melhor o mundo real, tornando o código mais intuitivo e fácil de entender, especialmente para equipas de desenvolvimento.
+                        </p>
+                    </li>
+                    <li>
+                        <h3 class="text-xl font-bold text-blue-700 mb-2">6. Encapsulamento:</h3>
+                        <p class="text-lg leading-relaxed">
+                            Os objetos ocultam os detalhes internos da sua implementação e expõem apenas uma interface pública. Isso protege os dados e garante que o objeto seja usado da maneira pretendida, reduzindo a complexidade.
+                        </p>
+                    </li>
+                    <li>
+                        <h3 class="text-xl font-bold text-blue-700 mb-2">7. Polimorfismo:</h3>
+                        <p class="text-lg leading-relaxed">
+                            Permite que objetos de diferentes classes sejam tratados de forma uniforme. Um mesmo método pode ter comportamentos diferentes dependendo do objeto que o invoca, o que aumenta a flexibilidade e a expressividade do código.
+                        </p>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="conclusion" class="text-center py-12 md:py-16 bg-slate-100 rounded-xl shadow-inner section-fade-in">
+            <div class="max-w-3xl mx-auto px-4">
+                <p class="text-lg text-slate-700 leading-relaxed">
+                    Em resumo, a POO oferece uma abordagem poderosa para o desenvolvimento de software, promovendo a criação de sistemas mais robustos, flexíveis e fáceis de gerir.
+                </p>
+            </div>
+        </section>
+
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const sections = document.querySelectorAll('.section-fade-in');
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target); // Stop observing once visible
+                    }
+                });
+            }, {
+                threshold: 0.1 // Trigger when 10% of the section is visible
+            });
+
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+        });
+    </script>
+</body>
+</html>
