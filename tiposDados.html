@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Linguagem de Programação Orientada a Objetos: Tipos de Dados em Java</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        .container {
+            max-width: 900px;
+            margin: auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1, h2 {
+            color: #0056b3;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .intro, .section {
+            margin-bottom: 20px;
+        }
+        ul {
+            list-style-type: disc;
+            margin-left: 20px;
+        }
+        code {
+            background-color: #e2e2e2;
+            padding: 2px 4px;
+            border-radius: 4px;
+        }
+        pre {
+            background-color: #e9e9e9;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+        .note {
+            background-color: #d1ecf1;
+            border-left: 5px solid #0056b3;
+            padding: 10px 15px;
+            margin-top: 20px;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Linguagem de Programação Orientada a Objetos: Tipos de Dados em Java</h1>
+        <div class="intro">
+            <p>Em <strong>Programação Orientada a Objetos (POO)</strong>, a forma como os dados são representados e manipulados é fundamental. Em Java, uma linguagem puramente orientada a objetos (com algumas exceções para tipos primitivos), entendemos os dados através de duas categorias principais: <strong>tipos de dados nativos (ou primitivos)</strong> e <strong>tipos de dados definidos pelo usuário</strong>.</p>
+        </div>
+
+        <hr>
+
+        <div class="section">
+            <h2>Tipos de Dados Nativos (Primitivos)</h2>
+            <p>Os tipos de dados nativos, também conhecidos como primitivos, são os blocos de construção mais básicos em Java. Eles não são objetos e, portanto, não possuem métodos. Seu propósito é armazenar valores simples e diretos de forma eficiente na memória. Java possui oito tipos primitivos:</p>
+            <ul>
+                <li><strong>byte:</strong> 8 bits, para números inteiros pequenos (de -128 a 127).</li>
+                <li><strong>short:</strong> 16 bits, para números inteiros (de -32.768 a 32.767).</li>
+                <li><strong>int:</strong> 32 bits, o tipo mais comum para números inteiros (aproximadamente de -2 bilhões a 2 bilhões).</li>
+                <li><strong>long:</strong> 64 bits, para números inteiros muito grandes.</li>
+                <li><strong>float:</strong> 32 bits, para números de ponto flutuante de precisão simples.</li>
+                <li><strong>double:</strong> 64 bits, o tipo mais comum para números de ponto flutuante de precisão dupla.</li>
+                <li><strong>boolean:
+</strong> 1 bit, para valores lógicos (<code>true</code> ou <code>false</code>).</li>
+                <li><strong>char:</strong> 16 bits, para um único caractere Unicode.</li>
+            </ul>
+            <p><strong>Exemplo de uso de tipos primitivos:</strong></p>
+            <pre><code>int idade = 30;
+double preco = 99.99;
+boolean isAtivo = true;
+char inicial = 'J';</code></pre>
+        </div>
+
+        <hr>
+
+        <div class="section">
+            <h2>Tipos de Dados Definidos pelo Usuário</h2>
+            <p>Em contraste com os tipos primitivos, os tipos de dados definidos pelo usuário são o coração da Programação Orientada a Objetos. Eles permitem que os programadores criem estruturas de dados complexas e personalizadas que representam entidades do mundo real. Em Java, isso é feito principalmente através de:</p>
+            <h3>1. Classes</h3>
+            <p>Uma <strong>classe</strong> é um modelo ou "planta" para criar objetos. Ela define as características (<strong>atributos</strong> ou <strong>variáveis de instância</strong>) e os comportamentos (<strong>métodos</strong>) que os objetos desse tipo terão. Quando você cria uma classe, está definindo um novo tipo de dado.</p>
+            <p><strong>Exemplo de uma classe (tipo de dado definido pelo usuário):</strong></p>
+            <pre><code>public class Carro {
+    // Atributos (características)
+    String marca;
+    String modelo;
+    int ano;
+    String cor;
+
+    // Construtor
+    public Carro(String marca, String modelo, int ano, String cor) {
+        this.marca = marca;
+        this.modelo = modelo;
+        this.ano = ano;
+        this.cor = cor;
+    }
+
+    // Métodos (comportamentos)
+    public void ligar() {
+        System.out.println("O carro " + modelo + " está ligado.");
+    }
+
+    public void acelerar() {
+        System.out.println("O carro está acelerando.");
+    }
+}</code></pre>
+            <p>A partir dessa classe, podemos criar <strong>objetos</strong> (instâncias) de <code>Carro</code>:</p>
+            <pre><code>// Criando objetos do tipo Carro
+Carro meuCarro = new Carro("Toyota", "Corolla", 2022, "Prata");
+Carro seuCarro = new Carro("Honda", "Civic", 2023, "Preto");
+
+// Acessando atributos e chamando métodos
+System.out.println("Meu carro é um " + meuCarro.marca + " " + meuCarro.modelo);
+meuCarro.ligar();
+seuCarro.acelerar();</code></pre>
+
+            <h3>2. Interfaces</h3>
+            <p>Uma <strong>interface</strong> em Java é um contrato que especifica um conjunto de métodos que uma classe deve implementar. Ela define um comportamento comum que diferentes classes podem compartilhar, sem se preocupar com os detalhes da implementação.</p>
+            <p><strong>Exemplo de uma interface:</strong></p>
+            <pre><code>public interface FormaGeometrica {
+    double calcularArea();
+    double calcularPerimetro();
+}
+
+public class Circulo implements FormaGeometrica {
+    double raio;
+
+    public Circulo(double raio) {
+        this.raio = raio;
+    }
+
+    @Override
+    public double calcularArea() {
+        return Math.PI * raio * raio;
+    }
+
+    @Override
+    public double calcularPerimetro() {
+        return 2 * Math.PI * raio;
+    }
+}
+
+public class Retangulo implements FormaGeometrica {
+    double largura;
+    double altura;
+
+    public Retangulo(double largura, double altura) {
+        this.largura = largura;
+        this.altura = altura;
+    }
+
+    @Override
+    public double calcularArea() {
+        return largura * altura;
+    }
+
+    @Override
+    public double calcularPerimetro() {
+        return 2 * (largura + altura);
+    }
+}</code></pre>
+            <p>Usando a interface para polimorfismo:</p>
+            <pre><code>FormaGeometrica circulo1 = new Circulo(5.0);
+FormaGeometrica retangulo1 = new Retangulo(4.0, 6.0);
+
+System.out.println("Área do círculo: " + circulo1.calcularArea());
+System.out.println("Perímetro do retângulo: " + retangulo1.calcularPerimetro());</code></pre>
+
+            <h3>3. Enums (Enumerações)</h3>
+            <p><strong>Enums</strong> são um tipo especial de classe que representa um grupo fixo de constantes. São úteis para definir uma coleção de valores relacionados e pré-definidos.</p>
+            <p><strong>Exemplo de um Enum:</strong></p>
+            <pre><code>public enum DiasDaSemana {
+    SEGUNDA, TERCA, QUARTA, QUINTA, SEXTA, SABADO, DOMINGO
+}
+
+public class TesteEnum {
+    public static void main(String[] args) {
+        DiasDaSemana hoje = DiasDaSemana.QUARTA;
+        System.out.println("Hoje é: " + hoje);
+
+        if (hoje == DiasDaSemana.QUARTA) {
+            System.out.println("Estamos no meio da semana!");
+        }
+    }
+}</code></pre>
+        </div>
+
+        <hr>
+
+        <div class="note">
+            <h3>Ponteiro: Variáveis de Referência</h3>
+            <p>É importante notar que, em Java, quando trabalhamos com tipos de dados definidos pelo usuário (objetos de classes, interfaces, etc.), as variáveis que os armazenam não contêm o objeto em si, mas sim uma <strong>referência</strong> (um "ponteiro") para o local na memória onde o objeto está armazenado. Isso é diferente de C/C++, onde você manipula ponteiros diretamente. Em Java, a manipulação de referências é mais abstrata e segura.</p>
+            <pre><code>Carro meuCarro = new Carro("Fiat", "Uno", 2010, "Azul"); // meuCarro é uma referência
+Carro outroCarro = meuCarro; // outroCarro agora referencia o MESMO objeto que meuCarro</code></pre>
+            <p>Neste exemplo, <code>meuCarro</code> e <code>outroCarro</code> não são cópias independentes; eles apontam para o mesmo objeto <code>Carro</code> na memória.</p>
+        </div>
+
+        <hr>
+
+        <div class="section">
+            <h2>Conclusão</h2>
+            <p>A distinção entre tipos de dados nativos e definidos pelo usuário é um pilar fundamental da Programação Orientada a Objetos em Java. Enquanto os tipos primitivos fornecem uma base eficiente para dados simples, as classes, interfaces e enums permitem a criação de modelos complexos e flexíveis, essenciais para construir aplicações robustas e escaláveis, promovendo a reutilização de código e a organização.</p>
+        </div>
+    </div>
+</body>
+</html>

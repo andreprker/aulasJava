@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Variáveis Java e Exibição</title>
+    <!-- Incluindo Tailwind CSS para estilização -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Estilos personalizados para a fonte Inter */
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        /* Estilo para blocos de código */
+        pre {
+            background-color: #1e1e1e; /* Cor de fundo escura para o código */
+            color: #d4d4d4; /* Cor do texto claro */
+            padding: 1rem;
+            border-radius: 0.5rem;
+            overflow-x: auto; /* Permite rolagem horizontal para código longo */
+        }
+    </style>
+</head>
+<body class="bg-gray-100 text-gray-900 p-4 sm:p-8">
+
+    <div class="max-w-4xl mx-auto bg-white rounded-lg shadow-xl p-6 sm:p-8">
+        <h1 class="text-4xl font-bold text-center text-indigo-700 mb-8 rounded-md p-2 bg-indigo-50">
+            Variáveis em Java e Como Exibi-las
+        </h1>
+
+        <p class="mb-6 text-lg leading-relaxed">
+            Em Java, variáveis são contêineres para armazenar valores de dados. Cada variável deve ser declarada com um tipo de dado específico que indica o tipo e o tamanho dos valores que ela pode armazenar.
+        </p>
+
+        <h2 class="text-3xl font-semibold text-indigo-600 mb-6">Tipos de Variáveis Comuns em Java</h2>
+        <ul class="list-disc list-inside space-y-3 mb-8">
+            <li class="text-lg">
+                <strong><code>int</code>:</strong> Armazena números inteiros (sem decimais), como 10, -200, 15000.
+            </li>
+            <li class="text-lg">
+                <strong><code>double</code>:</strong> Armazena números de ponto flutuante (com decimais), como 3.14, 0.001, -25.75.
+            </li>
+            <li class="text-lg">
+                <strong><code>boolean</code>:</strong> Armazena valores verdadeiro ou falso (<code>true</code> ou <code>false</code>).
+            </li>
+            <li class="text-lg">
+                <strong><code>char</code>:</strong> Armazena um único caractere, como 'A', 'b', '9'.
+            </li>
+            <li class="text-lg">
+                <strong><code>String</code>:</strong> Armazena uma sequência de caracteres (texto), como "Olá Mundo", "Java Programming". (Note que <code>String</code> é uma classe, não um tipo primitivo).
+            </li>
+        </ul>
+
+        <h2 class="text-3xl font-semibold text-indigo-600 mb-6">Declarando e Inicializando Variáveis</h2>
+        <p class="mb-4 text-lg leading-relaxed">
+            Para usar uma variável, você precisa declará-la (especificar seu tipo e nome) e, opcionalmente, inicializá-la (atribuir um valor a ela).
+        </p>
+        <pre><code class="language-java">
+// Declaração de variável
+int idade;
+
+// Inicialização de variável
+idade = 30;
+
+// Declaração e inicialização em uma única linha
+String nome = "Maria";
+double preco = 99.99;
+boolean isAtivo = true;
+char letra = 'C';
+        </code></pre>
+
+        
+        <h2 class="text-3xl font-semibold text-indigo-600 mt-8 mb-6">Exibindo Variáveis na Tela (Console)</h2>
+        <p class="mb-4 text-lg leading-relaxed">
+            Em Java, você usa o método <code>System.out.println()</code> para imprimir valores no console. Este método adiciona uma nova linha após a impressão. Você também pode usar <code>System.out.print()</code> se não quiser uma nova linha. <br>
+            Entre os parenteses do código de exibição caso você queira exibir os valores das variáveis, você deixara apenas o nome declarado dela dentro deles. <br>
+            Você também consegue exibir mensagens de texto desde que estas estejam entre aspas duplas.<br>
+            Para mostrar uma frase e o valor da variável no mesmo método, basta separá-los por um sinal de +, esse sinal fará a concatenação entre texto e variáveis.
+        </p>
+        <pre><code class="language-java">
+// Declaração de variável
+int idade;
+
+// Inicialização de variável
+idade = 30;
+
+// Para exibir na tela
+System.out.println("A idade é: " + idade);
+        </code></pre>
+
+        <p class="mb-4 text-lg leading-relaxed">
+            O valor esperado na exibição será:
+        </p>
+        <pre><code class="language-java">
+A idade é: 30
+        </code></pre>
+
+
+        <h2 class="text-3xl font-semibold text-indigo-600 mt-8 mb-6">Recebendo Entrada do Usuário</h2>
+        <p class="mb-4 text-lg leading-relaxed">
+            Para permitir que o usuário insira dados no console, você pode usar a classe <code>Scanner</code> do pacote <code>java.util</code>. Você precisa importá-la e criar um objeto <code>Scanner</code> que lerá a entrada do sistema (<code>System.in</code>).
+        </p>
+        <pre><code class="language-java">
+import java.util.Scanner; // Importa a classe Scanner
+
+public class ExemploEntradaUsuario {
+    public static void main(String[] args) {
+        // Cria um objeto Scanner para ler a entrada do usuário
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Digite seu nome: ");
+        String nomeUsuario = scanner.nextLine(); // Lê uma linha de texto (nome)
+
+        System.out.print("Digite sua idade: ");
+        int idadeUsuario = scanner.nextInt(); // Lê um número inteiro (idade)
+
+        System.out.print("Digite sua altura (ex: 1,75): ");
+        double alturaUsuario = scanner.nextDouble(); // Lê um número double (altura)
+
+        // IMPORTANTE: Consumir a quebra de linha restante após nextInt()/nextDouble()
+        // Isso evita problemas com nextLine() subsequente
+        scanner.nextLine();
+
+        System.out.print("Você está aprendendo Java? (true/false): ");
+        boolean aprendendoJava = scanner.nextBoolean(); // Lê um valor booleano
+
+        // Fecha o objeto Scanner para liberar recursos
+        scanner.close();
+
+        // Exibe os dados inseridos pelo usuário
+        System.out.println("\n--- Dados do Usuário ---");
+        System.out.println("Nome: " + nomeUsuario);
+        System.out.println("Idade: " + idadeUsuario + " anos");
+        System.out.println("Altura: " + alturaUsuario + " metros");
+        System.out.println("Aprendendo Java: " + aprendendoJava);
+    }
+}
+        </code></pre>
+        <p class="mt-4 text-lg leading-relaxed">
+            Note o uso de <code>scanner.nextLine();</code> após <code>scanner.nextInt();</code> ou <code>scanner.nextDouble();</code>. Isso é crucial para "consumir" a quebra de linha que fica no buffer de entrada após a leitura de números, prevenindo que <code>nextLine()</code> leia uma string vazia imediatamente depois.
+        </p>
+
+        <h3 class="text-2xl font-medium text-indigo-600 mt-8 mb-4">Exemplo Completo Integrado:</h3>
+        <pre><code class="language-java">
+import java.util.Scanner; // Importa a classe Scanner
+
+public class ExemploVariaveisComEntrada {
+    public static void main(String[] args) {
+        // --- Exemplo de Declaração e Exibição de Variáveis ---
+        int idadeFixa = 25;
+        double alturaFixa = 1.75;
+        String nomeCompletoFixo = "João Silva";
+        boolean estudanteFixo = true;
+        char inicialNomeFixo = 'J';
+
+        System.out.println("--- Dados Fixos ---");
+        System.out.println("Nome: " + nomeCompletoFixo);
+        System.out.println("Idade: " + idadeFixa + " anos");
+        System.out.println("Altura: " + alturaFixa + " metros");
+        System.out.println("É estudante? " + estudanteFixo);
+        System.out.println("Inicial do nome: " + inicialNomeFixo);
+        System.out.println("\n---------------------\n");
+
+        // --- Exemplo de Recebimento de Entrada do Usuário ---
+        Scanner scanner = new Scanner(System.in); // Cria um objeto Scanner
+
+        System.out.print("Por favor, digite seu NOME: ");
+        String nomeUsuario = scanner.nextLine(); // Lê o nome
+
+        System.out.print("Agora, digite sua IDADE: ");
+        int idadeUsuario = scanner.nextInt(); // Lê a idade
+
+        // Consome a quebra de linha restante após nextInt()
+        scanner.nextLine();
+
+        System.out.print("Por fim, digite sua PROFISSÃO: ");
+        String profissaoUsuario = scanner.nextLine(); // Lê a profissão
+
+        // Fecha o objeto Scanner
+        scanner.close();
+
+        // Exibe os dados inseridos pelo usuário
+        System.out.println("\n--- Dados Inseridos Pelo Usuário ---");
+        System.out.println("Seu nome é: " + nomeUsuario);
+        System.out.println("Sua idade é: " + idadeUsuario + " anos");
+        System.out.println("Sua profissão é: " + profissaoUsuario);
+    }
+}
+        </code></pre>
+
+        <h3 class="text-2xl font-medium text-indigo-600 mt-8 mb-4">Saída Esperada no Console (Exemplo com Entrada):</h3>
+        <pre><code class="language-text">
+--- Dados Fixos ---
+Nome: João Silva
+Idade: 25 anos
+Altura: 1.75 metros
+É estudante? true
+Inicial do nome: J
+
+---------------------
+
+Por favor, digite seu NOME: <span class="text-yellow-400">Ana Paula</span>
+Agora, digite sua IDADE: <span class="text-yellow-400">30</span>
+Por fim, digite sua PROFISSÃO: <span class="text-yellow-400">Engenheira</span>
+
+--- Dados Inseridos Pelo Usuário ---
+Seu nome é: Ana Paula
+Sua idade é: 30 anos
+Sua profissão é: Engenheira
+        </code></pre>
+        <p class="mt-4 text-sm text-gray-500">
+            (O texto em amarelo representa a entrada do usuário)
+        </p>
+
+        <p class="mt-8 text-lg leading-relaxed">
+            Com estas adições, a página agora cobre tanto a declaração e exibição de variáveis quanto o processo de receber entrada de dados do usuário em Java.
+        </p>
+
+        <div class="mt-8 pt-6 border-t border-gray-300 text-center text-gray-600 text-sm">
+            <p>&copy; 2025 Conceitos Básicos de Java. Todos os direitos reservados.</p>
+        </div>
+    </div>
+
+</body>
+</html>
